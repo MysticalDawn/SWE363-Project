@@ -1,18 +1,20 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&family=Playfair+Display&family=Poppins:wght@600&family=Raleway:wght@500&display=swap");
 header {
   width: 100%;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Add this line to fix the slider issue */
 }
 nav {
   display: flex;
   align-items: center;
   justify-content: space-around;
-  background-color: rgb(16, 10, 10);
+  background-color: rgb(23, 23, 23);
   color: white;
   font-family: "JetBrains Mono", monospace;
   padding: 2rem;
   width: 100%;
   font-size: 1.5rem;
+  position: fixed;
+  margin-bottom: 0.1rem;
 }
 
 svg {
@@ -22,27 +24,25 @@ svg {
   width: 10%;
 }
 
-a {
+.a-tag-nav {
   list-style: none;
   text-decoration: none;
   cursor: pointer;
   color: white;
 }
 
-a::after {
+.a-tag-nav::after {
   content: "";
   display: block;
   width: 0px;
   height: 2px;
   background: whitesmoke;
   transition: width 0.6s;
-
 }
 
-a:hover::after {
+.a-tag-nav:hover::after {
   width: 100%;
 }
-
 
 .nav-elements {
   position: relative;
@@ -50,11 +50,11 @@ a:hover::after {
   justify-content: space-around;
   align-content: center;
   align-items: center;
-  width: 500%;
+  width: 350%;
 }
 
 .btn-sign-in-up {
   display: flex;
   justify-content: space-around;
-  width: 100%
+  width: 100%;
 }
