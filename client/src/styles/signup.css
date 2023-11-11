@@ -1,43 +1,132 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&family=Playfair+Display&family=Poppins:wght@600&family=Raleway:wght@500&display=swap");
 
 .auth-wrapper {
-    display: flex;
-    height: 100vh;
-    overflow-y: hidden;
-    overflow-x: hidden;
-    font-family: "JetBrains Mono", monospace;
-    background-color: rgb(23, 23, 23);
+  display: flex;
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  font-family: "JetBrains Mono", monospace;
+  background-color: rgb(23, 23, 23);
 }
 
 .left-side {
-    width: 50%;
-    height: 1000%;
-    background-color: #e1e1e1;
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+.left-side svg {
+  width: 20rem;
+  height: 20rem;
+  object-fit: cover;
+    margin-right: 10%;
+}
 .right-side {
-    padding: 5rem;
-    display: flex;
-    width: 50%;
-    height: 100%;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50%;
+  height: 100%;
+  margin-left: 10%;
 }
 
 .starting-top {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: fit-content;
+  margin-top: 3rem;
+  width: 50%;
 }
 
 h1 {
-    font-size: 60px;
-    margin-bottom: 5rem;
+  font-size: 50px;
+  color: white;
+  margin-left: 5%
 }
 
-h2 {
-    font-size: 40px;
-
+.signup-form {
+  display: block;
 }
 
+h3 {
+  color: white;
+  margin-top: 8rem;
+  font-size: 30px;
+}
 
+.email-input {
+  margin-top: 1rem;
+  width: 50%;
+  height: 3rem;
+  border-radius: 0.1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid rgb(255, 255, 255);
+  outline: none;
+  padding-left: 1rem;
+  font-size: 20px;
+  font-family: "JetBrains Mono", monospace;
+  background-color: rgb(23, 23, 23);
+  color: white;
+}
+
+.password-input {
+  margin-top: 1rem;
+  width: 50%;
+  height: 3rem;
+  border-radius: 0.1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid rgb(255, 255, 255);
+  outline: none;
+  padding-left: 1rem;
+  font-size: 20px;
+  font-family: "JetBrains Mono", monospace;
+  background-color: rgb(23, 23, 23);
+  color: white;
+}
+
+.signup-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 1.2rem;
+  color: white;
+  background-color: rgb(23, 23, 23);
+  border: 1px solid rgb(224, 224, 224);
+  border-radius: 3rem;
+  padding: 1.2rem;
+  margin-top: 5.5rem;
+  margin-left: 10%;
+  cursor: pointer;
+  width: 20rem;
+  transition: background-color 0.7s;
+}
+
+.signup-btn:hover {
+  background-color: rgb(224, 224, 224);
+  color: rgb(23, 23, 23);
+}
+
+.signup-bottom-text {
+  margin-top: 1rem;
+  color: white;
+  font-size: 1.2rem;
+  font-family: "JetBrains Mono", monospace;
+  margin-top: 5%;
+  margin-left: 8%;
+}
+
+.signup-bottom-text a {
+  color: white;
+  text-decoration:underline;
+}
+
+.signup-bottom-text a:hover {
+  color: rgb(224, 224, 224);
+}
 
