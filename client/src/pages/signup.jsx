@@ -1,9 +1,22 @@
 import "../styles/signup.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export const Signup = () => {
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const signUserUp = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("http://localhost:3001/auth/register", {
+        email,
+        password,
+      });
+      alert("User registered successfully");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="auth-wrapper">
       <div className="left-side">
@@ -22,13 +35,14 @@ export const Signup = () => {
         <div className="starting-top">
           <h1>Sign Up 📝</h1>
         </div>
+        <p className="bellow-signup-text">Sign up to start your journey with us</p>
         <form className="signup-form">
           <h3>Email</h3>
           <input
             type="email"
             placeholder="someone@gmail.com"
             className="email-input"
-            value = {email}
+            value={email}
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -38,13 +52,13 @@ export const Signup = () => {
             type="password"
             placeholder="Type a strong password"
             className="password-input"
-            value = {password}
+            value={password}
             onChange={(e) => {
               setPassword(e.target.value);
             }}
           />
         </form>
-        <button className="signup-btn">Sign Up</button>
+        <button className="signup-btn" onClick={signUserUp}>Sign Up</button>
         <p className="signup-bottom-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>

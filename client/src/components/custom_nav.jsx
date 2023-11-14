@@ -20,7 +20,7 @@ export const CustomNav = () => {
           <Link className="a-tag-nav" to="contact-us">Contact Us</Link>
         </div>
         <div className="btn-sign-in-up">
-          <Link className="a-tag-nav" to='/auth'>Sign in/up</Link>
+          <Link className="a-tag-nav" to='/login'>Sign in/up</Link>
         </div>
       </nav>
     </header>
