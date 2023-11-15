@@ -6,9 +6,7 @@ header {
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  color: white;
-  font-family: "JetBrains Mono", monospace;
+  justify-content: space-between;
   padding: 2rem;
   width: 100%;
   font-size: 1.5rem;
@@ -52,8 +50,20 @@ svg {
   width: 350%;
 }
 
-.btn-sign-in-up {
-  display: flex;
-  justify-content: space-around;
-  width: 100%;
+#sign-in-up {
+  background-color: silver;
+  color: black;
+  text-align: center;
+  width: 40%;
+  border: 0.1rem solid;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  margin-right: 4%;
+  transition: background-color 0.5s;
+  text-decoration: none;
+}
+
+#sign-in-up:hover {
+  background-color: white;
+  color: black;
 }

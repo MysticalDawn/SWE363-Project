@@ -17,11 +17,9 @@ export const CustomNav = () => {
         <div className="nav-elements">
           <Link className="a-tag-nav" to="/">Home</Link>
           <Link className="a-tag-nav" to="/catalog">Catalog</Link>
-          <Link className="a-tag-nav" to="contact-us">Contact Us</Link>
+          <Link className="a-tag-nav" to="/contact">Contact Us</Link>
         </div>
-        <div className="btn-sign-in-up">
-          <Link className="a-tag-nav" to='/login'>Sign in/up</Link>
-        </div>
+          <Link id="sign-in-up" to='/login'>Sign in/up</Link>
       </nav>
     </header>
   );
