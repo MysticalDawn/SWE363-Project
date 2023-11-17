@@ -3,9 +3,8 @@ export const Catalog = () => {
   return (
     <>
       <CustomNav />
-      <div>
-        <h1>Catalog</h1>
-      </div>
+      <h1>Catalog</h1>
     </>
+
   );
 };

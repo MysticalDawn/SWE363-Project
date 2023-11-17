@@ -68,7 +68,7 @@ h1 {
 .signup-form {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: start;
   width: 100%;
   height: 50%;
@@ -132,7 +132,7 @@ h3 {
   border: 0.1rem solid rgb(0, 0, 0);
   border-radius: 3rem;
   padding: 1.2rem;
-  margin-top: 5.5rem;
+  margin-top: 4rem;
   margin-left: 10%;
   cursor: pointer;
   width: 20rem;
