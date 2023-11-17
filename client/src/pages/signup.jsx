@@ -33,10 +33,37 @@ export const Signup = () => {
         </svg>
       </div>
       <div className="right-side">
+        <div className="go-back-arrow-signup">
+          <svg
+            fill="#ffffff"
+            viewBox="-3.2 -3.2 38.40 38.40"
+            xmlns="http://www.w3.org/2000/svg"
+            transform="rotate(270)"
+            stroke="#ffffff"
+            strokeWidth="0.00032"
+          >
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g
+              id="SVGRepo_tracerCarrier"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              stroke="#CCCCCC"
+              strokeWidth="0.256"
+            ></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M 16 4.09375 L 9.28125 10.8125 L 10.71875 12.21875 L 15 7.9375 L 15 28 L 17 28 L 17 7.9375 L 21.28125 12.21875 L 22.71875 10.8125 Z"></path>
+            </g>
+          </svg>
+          <Link to="/" className="go-back-text-signup">
+            Go back
+          </Link>
+        </div>
         <div className="starting-top">
           <h1>Sign Up 📝</h1>
         </div>
-        <p className="bellow-signup-text">Sign up to start your journey with us</p>
+        <p className="bellow-signup-text">
+          Sign up to start your journey with us
+        </p>
         <form className="signup-form">
           <h3>Email</h3>
           <input
@@ -59,7 +86,9 @@ export const Signup = () => {
             }}
           />
         </form>
-        <button className="signup-btn" onClick={signUserUp}>Sign Up</button>
+        <button className="signup-btn" onClick={signUserUp}>
+          Sign Up
+        </button>
         <p className="signup-bottom-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>

@@ -27,13 +27,13 @@ export const CustomNav = () => {
             Contact Us
           </Link>
         </div>
-        {!cookies.token ? (
-          <Link id="sign-in-up" to="/login">
-            Sign in/up
-          </Link>
-        ) : (
+        {cookies.token ? (
           <Link id="sign-in-up" to="/profile">
             Profile
+          </Link>
+        ) : (
+          <Link id="sign-in-up" to="/login">
+            Sign in/up
           </Link>
         )}
       </nav>
