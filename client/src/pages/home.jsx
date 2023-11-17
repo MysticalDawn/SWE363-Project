@@ -1,4 +1,5 @@
 import "../styles/home.css";
+import { CustomNav } from "../components/custom_nav.jsx";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 export const Home = () => {
@@ -14,9 +15,11 @@ export const Home = () => {
     }
   }, [fullText, index, text]);
   return (
+    <>
+      <CustomNav />
     <div className="home-wrapper">
       <div className="left-section">
-        <h1>{text}</h1>
+        <h1 className="welcome-text">{text}</h1>
         <p className="info">
           Dallani is a website that helps students find co-op and summer
           training opportunity in different companies.
@@ -52,5 +55,6 @@ export const Home = () => {
         </svg>
       </div>
     </div>
+    </>
   );
 };

@@ -2,9 +2,9 @@
   margin: 0;
   padding: 0;
   overflow-x: hidden;
+  font-family: "JetBrains Mono", monospace;
 }
 
 body {
-  font-family: "JetBrains Mono", monospace;
   background: linear-gradient(90deg, rgba(9, 9, 9, 1), rgba(25, 31, 44, 1));
 }

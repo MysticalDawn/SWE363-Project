@@ -2,12 +2,28 @@ import "../styles/login.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [_, setCookies] = useCookies("token");
+  const navigate = useNavigate();
   const loginUser = async (e) => {
     e.preventDefault();
-    
+    console.log("login");
+    try {
+      const response = await axios.post("http://localhost:3001/auth/login", {
+        email,
+        password,
+      });
+      setCookies("token", response.data.token);
+      window.localStorage.setItem("userID", response.data.userId);
+      navigate("/");
+    } catch (e) {
+      console.log(e);
+    }
   };
   return (
     <div className="login-wrapper">

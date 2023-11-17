@@ -20,17 +20,17 @@ router.post("/register", async (req, res) => {
 });
 
 router.post("/login", async (req, res) => {
-    const {email, password} = req.body
-    const user = await UserModel.findOne({email})
-    if(!user) {
-        return res.json({message: "User does not exist!"})
-    }
-    const isPasswordValid = await bcrypt.compare(password, user.password)
-    if(!isPasswordValid) {
-        return res.json({message: "Email or password does not exist!"})
-    }
-    const token = jwt.sign({id: user._id}, "secret")
-    res.json({token, userID: user._id})
+  const { email, password } = req.body;
+  const user = await UserModel.findOne({ email });
+  if (!user) {
+    return res.json({ message: "User does not exist!" });
+  }
+  const isPasswordValid = await bcrypt.compare(password, user.password);
+  if (!isPasswordValid) {
+    return res.json({ message: "Email or password does not exist!" });
+  }
+  const token = jwt.sign({ id: user._id }, "secret");
+  res.json({ token, userID: user._id });
 });
 
 export { router as UserRouter };
