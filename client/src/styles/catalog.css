@@ -1,0 +1,116 @@
+#title {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+#catalog-body{
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+#filter{
+    display: inline-flex;
+    flex-direction: column;
+    border: 1px solid rgb(122, 120, 120);
+    border-radius: 10px;
+    margin-top: 65px;
+    margin-left: 20px;
+    font-size: larger;
+    background-color: var(--primary-color);
+    box-shadow: -3px 3px rgb(31, 31, 31);
+    min-width: 220px;
+}
+#filter > *{
+    padding: 10px 10px 10px 5px;
+    border-bottom: 1px solid rgb(110, 110, 110);
+    float: left;
+
+}
+#filter select {
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px;
+    outline: none;
+    font-size: medium;
+    cursor: pointer;
+}
+select option {
+    background-color: rgba(0, 0, 0, 0.979);
+}
+input[type="checkbox"]{
+    cursor: pointer;
+}
+#search-bar {
+    margin-right: 100px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: larger;
+}
+#search{
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    font-size: larger;
+    transition: border-color 1s;
+    outline: none;
+    border:1px solid white;
+}
+#search:hover {
+    border-color: rgb(134, 198, 255);
+}
+#jobs-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+    text-align: center;
+    margin-right: 50px;
+    gap: 15px;
+    margin-left: 30px;
+}
+
+@media screen and (max-width: 1700px){
+    #jobs-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 1400px){
+    #jobs-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.job-card {
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    transition: background-color 0.5s;
+}
+.job-card:hover{
+    background-color: var(--primary-color);
+}
+.training-location {
+    margin-top: 0px;
+    margin-bottom: 10px;
+}
+.job-card section {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
+.apply {
+    margin-right: 10px;
+    font-size: larger;
+    padding: 5px;
+    background-color: silver;
+    border-radius: 6px;
+    border: 1px solid white;
+    color: black;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+.apply:hover {
+    background-color: white;
+}
+.users-rating {
+    padding: 5px;
+}
