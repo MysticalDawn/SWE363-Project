@@ -139,8 +139,10 @@ img[alt="location"]{
     padding: 5px;
     border: 2px solid white;
     font-size: small;
-    border-radius: 50%;
-    
+    border-radius: 9999px;
+    width: 35px;
+    height: 20px;
+    text-align: center;
 }
 .outer-card {
     display: flex;
@@ -153,12 +155,13 @@ img[alt="location"]{
     margin-right: 10px;
     font-size: larger;
     padding: 5px;
-    background-color: silver;
+    background-color: var(--secondary-background);
     border-radius: 6px;
     border: 1px solid white;
     color: black;
     transition: background-color 0.5s;
     cursor: pointer;
+    font-weight: 800;
 }
 .apply:hover {
     background-color: white;
