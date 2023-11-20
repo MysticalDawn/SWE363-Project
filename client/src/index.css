@@ -9,4 +9,6 @@
 body {
   background: linear-gradient(90deg, rgba(9, 9, 9, 1), rgba(25, 31, 44, 1));
   --primary-color: rgba(10, 10, 10, 0.473);
+  --secondary-background: rgb(69, 196, 255);
+  --text-main:rgb(182, 180, 180);;
 }

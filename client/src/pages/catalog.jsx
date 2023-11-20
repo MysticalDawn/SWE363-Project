@@ -1,6 +1,18 @@
 import { CustomNav } from "../components/custom_nav.jsx";
 import "../styles/catalog.css";
+import aramco from "../img/aramco-logo.png";
+import Rating from '@mui/material/Rating';
+import locationLogo from "../img/location.svg";
 export const Catalog = () => {
+  let majors =["CS","SWE","COE","EE"];
+  function majorsElement(majorsList){
+    let elementsList = majorsList.map(major=><i className={"major "+major} key={major}>
+      {major}
+    </i>)
+    return <div className="targetted-majors">
+      {elementsList}
+    </div>
+  }
   return (
     <>
       <CustomNav />
@@ -9,8 +21,8 @@ export const Catalog = () => {
         <aside id="filter">
           <i className="major-section">
             Major: <br />
-            <select name="major" id="major">
-              <option value="" disabled selected>
+            <select name="major" id="major" defaultValue={"default"}>
+              <option value="default" disabled>
                 Select your option
               </option>
               <option value="CS">CS</option>
@@ -42,58 +54,21 @@ export const Catalog = () => {
           </p>
           <section id="jobs-grid">
             <article className="job-card">
-              <h1 className="company-name">Company</h1>
-              <h2 className="targetted-majors">major1, major2, major3</h2>
-              <h3 className="training-location">Jeddah</h3>
-              <p className="job-details">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                accumsan augue ullamcorper, commodo orci eu, ullamcorper nulla.
-                Cras id aliquet felis.
-              </p>
-              <section>
-                <i className="users-rating">5/5</i>
-                <button type="submit" className="apply">Apply</button>
+              <section className="card-body">
+                <img src={aramco} alt="logo" width={40}/>
+                <h1 className="company-name">Aramco</h1>
+                <p className="rating">
+                  <Rating className="stars" value={4} readOnly></Rating>
+                  <i className="rating-count">(318 users)</i>
+                </p>
+                <div className="train-location">
+                  <img src={locationLogo} alt="location" width={20}/>
+                  <h2>Dhahran</h2>
+                </div>
+                {majorsElement(majors)}
               </section>
-            </article>
-            <article className="job-card">
-              <h1 className="company-name">Company</h1>
-              <h2 className="targetted-majors">major1, major2, major3</h2>
-              <h3 className="training-location">Jeddah</h3>
-              <p className="job-details">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                accumsan augue ullamcorper, commodo orci eu, ullamcorper nulla.
-                Cras id aliquet felis.
-              </p>
-              <section>
-                <i className="users-rating">5/5</i>
-                <button type="submit" className="apply">Apply</button>
-              </section>
-            </article>
-            <article className="job-card">
-              <h1 className="company-name">Company</h1>
-              <h2 className="targetted-majors">major1, major2, major3</h2>
-              <h3 className="training-location">Jeddah</h3>
-              <p className="job-details">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                accumsan augue ullamcorper, commodo orci eu, ullamcorper nulla.
-                Cras id aliquet felis.
-              </p>
-              <section>
-                <i className="users-rating">5/5</i>
-                <button type="submit" className="apply">Apply</button>
-              </section>
-            </article>
-            <article className="job-card">
-              <h1 className="company-name">Company</h1>
-              <h2 className="targetted-majors">major1, major2, major3</h2>
-              <h3 className="training-location">Jeddah</h3>
-              <p className="job-details">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus
-                accumsan augue ullamcorper, commodo orci eu, ullamcorper nulla.
-                Cras id aliquet felis.
-              </p>
-              <section>
-                <i className="users-rating">5/5</i>
+              <section className="outer-card">
+                
                 <button type="submit" className="apply">Apply</button>
               </section>
             </article>
