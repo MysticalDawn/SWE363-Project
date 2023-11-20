@@ -84,15 +84,15 @@ export const Catalog = () => {
           <hr />
 
           <i className="sortby">
-            <p className="sort_label">
+            <i className="sort_label">
               <img src={sortByLogo} alt="sortby" width={25} />
               <p>Sort By:</p>
-            </p>
+            </i>
             <input type="radio" id="recent" name="sortby" value="recent" />{" "}
-            <label for="recent">Most Recent</label>
+            <label htmlFor="recent">Most Recent</label>
             <br />
             <input type="radio" id="rating" name="sortby" value="raing" />{" "}
-            <label for="rating">Highest Rating</label>
+            <label htmlFor="rating">Highest Rating</label>
             <br />
             {" "}
             <input
@@ -101,14 +101,14 @@ export const Catalog = () => {
               name="sortby"
               value="popular"
             />{" "}
-            <label for="popular">Most Popular</label>
+            <label htmlFor="popular">Most Popular</label>
           </i>
           <hr />
           <i className="location-filter">
-          <p className="sort_label">
+          <i className="sort_label">
               <img src={locationLogo} alt="logo" width={20} />
               <p>Train Location:</p>
-            </p>
+            </i>
             <select name="location" id="location" defaultValue={"default"}>
               <option value="default">
                All Locations

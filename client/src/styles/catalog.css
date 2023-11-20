@@ -33,6 +33,10 @@
     font-size: medium;
     cursor: pointer;
     margin-top: 10px;
+    transition: background-color 0.5s;
+}
+#filter select:hover{
+    background-color: var(--secondary-background-hover);
 }
 select option {
     background-color: rgba(0, 0, 0, 0.979);
