@@ -3,6 +3,7 @@ import "../styles/catalog.css";
 import aramco from "../img/aramco-logo.png";
 import Rating from "@mui/material/Rating";
 import locationLogo from "../img/location.svg";
+import sortByLogo from "../img/sortby.svg";
 export const Catalog = () => {
   let majors = ["CS", "SWE", "COE", "EE"];
   function majorsElement(majorsList) {
@@ -54,11 +55,12 @@ export const Catalog = () => {
       <h1 id="title">Catalog:</h1>
       <main id="catalog-body">
         <aside id="filter">
+          <h2>Filters:</h2>
           <i className="major-section">
             Major: <br />
             <select name="major" id="major" defaultValue={"default"}>
-              <option value="default" disabled>
-                Select your option
+              <option value="default">
+                All Majors
               </option>
               <option value="CS">CS</option>
               <option value="SWE">SWE</option>
@@ -80,7 +82,43 @@ export const Catalog = () => {
             <label htmlFor="summber"> Internship</label>
           </i>
           <hr />
-          <i className=""></i>
+
+          <i className="sortby">
+            <p className="sort_label">
+              <img src={sortByLogo} alt="sortby" width={25} />
+              <p>Sort By:</p>
+            </p>
+            <input type="radio" id="recent" name="sortby" value="recent" />{" "}
+            <label for="recent">Most Recent</label>
+            <br />
+            <input type="radio" id="rating" name="sortby" value="raing" />{" "}
+            <label for="rating">Highest Rating</label>
+            <br />
+            {" "}
+            <input
+              type="radio"
+              id="popular"
+              name="sortby"
+              value="popular"
+            />{" "}
+            <label for="popular">Most Popular</label>
+          </i>
+          <hr />
+          <i className="location-filter">
+          <p className="sort_label">
+              <img src={locationLogo} alt="logo" width={20} />
+              <p>Train Location:</p>
+            </p>
+            <select name="location" id="location" defaultValue={"default"}>
+              <option value="default">
+               All Locations
+              </option>
+              <option value="Dhahran">Dhahran</option>
+              <option value="Riyadh">Riyadh</option>
+              <option value="Jeddah">Jeddah</option>
+              <option value="Neom">Neom</option>
+            </select>
+          </i>
         </aside>
         <section id="jobs-body">
           <p id="search-bar">
