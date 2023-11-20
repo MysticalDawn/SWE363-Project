@@ -38,6 +38,10 @@ select option {
 input[type="checkbox"]{
     cursor: pointer;
 }
+#jobs-body{
+    width: 100%;
+    margin-left: 80px;
+}
 #search-bar {
     margin-right: 100px;
     margin-bottom: 30px;
@@ -59,14 +63,15 @@ input[type="checkbox"]{
 }
 #jobs-grid{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(auto-fit,265px);
     justify-content: center;
     margin-right: 50px;
-    gap: 15px;
+    gap: 4rem;
     margin-left: 30px;
+    justify-content: space-between;
 }
 
-@media screen and (max-width: 1700px){
+/* @media screen and (max-width: 1700px){
     #jobs-grid {
         grid-template-columns: 1fr 1fr 1fr;
     }
@@ -75,13 +80,14 @@ input[type="checkbox"]{
     #jobs-grid {
         grid-template-columns: 1fr 1fr;
     }
-}
+} */
 
 .job-card {
     border: 1px solid white;
     border-radius: 10px;
     padding: 10px;
     transition: background-color 0.5s;
+    width: 240px;
 }
 .job-card:hover{
     background-color: var(--primary-color);
