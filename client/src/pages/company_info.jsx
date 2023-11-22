@@ -8,36 +8,89 @@ import dislikeLogo from "../img/dislike-icon.svg";
 import Rating from "@mui/material/Rating";
 
 export const CompanyInfo = () => {
+  let review1 = {
+    review_id: 12345,
+    reviewer: "Ahmad ali",
+    company: "Aramco",
+    rating: 4,
+    is_user_hidden: true,
+    review_text:
+      "Sed vitae consequat dui. Proin eu quam nibh. Nulla at leo tincidunt, tempus dolor sed, luctus nisi. Mauris auctor ipsum orci, et ornare ligula eleifend sit amet. Fusce hendrerit eleifend lectus, eget euismod magna mollis nec. Morbi consequat libero ut nulla convallis condimentum. Donec quis arcu metus. Phasellus at placerat neque, ac aliquam turpis. Sed dignissim leo at turpis pretium imperdiet. Phasellus et rhoncus orci.",
+  };
+  let job1 = {
+    company: "Aramco",
+    summary: `We are one of the world's largest integrated energy and chemicals
+    companies, creating value across the hydrocarbon chain, and delivering
+    societal and economic benefits to people and communities around the
+    globe who rely on the vital energy we supply. We are committed to
+    playing a leading role in the energy transition. We have a
+    responsibility to help the world achieve a net-zero economy, and our
+    people are working hard to help solve the world's sustainability
+    challenges. For our customers, we are a supplier of choice. For our
+    shareholders, we provide long-term value creation. For communities
+    around the world, our ambition is to provide reliable, affordable, and
+    more sustainable energy.`,
+    location_name: "Dhahran",
+    location_url: "https://www.google.com/maps",
+    rating: 4,
+  };
+  const CompanyElement = ({ jobObject }) => {
+    return (
+      <section className="company-info">
+        <header className="title-container">
+          <h1 id="company-name">{jobObject.company}</h1>
+          <img src={aramco} alt="logo" width={130} />
+        </header>
+        <p className="company-description">{jobObject.summary}</p>
+        <span className="company-data">
+          <a href={jobObject.location_url} className="train-location">
+            <img src={locationLogo} alt="location" width={30} />
+            <p>{jobObject.location_name}</p>
+          </a>
+          <Rating
+            className="stars"
+            value={jobObject.rating}
+            readOnly
+            size="large"
+          ></Rating>
+        </span>
+      </section>
+    );
+  };
+  const ReviewElement = ({ reviewObject }) => {
+    return (
+      <article className="review-container">
+        <div className="person-data">
+          <img src={anonymousPic} alt="profile-pic" height={43} />
+          <p className="user-name">
+            {reviewObject.is_user_hidden ? "Anonymous" : reviewObject.reviewer}
+          </p>
+          <p className="major">(CS Student)</p>
+        </div>
+        <div className="review-text">
+          <p>{reviewObject.review_text}</p>
+        </div>
+        <div className="rating-section">
+          <p>Final Rating:</p>
+          <Rating
+            className="stars"
+            value={reviewObject.rating}
+            readOnly
+            size="medium"
+          ></Rating>
+          {/* <span className="rating-buttons">
+        <button className="like main-button"><img src={likeLogo} alt="like" height={40}/></button>
+        <button className="dislike main-button"><img src={dislikeLogo} alt="dislike" height={30} width={30}/></button>
+      </span> */}
+        </div>
+      </article>
+    );
+  };
   return (
     <>
       <CustomNav />
       <div className="main-container">
-        <section className="company-info">
-          <header className="title-container">
-            <h1 id="company-name">Aramco</h1>
-            <img src={aramco} alt="logo" width={130} />
-          </header>
-          <p className="company-description">
-            We are one of the world's largest integrated energy and chemicals
-            companies, creating value across the hydrocarbon chain, and
-            delivering societal and economic benefits to people and communities
-            around the globe who rely on the vital energy we supply. We are
-            committed to playing a leading role in the energy transition. We
-            have a responsibility to help the world achieve a net-zero economy,
-            and our people are working hard to help solve the world's
-            sustainability challenges. For our customers, we are a supplier of
-            choice. For our shareholders, we provide long-term value creation.
-            For communities around the world, our ambition is to provide
-            reliable, affordable, and more sustainable energy.
-          </p>
-          <span className="company-data">
-            <a href="https://www.google.com/maps" className="train-location">
-              <img src={locationLogo} alt="location" width={30} />
-              <p>Dhahran</p>
-            </a>
-            <Rating className="stars" value={4} readOnly size="large"></Rating>
-          </span>
-        </section>
+      <CompanyElement jobObject={job1}/>
         <section className="reviews">
           <div className="reviews-header">
             <h2>Reviews: </h2>
@@ -83,6 +136,7 @@ export const CompanyInfo = () => {
               </span> */}
             </div>
           </article>
+          <ReviewElement reviewObject={review1} />
         </section>
       </div>
     </>

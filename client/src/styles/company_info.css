@@ -1,3 +1,6 @@
+.main-container {
+    margin-bottom: 30px !important;
+}
 
 .company-info{
     border-bottom: 4px solid white;
@@ -32,7 +35,7 @@ img[alt="logo"]{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
-    padding-bottom: 20px;
+    padding-bottom: 3rem;
     
 }
 .train-location {
