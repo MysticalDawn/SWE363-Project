@@ -1,0 +1,111 @@
+
+.company-info{
+    border-bottom: 4px solid white;
+}
+
+.title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+}
+img[alt="logo"]{
+    border-radius: 50%;
+    padding: 10px;
+}
+#company-name{
+    display: inline;
+    font-size: 5rem;
+    text-transform: uppercase;
+    color: var(--secondary-background);
+    font-weight: bold
+}
+.company-description{
+    margin-top: 1rem;
+    font-size: x-large;
+    text-indent: 2rem;
+}
+.company-description::first-letter{
+    font-size: xx-large
+}
+.company-data {
+    margin-top: 2rem;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    padding-bottom: 20px;
+    
+}
+.train-location {
+    display: inline-flex;
+    align-items: center;
+    border: none;
+}
+.train-location > p{
+    display: inline;
+    font-size: x-large;
+}
+
+.reviews{
+    padding-top: 2rem;
+}
+.reviews-header {
+    display: flex;
+    justify-content: space-between;
+}
+.reviews-header > h2 {
+    font-size: 3rem;
+    color: white;
+    font-style: oblique;
+    display: inline;
+}
+.review-container{
+    margin-top: 1rem;
+    border: 2px solid lightskyblue;
+    background-color: var(--primary-color);
+    padding: 30px;
+    border-radius: 10px;
+}
+.review-container * {
+    color: rgb(230, 230, 230);
+}
+.person-data {
+    display: flex;
+    align-items: center;
+}
+.person-data img {
+    border-radius: 20%;
+}
+.review-container p {
+    display: inline;
+}
+.user-name {
+    margin-left: 10px;
+    font-size: 1.6rem;
+}
+.major{
+    padding-top: 3px;
+    margin-left: 5px;
+    font-size: 1.2rem;
+}
+.review-text {
+    margin-top: 1rem;
+    padding: 0.7rem;
+    border: 1px solid rgba(255, 255, 255, 0.322);
+    border-radius: 30px;
+}
+.rating-section {
+    margin-top: 1rem;
+    display: flex;
+    align-items: center;
+}
+.rating-section > p {
+    margin-right: 10px;
+}
+.rating-buttons {
+    direction: rtl;
+    right: 0px;
+}
+.rating-buttons > button{
+    margin-left: 10px;
+    border-radius: 50%;
+}

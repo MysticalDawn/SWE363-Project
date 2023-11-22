@@ -4,6 +4,7 @@ import aramco from "../img/aramco-logo.png";
 import Rating from "@mui/material/Rating";
 import locationLogo from "../img/location.svg";
 import sortByLogo from "../img/sortby.svg";
+import { Link } from "react-router-dom";
 export const Catalog = () => {
   let majors = ["CS", "SWE", "COE", "EE"];
   function majorsElement(majorsList) {
@@ -26,7 +27,7 @@ export const Catalog = () => {
       <article className="job-card">
         <section className="card-body">
           <img src={aramco} alt="logo" width={40} />
-          <h1 className="company-name">{jobObject.company}</h1>
+          <Link to="/company"><h1 className="company-name">{jobObject.company}</h1></Link>
           <p className="rating">
             <Rating
               className="stars"
