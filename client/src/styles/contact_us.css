@@ -1,0 +1,118 @@
+.contact-wrapper {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.contact-left-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40%;
+}
+
+.contact-right-section {
+  width: 60%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactUs-form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.name-email-contact {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  justify-content: space-around;
+}
+
+.name-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-content: center;
+}
+
+.email-contact {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  align-content: center;
+}
+
+.contactUs-email-input {
+  height: fit-content;
+  border-radius: 0.1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid white;
+  outline: none;
+  padding-left: 1rem;
+  font-size: 15px;
+  font-family: "JetBrains Mono", monospace;
+  background-color: transparent;
+  color: silver;
+  transition: box-shadow 0.3s;
+}
+
+.contactUs-email-input:focus {
+  box-shadow: 0 3px 0 0 white;
+}
+
+.contactUs-name-input {
+  height: fit-content;
+  border-radius: 0.1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid white;
+  outline: none;
+  padding-left: 1rem;
+  font-size: 15px;
+  font-family: "JetBrains Mono", monospace;
+  background-color: transparent;
+  color: silver;
+  transition: box-shadow 0.3s;
+}
+
+.contactUs-name-input:focus {
+  box-shadow: 0 3px 0 0 white;
+}
+
+.message-contact {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: start;
+  align-content: center;
+}
+
+.contactUs-message-input {
+  height: 10rem;
+  width: 90%;
+  border-radius: 1rem;
+  border: solid white;
+  outline: none;
+  padding-left: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+  font-size: 15px;
+  font-family: "JetBrains Mono", monospace;
+  background-color: transparent;
+  color: silver;
+  -webkit-border-radius: 1rem;
+  -moz-border-radius: 1rem;
+  -ms-border-radius: 1rem;
+  -o-border-radius: 1rem;
+}
