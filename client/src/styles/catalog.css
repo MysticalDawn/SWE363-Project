@@ -130,9 +130,6 @@ input[type="checkbox"]{
     align-items: center;
     margin-bottom: 10px
 }
-.stars {
-    color: rgb(255, 217, 0);
-}
 .rating-count {
     font-size: small;
     padding-right: 5px;

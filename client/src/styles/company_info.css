@@ -50,6 +50,8 @@ img[alt="logo"]{
 
 .reviews{
     padding-top: 2rem;
+    border-bottom: 4px solid white;
+    padding-bottom: 2rem;
 }
 .reviews-header {
     display: flex;
@@ -111,4 +113,18 @@ img[alt="logo"]{
 .rating-buttons > button{
     margin-left: 10px;
     border-radius: 50%;
+}
+textarea {
+    display: block;
+}
+.star-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.MuiRating-visuallyHidden, .css-dqr9h-MuiRating-label {
+    padding: 5px 0px;
+}
+.active-stars * {
+    color: #faaf00;
 }

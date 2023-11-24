@@ -3,11 +3,16 @@ import aramco from "../img/aramco-logo.png";
 import "../styles/company_info.css";
 import locationLogo from "../img/location.svg";
 import anonymousPic from "../img/anonymous-pic.png";
-import likeLogo from "../img/like-icon.svg";
-import dislikeLogo from "../img/dislike-icon.svg";
 import Rating from "@mui/material/Rating";
-
+import {useState} from "react";
 export const CompanyInfo = () => {
+  const starlabels={
+    1: 'Useless',
+    2: 'Poor',
+    3: 'Ok',
+    4: 'Good',
+    5: 'Excellent',
+  };
   let review1 = {
     review_id: 12345,
     reviewer: "Ahmad ali",
@@ -34,7 +39,10 @@ export const CompanyInfo = () => {
     location_url: "https://www.google.com/maps",
     rating: 4,
   };
-  const CompanyElement = ({ jobObject }) => {
+  const [starValue,setStarValue] = useState(3);
+  const [labelValue,setLabelValue] = useState("OK");
+  const [hoverValue,setHoverValue] = useState(-1);
+  const CompanyElement = ({ jobObject }) => {  
     return (
       <section className="company-info">
         <header className="title-container">
@@ -57,7 +65,7 @@ export const CompanyInfo = () => {
       </section>
     );
   };
-  const ReviewElement = ({ reviewObject }) => {
+  const ReviewsElement = ({ reviewObject }) => {
     return (
       <article className="review-container">
         <div className="person-data">
@@ -136,7 +144,30 @@ export const CompanyInfo = () => {
               </span> */}
             </div>
           </article>
-          <ReviewElement reviewObject={review1} />
+          <ReviewsElement reviewObject={review1} />
+        </section>
+        <section className="review-form">
+            <form action="">
+                <textarea name="review-text" id="review-text" cols="30" rows="10" placeholder="Write a Review"></textarea>
+                <span className="star-container">
+                  <Rating
+                  className="active-stars"
+                  name="simple-controlled"
+                  size="medium"
+                  value={starValue}
+                  onChange={(event, newValue) => {
+                    setStarValue(newValue);
+                    setLabelValue(starlabels[newValue])
+                    console.log(labelValue)
+                  }}
+                  onChangeActive={(event, newHover) => {
+                    setHoverValue(newHover)
+                  }}
+                ></Rating>
+                <p className="star-label">{hoverValue==-1?labelValue:starlabels[hoverValue]}</p>
+                </span>
+              <input type="submit" className="main-button" style={{display:"block", marginTop:"10px"}}/>
+            </form>
         </section>
       </div>
     </>
