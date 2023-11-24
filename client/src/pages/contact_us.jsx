@@ -1,47 +1,41 @@
-import { CustomNav } from "../components/custom_nav.jsx";
-import React from "react";
+import "../styles/contact_us.css";
+import  {CustomNav} from "../components/custom_nav";
 export const ContactUs = () => {
-  const [formStatus, setFormStatus] = React.useState("Send");
-  const onSubmit = (e) => {
-    e.preventDefault();
-    setFormStatus("Submitting...");
-    const { name, email, message } = e.target.elements;
-    let conFom = {
-      name: name.value,
-      email: email.value,
-      message: message.value,
-    };
-    console.log(conFom);
-  };
   return (
     <>
-      <CustomNav />
-      <div className="container mt-5">
-        <h2 className="mb-3">React Contact Form Component Example</h2>
-        <form onSubmit={onSubmit}>
-          <div className="mb-3">
-            <label className="form-label" htmlFor="name">
-              Name
-            </label>
-            <input className="form-control" type="text" id="name" required />
+    <CustomNav></CustomNav>
+    <div className="contact-wrapper">
+      <div className="contact-left-section">
+        <h3>Contact Us</h3>
+        <p>let's us get in touch!</p>
+      </div>
+      <div className="contact-right-section">
+        <form className="contactUs-form">
+          <div className="name-email-contact">
+            <div className="name-contact">
+              <label htmlFor="name">Name</label>
+              <input type="text" name="name" className="contactUs-name-input" />
+            </div>
+            <div className="email-contact">
+              <label htmlFor="email">Email</label>
+              <input
+                type="email"
+                name="email"
+                className="contactUs-email-input"
+              />
+            </div>
           </div>
-          <div className="mb-3">
-            <label className="form-label" htmlFor="email">
-              Email
-            </label>
-            <input className="form-control" type="email" id="email" required />
+          <div className="message-contact">
+            <label htmlFor="message">Message</label>
+            <textarea
+              name="message"
+              className="contactUs-message-input"
+            ></textarea>
           </div>
-          <div className="mb-3">
-            <label className="form-label" htmlFor="message">
-              Message
-            </label>
-            <textarea className="form-control" id="message" required />
-          </div>
-          <button className="btn btn-danger" type="submit">
-            {formStatus}
-          </button>
+          <button className="login-btn">Send</button>
         </form>
       </div>
+    </div>
     </>
   );
 };
