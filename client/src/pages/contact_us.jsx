@@ -9,7 +9,6 @@ export const ContactUs = () => {
         <h3>Contact Us</h3>
         <p>let's us get in touch!</p>
       </div>
-      <div className="contact-right-section">
         <form className="contactUs-form">
           <div className="name-email-contact">
             <div className="name-contact">
@@ -26,7 +25,7 @@ export const ContactUs = () => {
             </div>
           </div>
           <div className="message-contact">
-            <label htmlFor="message">Message</label>
+            <label htmlFor="message" className="contactUs-message-label">Message</label>
             <textarea
               name="message"
               className="contactUs-message-input"
@@ -34,7 +33,6 @@ export const ContactUs = () => {
           </div>
           <button className="login-btn">Send</button>
         </form>
-      </div>
     </div>
     </>
   );
