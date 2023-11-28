@@ -1,23 +1,26 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&family=Playfair+Display&family=Poppins:wght@600&family=Raleway:wght@500&display=swap");
 header {
   width: 100%;
-  overflow-x: hidden; /* Add this line to fix the slider issue */
+  overflow-x: hidden;
 }
 nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  width: 100%;
+  width: 95%;
   font-size: 1.5rem;
   margin-bottom: 0.1rem;
+  background-color: #0a3554  ;
+  border-radius: 4rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  align-self: center;
 }
 
-svg {
-  flex-shrink: 0;
-  position: relative;
-  cursor: pointer;
-  width: 10%;
+Logo {
+  width: 1rem;
+  height: 1rem;
 }
 
 .a-tag-nav {

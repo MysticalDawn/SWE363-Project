@@ -11,7 +11,6 @@
   align-items: center;
   width: 50%;
   height: 100%;
-  color: white;
   padding: 4rem;
   margin-top: 15%;
 }
@@ -19,6 +18,7 @@
 .welcome-text {
   font-size: 3rem;
   padding: 1.3rem;
+  color: #0a3554;
 }
 
 .info {
@@ -30,7 +30,7 @@
 .browse-btn {
   font-size: 1.2rem;
   color: black;
-  background-color: silver;
+  background-color: white;
   border: 0.1rem solid;
   border-radius: 3rem;
   padding: 2rem;
