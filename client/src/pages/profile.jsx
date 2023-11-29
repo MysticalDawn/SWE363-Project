@@ -1,12 +1,17 @@
 // Profile.js
 import placeHolder from "../img/anonymous-pic.png";
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/profile.css";
+import { useCookies } from "react-cookie";
 
 export const Profile = () => {
   // after we creat the database for users, each field will must be initialized accordingly
-
+  const [cookies] = useCookies(["token"]);
+  const logout = () => {
+    cookies.remove("token");
+    window.location.href = "/";
+  };
   const initialProfileData = {
     name: "Omar",
     email: "real@gmail.com",
@@ -93,7 +98,9 @@ export const Profile = () => {
           <button onClick={() => setIsEditing(true)}>Edit</button>
         )}
 
-        <Link to="/login">Log Out</Link>
+        <Link to="/login">
+          <button onClick={logout}>Log Out</button>
+        </Link>
       </div>
     </div> //the link above should include the log out functionality.
   );

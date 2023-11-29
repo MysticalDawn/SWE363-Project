@@ -27,7 +27,9 @@ export const Catalog = () => {
       <article className="job-card">
         <section className="card-body">
           <img src={aramco} alt="logo" width={40} />
-          <Link to="/company"><h1 className="company-name">{jobObject.company}</h1></Link>
+          <Link to="/company">
+            <h1 className="company-name">{jobObject.company}</h1>
+          </Link>
           <p className="rating">
             <Rating
               className="stars"
@@ -60,9 +62,7 @@ export const Catalog = () => {
           <i className="major-section">
             Major: <br />
             <select name="major" id="major" defaultValue={"default"}>
-              <option value="default">
-                All Majors
-              </option>
+              <option value="default">All Majors</option>
               <option value="CS">CS</option>
               <option value="SWE">SWE</option>
               <option value="EE">EE</option>
@@ -94,8 +94,7 @@ export const Catalog = () => {
             <br />
             <input type="radio" id="rating" name="sortby" value="raing" />{" "}
             <label htmlFor="rating">Highest Rating</label>
-            <br />
-            {" "}
+            <br />{" "}
             <input
               type="radio"
               id="popular"
@@ -106,14 +105,12 @@ export const Catalog = () => {
           </i>
           <hr />
           <i className="location-filter">
-          <i className="sort_label">
+            <i className="sort_label">
               <img src={locationLogo} alt="logo" width={20} />
               <p>Train Location:</p>
             </i>
             <select name="location" id="location" defaultValue={"default"}>
-              <option value="default">
-               All Locations
-              </option>
+              <option value="default">All Locations</option>
               <option value="Dhahran">Dhahran</option>
               <option value="Riyadh">Riyadh</option>
               <option value="Jeddah">Jeddah</option>
