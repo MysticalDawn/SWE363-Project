@@ -38,7 +38,7 @@ img[alt="logo"]{
     padding-bottom: 3rem;
     
 }
-.train-location {
+.company-info .train-location {
     display: inline-flex;
     align-items: center;
     border: none;

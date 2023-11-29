@@ -56,7 +56,7 @@ input[type="checkbox"]{
     margin-left: 80px;
 }
 #search-bar {
-    margin-right: 50px;
+    margin-right: 55px;
     margin-bottom: 30px;
     display: flex;
     justify-content: right;
@@ -69,7 +69,8 @@ input[type="checkbox"]{
     font-size: larger;
     transition: border-color 1s;
     outline: none;
-    border:1px solid white;
+    border:1px solid rgb(0, 0, 0);
+    width: 20rem;
 }
 #search:hover {
     border-color: rgb(134, 198, 255);
@@ -96,11 +97,12 @@ input[type="checkbox"]{
 } */
 
 .job-card {
-    border: 1px solid white;
+    border: 1px solid rgb(0, 0, 0);
     border-radius: 10px;
     padding: 10px;
     transition: background-color 0.5s;
     width: 240px;
+    background-color: rgb(238, 238, 238);
 }
 .job-card:hover{
     background-color: var(--primary-color);
@@ -120,10 +122,19 @@ input[type="checkbox"]{
     color: black; 
     max-width: 220px;
     padding: 10px;
+    background-color:#f9f5e6;
+}
+.card-body a {
+    text-decoration: none;
+    
+}
+.card-body a:hover {
+    text-decoration: underline;
 }
 .company-name {
     font-weight: 600;
     font-size: xx-large;
+    text-decoration: none;
 }
 .rating {
     display: flex;
@@ -136,7 +147,7 @@ input[type="checkbox"]{
 }
 .train-location {
     padding-bottom: 5px;
-    border-bottom: 1px dashed white;
+    border-bottom: 1px dashed rgb(0, 0, 0);
 }
 img[alt="location"]{
     margin: 0px 5px 0px 0px;
@@ -153,7 +164,7 @@ img[alt="location"]{
 .targetted-majors .major {
     margin: 5px;
     padding: 5px;
-    border: 2px solid white;
+    border: 2px solid rgb(0, 0, 0);
     font-size: small;
     border-radius: 9999px;
     width: 35px;

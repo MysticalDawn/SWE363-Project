@@ -26,6 +26,9 @@ nav {
   cursor: pointer;
   color: white;
 }
+.a-tag-nav:hover {
+  text-decoration: none;
+}
 
 .a-tag-nav::after {
   content: "";
