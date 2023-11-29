@@ -120,8 +120,7 @@ export const Catalog = () => {
         </aside>
         <section id="jobs-body">
           <p id="search-bar">
-            <label htmlFor="seach">Search: </label>
-            <input type="text" name="search" id="search" />
+            <input type="text" name="search" id="search" placeholder="Search for Companies..."/>
           </p>
           <section id="jobs-grid">
             <article className="job-card">
