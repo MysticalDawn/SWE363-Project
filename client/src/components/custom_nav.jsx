@@ -18,16 +18,17 @@ export const CustomNav = () => {
           <Link className="a-tag-nav" to="/contact">
             Contact Us
           </Link>
-        </div>
-        {cookies.token ? (
-          <Link id="sign-in-up" to="/profile">
-            Profile
+          {cookies.token ? (
+          <Link id="already-login" to="/profile">
+            Hi Khalid🤗
           </Link>
         ) : (
           <Link id="sign-in-up" to="/login">
             Sign in/up
           </Link>
         )}
+        </div>
+        
       </nav>
     </header>
   );

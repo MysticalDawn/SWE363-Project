@@ -4,13 +4,16 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/profile.css";
 import { useCookies } from "react-cookie";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
-  // after we creat the database for users, each field will must be initialized accordingly
-  const [cookies] = useCookies(["token"]);
+  // after we create the database for users, each field will must be initialized accordingly
+  const [_, setCookies] = useCookies(["token"]);
+  const navigate = useNavigate();
   const logout = () => {
-    cookies.remove("token");
-    window.location.href = "/";
+    setCookies("token", "", "");
+    window.localStorage.removeItem("userID");
+    navigate("/");
   };
   const initialProfileData = {
     name: "Omar",

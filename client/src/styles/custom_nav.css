@@ -1,22 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@800&family=Playfair+Display&family=Poppins:wght@600&family=Raleway:wght@500&display=swap");
 header {
-  width: 100%;
+  width: 85%;
   overflow-x: hidden;
+  overflow-y: hidden;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 nav {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2rem;
+  padding: 2.2rem;
   width: 95%;
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   font-weight: bold;
-  margin-bottom: 0.1rem;
   background-color: rgb(30, 24, 30)  ;
   border-radius: 4rem;
   margin: 0 auto;
   margin-top: 1rem;
-  align-self: center;
 }
 
 
@@ -25,23 +24,20 @@ nav {
   text-decoration: none;
   cursor: pointer;
   color: white;
+  transition: border 0.2s;
+  border-radius: 0.5rem;
+  animation: border 0.5s;
 }
-.a-tag-nav:hover {
-  text-decoration: none;
+/* create keyframes to make a smooth border */
+@keyframes border {
+  0% {
+    border: 0.1rem solid white;
+  }
+  100% {
+    border: 0.2rem solid white;
+  }
 }
 
-.a-tag-nav::after {
-  content: "";
-  display: block;
-  width: 0px;
-  height: 2px;
-  background: whitesmoke;
-  transition: width 0.6s;
-}
-
-.a-tag-nav:hover::after {
-  width: 100%;
-}
 
 .nav-elements {
   display: flex;
@@ -49,24 +45,26 @@ nav {
   align-content: center;
   align-items: center;
   align-self: center;
-  margin-right: 5rem;
-  width: 400%;
+  width: 100%;
 }
 
 #sign-in-up {
-  background-color: white;
   color: black;
+  background-color: white;
   text-align: center;
-  width: 40%;
-  border: 0.1rem solid;
-  border-radius: 0.5rem;
-  padding: 0.8rem;
-  margin-right: 4%;
-  transition: background-color 0.5s;
+  width: fit-content;
+  padding: 1rem;
+  transition: border 0.1s;
   text-decoration: none;
+  border: 0.1rem solid white;
+  border-radius: 0.5rem;
 }
 
-#sign-in-up:hover {
-  background-color: white;
-  color: black;
+
+#already-login {
+  color: white;
+  text-align: center;
+  width: fit-content;
+  padding: 0.3rem;
+  text-decoration: none;
 }

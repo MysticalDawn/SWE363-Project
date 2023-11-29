@@ -28,10 +28,12 @@ export const Login = () => {
     <div className="login-wrapper">
       <div className="login-left-side">
         <div className="login-starting-top">
-          <div className="go-back-arrow">
+          <Link className="go-back-arrow" to="/">
             <svg
               fill="#ffffff"
-              viewBox="-3.2 -3.2 45.40 45.40"
+              viewBox="0 0 45.40 30.40"
+              width="70"
+              height="70"
               xmlns="http://www.w3.org/2000/svg"
               transform="rotate(270)"
               stroke="#ffffff"
@@ -49,10 +51,9 @@ export const Login = () => {
                 <path d="M 16 4.09375 L 9.28125 10.8125 L 10.71875 12.21875 L 15 7.9375 L 15 28 L 17 28 L 17 7.9375 L 21.28125 12.21875 L 22.71875 10.8125 Z"></path>
               </g>
             </svg>
-            <Link to="/" className="go-back-text">Go back</Link>
-          </div>
-          <h1>Login 📝</h1>
+          </Link>
         </div>
+        <h1>Login 📝</h1>
         <p className="bellow-login-text">
           Welcome back! Please login to your account
         </p>
