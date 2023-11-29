@@ -36,7 +36,7 @@ export const Signup = () => {
         <div className="go-back-arrow-signup">
           <svg
             fill="#ffffff"
-            viewBox="-3.2 -3.2 38.40 38.40"
+            viewBox="-3.2 -3.2 43.40 45.40"
             xmlns="http://www.w3.org/2000/svg"
             transform="rotate(270)"
             stroke="#ffffff"

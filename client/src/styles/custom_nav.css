@@ -10,18 +10,15 @@ nav {
   padding: 2rem;
   width: 95%;
   font-size: 1.5rem;
+  font-weight: bold;
   margin-bottom: 0.1rem;
-  background-color: #0a3554  ;
+  background-color: rgb(30, 24, 30)  ;
   border-radius: 4rem;
   margin: 0 auto;
   margin-top: 1rem;
   align-self: center;
 }
 
-Logo {
-  width: 1rem;
-  height: 1rem;
-}
 
 .a-tag-nav {
   list-style: none;
@@ -44,16 +41,17 @@ Logo {
 }
 
 .nav-elements {
-  position: relative;
   display: flex;
   justify-content: space-around;
   align-content: center;
   align-items: center;
-  width: 350%;
+  align-self: center;
+  margin-right: 5rem;
+  width: 400%;
 }
 
 #sign-in-up {
-  background-color: silver;
+  background-color: white;
   color: black;
   text-align: center;
   width: 40%;

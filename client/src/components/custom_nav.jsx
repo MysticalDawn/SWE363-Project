@@ -7,7 +7,7 @@ export const CustomNav = () => {
   return (
     <header>
       <nav>
-        <Logo />
+        <Logo className="logo" />
         <div className="nav-elements">
           <Link className="a-tag-nav" to="/">
             Home

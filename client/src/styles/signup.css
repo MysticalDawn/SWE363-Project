@@ -47,11 +47,13 @@
   font-size: 1rem;
   height: fit-content;
   width: fit-content;
+  white-space: nowrap;
 }
 
 
 .go-back-text-signup {
-  color: white
+  color: white;
+  width: 8rem;
 }
 
 h1 {
@@ -127,8 +129,8 @@ h3 {
 .signup-btn {
   font-family: "JetBrains Mono", monospace;
   font-size: 1.2rem;
-  color: black;
-  background-color: silver;
+  color: white;
+  background-color: black;
   border: 0.1rem solid rgb(0, 0, 0);
   border-radius: 3rem;
   padding: 1.2rem;
