@@ -18,7 +18,6 @@
   margin-left: 10%;
 }
 
-
 .login-starting-top {
   display: flex;
   flex-direction: column;
@@ -28,10 +27,9 @@
   width: fit-content;
 }
 
-
 .bellow-login-text {
   font-size: 20px;
-  color: silver;
+  color: rgb(30, 24, 30);
   margin-top: 1rem;
 }
 
@@ -45,7 +43,7 @@
 }
 
 .login-form h3 {
-  color: silver;
+  color: rgb(30, 24, 30);
   margin-top: 8rem;
   font-size: 25px;
 }
@@ -64,7 +62,7 @@
   font-size: 15px;
   font-family: "JetBrains Mono", monospace;
   background-color: transparent;
-  color: silver;
+  color: black;
   transition: box-shadow 0.3s;
 }
 
@@ -86,7 +84,7 @@
   font-size: 15px;
   font-family: "JetBrains Mono", monospace;
   background-color: transparent;
-  color: white;
+  color: black;
   transition: box-shadow 0.3s;
 }
 
@@ -97,9 +95,9 @@
 .login-btn {
   font-family: "JetBrains Mono", monospace;
   font-size: 1.2rem;
-  color: white;
-  background-color: black;
-  border: 0.1rem solid rgb(0, 0, 0);
+  color: rgb(30, 24, 30);
+  background-color: white;
+  border: 0.1rem solid;
   border-radius: 3rem;
   padding: 1.2rem;
   margin-top: 4rem;
@@ -110,8 +108,8 @@
 }
 
 .login-btn:hover {
-  background-color: white;
-  color: black;
+  background-color: rgb(30, 24, 30);
+  color: white;
 }
 
 .login-bottom-text {
@@ -136,4 +134,12 @@
   width: 60%;
 }
 
+.login-right-side {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  align-self: center;
+
+  width: 50%;
+}
 

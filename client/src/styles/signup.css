@@ -50,7 +50,6 @@
   white-space: nowrap;
 }
 
-
 .go-back-text-signup {
   color: white;
   width: 8rem;
@@ -58,7 +57,7 @@
 
 .bellow-signup-text {
   font-size: 20px;
-  color: silver;
+  color: rgb(30, 24, 30);
   margin-top: 1rem;
 }
 
@@ -72,7 +71,7 @@
 }
 
 .auth-wrapper h3 {
-  color: silver;
+  color: rgb(30, 24, 30);
   margin-top: 8rem;
   font-size: 25px;
 }
@@ -124,9 +123,9 @@
 .signup-btn {
   font-family: "JetBrains Mono", monospace;
   font-size: 1.2rem;
-  color: white;
-  background-color: black;
-  border: 0.1rem solid rgb(0, 0, 0);
+  color: rgb(30, 24, 30);
+  background-color: white;
+  border: 0.1rem solid;
   border-radius: 3rem;
   padding: 1.2rem;
   margin-top: 4rem;
@@ -137,8 +136,8 @@
 }
 
 .signup-btn:hover {
-  background-color: white;
-  color: black;
+  background-color: rgb(30, 24, 30);
+  color: white;
 }
 
 .signup-bottom-text {
