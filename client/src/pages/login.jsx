@@ -61,6 +61,7 @@ export const Login = () => {
         <form className="login-form">
           <h3>Email</h3>
           <input
+            required
             type="email"
             placeholder="someone@gmail.com"
             className="login-email-input"
@@ -71,6 +72,7 @@ export const Login = () => {
           />
           <h3>Password</h3>
           <input
+            required 
             type="password"
             placeholder="type your password"
             className="login-password-input"

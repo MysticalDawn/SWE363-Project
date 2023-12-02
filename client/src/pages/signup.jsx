@@ -64,6 +64,7 @@ export const Signup = () => {
         <form className="signup-form">
           <h3>Email</h3>
           <input
+            required
             type="email"
             placeholder="someone@gmail.com"
             className="email-input"
@@ -74,6 +75,7 @@ export const Signup = () => {
           />
           <h3>Password</h3>
           <input
+            required 
             type="password"
             placeholder="Type a strong password"
             className="password-input"

@@ -156,3 +156,9 @@
   background-color: rgb(30, 24, 30);
   color: white;
 }
+
+input:invalid {
+  background-color: #ffdddd;
+  border-color: #800000;
+  border-width: 3px;
+}
