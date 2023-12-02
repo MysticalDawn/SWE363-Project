@@ -97,11 +97,11 @@ export const CompanyInfo = () => {
   return (
     <>
       <CustomNav />
-      <div className="main-container">
+      <div className="main-comp">
       <CompanyElement jobObject={job1}/>
         <section className="reviews">
           <div className="reviews-header">
-            <h2>Reviews: </h2>
+            <h2>Reviews </h2>
             <button className="main-button">Create a Review!</button>
           </div>
           <article className="review-container">

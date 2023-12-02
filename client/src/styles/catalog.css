@@ -15,8 +15,8 @@
     margin-top: 65px;
     margin-left: 20px;
     font-size: larger;
-    background-color: var(--primary-color);
-    box-shadow: -3px 3px rgb(31, 31, 31);
+    background-color: rgb(255, 255, 255);
+    font-size: x-large;
     min-width: 220px;
 }
 #filter > *{
@@ -26,20 +26,14 @@
 
 }
 #filter select {
-    background-color: var(--secondary-background);
-    color: black;
+    background-color: lightgray;
+    font-size: xx-large;
     border-radius: 5px;
     outline: none;
     font-size: medium;
     cursor: pointer;
     margin-top: 10px;
     transition: background-color 0.5s;
-}
-#filter select:hover{
-    background-color: var(--secondary-background-hover);
-}
-select option {
-    background-color: rgba(0, 0, 0, 0.979);
 }
 input[type="checkbox"]{
     cursor: pointer;
@@ -64,13 +58,14 @@ input[type="checkbox"]{
     font-size: larger;
 }
 #search{
-    border-radius: 5px;
-    background-color: var(--primary-color);
+    border-radius: 10px;
+    background-color:white;
     font-size: larger;
     transition: border-color 1s;
     outline: none;
-    border:1px solid rgb(0, 0, 0);
+    border:1px solid rgba(0, 0, 0, 0.318);
     width: 20rem;
+    padding: 10px;
 }
 #search:hover {
     border-color: rgb(134, 198, 255);
@@ -102,7 +97,7 @@ input[type="checkbox"]{
     padding: 10px;
     transition: background-color 0.5s;
     width: 240px;
-    background-color: rgb(238, 238, 238);
+    background-color: var(--secondary-background);
 }
 .job-card:hover{
     background-color: var(--primary-color);
@@ -112,17 +107,16 @@ input[type="checkbox"]{
     margin-top: 10px;
     margin-left: 5px;
 } 
-.training-location {
+.catalog-body .training-location {
     margin-top: 0px;
     margin-bottom: 10px;
 }
 .card-body {
     border-radius: 10px;
-    border: 1px solid white;
     color: black; 
     max-width: 220px;
     padding: 10px;
-    background-color:#f9f5e6;
+    background-color:white;
 }
 .card-body a {
     text-decoration: none;
@@ -145,14 +139,14 @@ input[type="checkbox"]{
     font-size: small;
     padding-right: 5px;
 }
-.train-location {
+.catalog-body .train-location {
     padding-bottom: 5px;
     border-bottom: 1px dashed rgb(0, 0, 0);
 }
 img[alt="location"]{
     margin: 0px 5px 0px 0px;
 }
-.train-location h2 {
+.catalog-body .train-location h2 {
     display: inline;
     font-size: larger;
 }
@@ -181,8 +175,8 @@ img[alt="location"]{
 .apply {
     margin-right: 10px;
     font-size: larger;
-    padding: 5px;
-    background-color: var(--secondary-background);
+    padding: 8px;
+    background-color: white;
     border-radius: 6px;
     border: 1px solid white;
     color: black;

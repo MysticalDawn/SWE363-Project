@@ -106,7 +106,7 @@ export const Catalog = () => {
           <hr />
           <i className="location-filter">
             <i className="sort_label">
-              <img src={locationLogo} alt="logo" width={20} />
+              <img src={locationLogo} alt="logos" width={20} />
               <p>Train Location:</p>
             </i>
             <select name="location" id="location" defaultValue={"default"}>
@@ -120,7 +120,12 @@ export const Catalog = () => {
         </aside>
         <section id="jobs-body">
           <p id="search-bar">
-            <input type="text" name="search" id="search" placeholder="Search for Companies..."/>
+            <input
+              type="text"
+              name="search"
+              id="search"
+              placeholder="Search for Companies..."
+            />
           </p>
           <section id="jobs-grid">
             <article className="job-card">

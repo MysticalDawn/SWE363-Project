@@ -1,6 +1,9 @@
-.main-container {
+.main-comp {
     margin-bottom: 30px !important;
+    margin: 9rem;
+    margin-top: 40px;
 }
+
 
 .company-info{
     border-bottom: 4px solid white;
@@ -41,7 +44,6 @@ img[alt="logo"]{
 .company-info .train-location {
     display: inline-flex;
     align-items: center;
-    border: none;
 }
 .train-location > p{
     display: inline;
@@ -59,9 +61,10 @@ img[alt="logo"]{
 }
 .reviews-header > h2 {
     font-size: 3rem;
-    color: white;
+    color: rgb(0, 0, 0);
     font-style: oblique;
     display: inline;
+    padding-right: 20px;
 }
 .review-container{
     margin-top: 1rem;
@@ -71,7 +74,7 @@ img[alt="logo"]{
     border-radius: 10px;
 }
 .review-container * {
-    color: rgb(230, 230, 230);
+    color: rgb(0, 0, 0);
 }
 .person-data {
     display: flex;

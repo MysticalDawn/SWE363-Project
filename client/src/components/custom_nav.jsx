@@ -5,7 +5,7 @@ import Logo from "../img/logo.svg";
 export const CustomNav = () => {
   const [cookies] = useCookies(["token"]);
   return (
-    <header>
+    <header className="nav_header">
       <nav>
         <img className="logo" src={Logo} />
         <div className="nav-elements">

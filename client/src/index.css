@@ -9,9 +9,9 @@
 
 body {
   background-color:#e8e0e6;
-  --primary-color: rgba(217, 217, 217, 0.473);
+  --primary-color: rgba(217, 217, 217, 0.788);
   --primary-color-hover: rgb(10, 10, 10);
-  --secondary-background: rgb(69, 196, 255);
+  --secondary-background: #3D3B8E;
   --secondary-background-hover: rgb(18, 129, 180);
   --text-main: #000000;
 }
@@ -20,8 +20,7 @@ body {
 }
 
 select {
-  background-color: var(--secondary-background);
-  color: black;
+  background-color: white;
   border-radius: 5px;
   outline: none;
   font-size: medium;
@@ -29,25 +28,20 @@ select {
   margin-top: 10px;
   transition: background-color 0.5s;
 }
-select:hover {
-  background-color: var(--secondary-background-hover);
-}
-option {
-  background-color: rgba(0, 0, 0, 0.979);
-}
 .main-button {
   font-size: larger;
   padding: 5px;
-  background-color: var(--secondary-background);
+  background-color: white;
   border-radius: 6px;
   border: 1px solid white;
   color: black;
   transition: background-color 0.5s;
   cursor: pointer;
   font-weight: 800;
+  padding: 1rem;
 }
 .main-button:hover {
-  background-color: white;
+  background-color: rgb(225, 225, 225);
 }
 
 #bttn {
