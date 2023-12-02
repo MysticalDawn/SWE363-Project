@@ -1,0 +1,61 @@
+.footer1 {
+  background-color:#e8e0e6; /* Change this to the color of the home page */
+  --primary-color: rgba(217, 217, 217, 0.473);
+  --primary-color-hover: rgb(10, 10, 10);
+  --secondary-background: rgb(69, 196, 255);
+  --secondary-background-hover: rgb(18, 129, 180);
+  --text-main: #000000;
+  padding: 20px;
+  text-align: center;
+  font-size: 12px;
+ }
+ 
+ 
+ .container32, .container33 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+ }
+ 
+ .logo2 {
+  font-size: 24px;
+  font-weight: bold;
+ }
+ 
+ .nav1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+ }
+ 
+ .nav12 {
+  margin: 0 10px;
+ }
+ 
+ .separator {
+  height: 1px;
+  background-color: #fff;
+  margin: 20px 0;
+ }
+ 
+ .text61 {
+  font-size: 14px;
+ }
+ 
+ .icon-group1 {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px;
+ }
+ 
+ .icon10, .icon12, .icon14 {
+  fill: #fff;
+  width: 24px;
+  height: 24px;
+ }
+ a {
+  text-decoration: none;
+ }
+ 

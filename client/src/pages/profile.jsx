@@ -1,20 +1,25 @@
 // Profile.js
+import { CustomNav } from "../components/custom_nav.jsx";
 import placeHolder from "../img/anonymous-pic.png";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import "../styles/profile.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-
 export const Profile = () => {
   // after we create the database for users, each field will must be initialized accordingly
   const [_, setCookies] = useCookies(["token"]);
   const navigate = useNavigate();
   const logout = () => {
-    setCookies("token", "", "");
-    window.localStorage.removeItem("userID");
-    navigate("/");
+    try {
+      setCookies("token", "", "");
+      window.localStorage.removeItem("userID");
+      navigate("/login");
+    } catch (error) {
+      console.error("Failed to log out:", error);
+    }
   };
+
   const initialProfileData = {
     name: "Omar",
     email: "real@gmail.com",
@@ -40,71 +45,93 @@ export const Profile = () => {
   };
 
   return (
-    <div className="profile-container">
-      <div className="profile-picture">
-        <img src={profileData.picture} alt="Profile" />
-      </div>
-      <div className="profile-details">
-        <h2>{profileData.name}</h2>
-        <p>
-          <strong>Email:</strong>{" "}
+    <>
+      <CustomNav />
+      <div className="profile-container">
+        <div className="profile-picture">
+          <img src={profileData.picture} alt="Profile" />
+        </div>
+        <div className="profile-details">
+          <h2>{profileData.name}</h2>
+          <p>
+            <strong>Email:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="text"
+                value={profileData.email}
+                //event immeter
+                onChange={(e) => handleInputChange("email", e.target.value)}
+              />
+            ) : (
+              profileData.email
+            )}
+          </p>
+          <p>
+            <strong>Phone:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="text"
+                value={profileData.phone}
+                onChange={(e) => handleInputChange("phone", e.target.value)}
+              />
+            ) : (
+              profileData.phone
+            )}
+          </p>
+          <p>
+            <strong>City:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="text"
+                value={profileData.city}
+                onChange={(e) => handleInputChange("city", e.target.value)}
+              />
+            ) : (
+              profileData.city
+            )}
+          </p>
+          <p>
+            <strong>Age:</strong>{" "}
+            {isEditing ? (
+              <input
+                type="number"
+                value={profileData.age}
+                onChange={(e) => handleInputChange("age", e.target.value)}
+              />
+            ) : (
+              profileData.age
+            )}
+          </p>
           {isEditing ? (
-            <input
-              type="text"
-              value={profileData.email}
-              //event immeter
-              onChange={(e) => handleInputChange("email", e.target.value)}
-            />
+            <button onClick={handleSave}>Save</button>
           ) : (
-            profileData.email
+            <button onClick={() => setIsEditing(true)}>Edit</button>
           )}
-        </p>
-        <p>
-          <strong>Phone:</strong>{" "}
-          {isEditing ? (
-            <input
-              type="text"
-              value={profileData.phone}
-              onChange={(e) => handleInputChange("phone", e.target.value)}
-            />
-          ) : (
-            profileData.phone
-          )}
-        </p>
-        <p>
-          <strong>City:</strong>{" "}
-          {isEditing ? (
-            <input
-              type="text"
-              value={profileData.city}
-              onChange={(e) => handleInputChange("city", e.target.value)}
-            />
-          ) : (
-            profileData.city
-          )}
-        </p>
-        <p>
-          <strong>Age:</strong>{" "}
-          {isEditing ? (
-            <input
-              type="number"
-              value={profileData.age}
-              onChange={(e) => handleInputChange("age", e.target.value)}
-            />
-          ) : (
-            profileData.age
-          )}
-        </p>
-        {isEditing ? (
-          <button onClick={handleSave}>Save</button>
-        ) : (
-          <button onClick={() => setIsEditing(true)}>Edit</button>
-        )}
+          <input
+            className="load-picture"
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  setProfileData({
+                    ...profileData,
+                    picture: reader.result,
+                  });
+                };
+                reader.readAsDataURL(file);
+              }
+            }}
+          />
 
-        <Link to="/login">
-          <button onClick={logout}>Log Out</button>
-        </Link>
-      </div>
-    </div> //the link above should include the log out functionality.
+          <Link to="/login">
+            <button onClick={logout}>Log Out</button>
+          </Link>
+        </div>
+      </div>{" "}
+      //the link above should include the log out functionality.
+    </>
   );
 };
