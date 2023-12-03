@@ -141,19 +141,9 @@
 }
 
 .signup-bottom-text {
-  margin-top: 1rem;
-  color: white;
+  color:  rgb(30, 24, 30);
   font-size: 15px;
-  font-family: "JetBrains Mono", monospace;
   margin-top: 5%;
-  margin-left: 12%;
+  margin-left: 14%;
 }
 
-.signup-bottom-text a {
-  color: white;
-  text-decoration: underline;
-}
-
-.signup-bottom-text a:hover {
-  color: white;
-}
