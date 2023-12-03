@@ -5,7 +5,7 @@ import { UserModel } from "../model/UserMdle.js";
 const router = express.Router();
 
 router.post("/register", async (req, res) => {
-  const { email, password } = req.body;
+  const { email, password, name, major } = req.body;
   const user = await UserModel.findOne({ email });
   if (user) {
     return res.json({ message: "User already exists!" });
@@ -14,6 +14,8 @@ router.post("/register", async (req, res) => {
   const newUser = new UserModel({
     email,
     password: hash_password,
+    name,
+    major,
   });
   await newUser.save();
   res.json({ message: "User registered successfully" });

@@ -56,6 +56,11 @@
   height: 100%;
 }
 
+.name-contact h2{
+  display: inline;
+  color:brown;
+}
+
 .email-contact {
   display: flex;
   flex-direction: column;
@@ -64,6 +69,10 @@
   height: 100%;
 }
 
+.email-contact h2{
+  display: inline;
+  color:brown;
+}
 .contactUs-email-input {
   height: 2rem;
   border-radius: 0.1rem;
@@ -157,7 +166,7 @@
   color: white;
 }
 
-input:invalid {
+input:focus:invalid {
   background-color: #ffdddd;
   border-color: #800000;
   border-width: 3px;

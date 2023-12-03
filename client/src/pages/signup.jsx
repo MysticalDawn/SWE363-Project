@@ -5,6 +5,8 @@ import axios from "axios";
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [major, setMajor] = useState("");
   const navigate = useNavigate();
   const signUserUp = async (e) => {
     e.preventDefault();
@@ -12,8 +14,10 @@ export const Signup = () => {
       await axios.post("http://localhost:3001/auth/register", {
         email,
         password,
+        name,
+        major,
       });
-      navigate("/profile");
+      navigate("/confirm");
     } catch (error) {
       console.log(error);
     }
@@ -75,7 +79,7 @@ export const Signup = () => {
           />
           <h3>Password</h3>
           <input
-            required 
+            required
             type="password"
             placeholder="Type a strong password"
             className="password-input"
@@ -84,6 +88,36 @@ export const Signup = () => {
               setPassword(e.target.value);
             }}
           />
+          <h3>Name</h3>
+          <input
+            required
+            type="text"
+            placeholder="Type your name"
+            className="email-input name-input"
+            value={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <h3>Select your major</h3>
+          <select
+            className="email-input major-input"
+            id="major_choice"
+            value={major}
+            onChange={(e) => {
+              setMajor(e.target.value);
+            }}
+          >
+            <option value="Computer Science">Computer Science</option>
+            <option value="Computer Engineering">Computer Engineering</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Electrical Engineering">
+              Electrical Engineering
+            </option>
+            <option value="Mechanical Engineering">
+              Mechanical Engineering
+            </option>
+          </select>
         </form>
         <button className="signup-btn" onClick={signUserUp}>
           Sign Up
