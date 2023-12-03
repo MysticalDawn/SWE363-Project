@@ -15,11 +15,13 @@ export const ContactUs = () => {
         <form className="contactUs-form">
           <div className="name-email-contact">
             <div className="name-contact">
-              <label htmlFor="name">Name</label>
+        
+              <label htmlFor="name">Name <h2>*</h2></label>
+              
               <input required type="text" name="name" className="contactUs-name-input" />
             </div>
             <div className="email-contact">
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Email <h2>*</h2></label>
               <input
                 required 
                 type="email"
