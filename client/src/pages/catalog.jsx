@@ -5,7 +5,22 @@ import Rating from "@mui/material/Rating";
 import locationLogo from "../img/location.svg";
 import sortByLogo from "../img/sortby.svg";
 import { Link } from "react-router-dom";
+import {useEffect,useState} from "react";
+import axios from "axios";
 export const Catalog = () => {
+  const [data, setData] = useState([]);
+  useEffect(()=>{
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('/jobs/data');
+        setData(response.data);
+        console.log(data)
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
+  },[])
   let majors = ["CS", "SWE", "COE", "EE"];
   function majorsElement(majorsList) {
     let elementsList = majorsList.map((major) => (

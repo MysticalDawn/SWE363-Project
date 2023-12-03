@@ -1,6 +1,7 @@
 import "../styles/contact_us.css";
 import { CustomNav } from "../components/custom_nav";
 import Mail from "../img/Mailbox.svg";
+
 export const ContactUs = () => {
   return (
     <>
