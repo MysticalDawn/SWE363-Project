@@ -10,6 +10,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  name: {
+    type: String,
+    require: true,
+  },
+  major: {
+    type: String,
+    require: true,
+  },
 });
 
 export const UserModel = mongoose.model("Users", UserSchema);
