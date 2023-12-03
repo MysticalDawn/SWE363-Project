@@ -13,9 +13,7 @@
   height: 100%;
   padding: 4rem;
   margin-top: 15%;
-  align-self: center;
-  align-content: center;
-}
+  }
 
 .welcome-text {
   font-size: 3rem;
@@ -56,9 +54,8 @@
 .right-section {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-items: center;
   width: 50%;
   height: 100%;
-  margin-top: 15%;
 }

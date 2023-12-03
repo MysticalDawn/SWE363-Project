@@ -13,6 +13,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: start;
+  align-self: center;
+
   width: 50%;
   height: 100%;
   margin-left: 10%;
@@ -113,33 +115,22 @@
 }
 
 .login-bottom-text {
-  margin-top: 1rem;
-  color: white;
+  color: rgb(30, 24, 30);
   font-size: 15px;
-  font-family: "JetBrains Mono", monospace;
   margin-top: 5%;
-  margin-left: 13%;
+  margin-left: 15.6%;
 }
 
-.login-bottom-text a {
-  color: white;
-  text-decoration: underline;
-}
 
-.login-bottom-text a:hover {
-  color: rgb(255, 255, 255);
-}
 
-.lost-img {
-  width: 60%;
-}
+
+
 
 .login-right-side {
   display: flex;
   justify-content: start;
   align-items: center;
   align-self: center;
-
   width: 50%;
 }
 
