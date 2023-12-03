@@ -75,7 +75,7 @@ export const Signup = () => {
           />
           <h3>Password</h3>
           <input
-            required 
+            required
             type="password"
             placeholder="Type a strong password"
             className="password-input"
@@ -84,6 +84,25 @@ export const Signup = () => {
               setPassword(e.target.value);
             }}
           />
+          <h3>Name</h3>
+          <input
+            required
+            type="text"
+            placeholder="Type your name"
+            className="email-input name-input"
+          />
+          <h3>Select your major</h3>
+          <select className="email-input major-input">
+            <option value="Computer Science">Computer Science</option>
+            <option value="Computer Engineering">Computer Engineering</option>
+            <option value="Software Engineering">Software Engineering</option>
+            <option value="Electrical Engineering">
+              Electrical Engineering
+            </option>
+            <option value="Mechanical Engineering">
+              Mechanical Engineering
+            </option>
+          </select>
         </form>
         <button className="signup-btn" onClick={signUserUp}>
           Sign Up

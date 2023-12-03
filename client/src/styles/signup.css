@@ -22,13 +22,12 @@
 }
 .right-side {
   display: flex;
-  position: relative;
-  left: 10%;
+  margin-left: 20%;
   flex-direction: column;
-  justify-content: center;
+  justify-content: start;
   align-content: start;
   width: 50%;
-  height: 100%;
+  height: fit-content;
 }
 
 .starting-top {
@@ -50,10 +49,6 @@
   white-space: nowrap;
 }
 
-.go-back-text-signup {
-  color: white;
-  width: 8rem;
-}
 
 .bellow-signup-text {
   font-size: 20px;
@@ -67,7 +62,8 @@
   justify-content: start;
   align-items: start;
   width: 100%;
-  height: 50%;
+  height: 100%;
+  margin-top: -3rem;
 }
 
 .auth-wrapper h3 {
@@ -90,7 +86,7 @@
   font-size: 15px;
   font-family: "JetBrains Mono", monospace;
   background-color: transparent;
-  color: silver;
+  color: black;
   transition: box-shadow 0.3s;
 }
 
@@ -112,7 +108,7 @@
   font-size: 15px;
   font-family: "JetBrains Mono", monospace;
   background-color: transparent;
-  color: white;
+  color: black;
   transition: box-shadow 0.3s;
 }
 
@@ -141,9 +137,8 @@
 }
 
 .signup-bottom-text {
-  color:  rgb(30, 24, 30);
+  color: rgb(30, 24, 30);
   font-size: 15px;
   margin-top: 5%;
-  margin-left: 14%;
+  margin-left: 15%;
 }
-

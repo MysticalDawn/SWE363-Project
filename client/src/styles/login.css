@@ -14,7 +14,6 @@
   justify-content: center;
   align-items: start;
   align-self: center;
-
   width: 50%;
   height: 100%;
   margin-left: 10%;
@@ -102,7 +101,7 @@
   border: 0.1rem solid;
   border-radius: 3rem;
   padding: 1.2rem;
-  margin-top: 4rem;
+  margin-top: 1rem;
   margin-left: 10%;
   cursor: pointer;
   width: 20rem;
@@ -118,13 +117,8 @@
   color: rgb(30, 24, 30);
   font-size: 15px;
   margin-top: 5%;
-  margin-left: 15.6%;
+  margin-left: 15%;
 }
-
-
-
-
-
 
 .login-right-side {
   display: flex;
@@ -133,4 +127,3 @@
   align-self: center;
   width: 50%;
 }
-
