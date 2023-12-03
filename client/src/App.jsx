@@ -7,6 +7,7 @@ import { ContactUs } from "./pages/contact_us.jsx";
 import { Profile } from "./pages/profile.jsx";
 import { CompanyInfo } from "./pages/company_info.jsx";
 import { Footer } from "./components/footer.jsx";
+import {ConfirmationPage} from "./components/confirmation.jsx";
 function App() {
   return (
     <div className="App">
@@ -20,6 +21,7 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/company" element={<CompanyInfo />} />
           <Route path="/footer" element={<Footer />} />
+          <Route path="/confirm" element={<ConfirmationPage />} />
         </Routes>
       </Router>
     </div>
