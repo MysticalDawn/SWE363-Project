@@ -1,8 +1,8 @@
 import express from "express";
-import {JobModel} from "../model/job_model";
+import {JobModel} from "../model/job_model.js";
 const router = express.Router();
 
-router.get("/jobs/data", async (req,res)=> {
+router.get("/data", async (req,res)=> {
     try{
         const data = await JobModel.find();
         res.json(data)
@@ -11,3 +11,5 @@ router.get("/jobs/data", async (req,res)=> {
         console.log(err)
     }
 })
+
+export { router as JobRouter };

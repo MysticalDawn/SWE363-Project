@@ -12,9 +12,9 @@ export const Catalog = () => {
   useEffect(()=>{
     const fetchData = async () => {
       try {
-        const response = await axios.get('/jobs/data');
+        const response = await axios.get('http://localhost:3001/jobs/data');
         setData(response.data);
-        console.log(data)
+        console.log(response.data[0].rating_score)
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -35,21 +35,22 @@ export const Catalog = () => {
     rating_score: 4.5,
     rating_count: 319,
     compLocation: "Dhahran",
-    targetMajors: majors,
+    majors: majors,
   };
   function cardElement(jobObject) {
     return (
       <article className="job-card">
         <section className="card-body">
-          <img src={aramco} alt="logo" width={40} />
+          <img src={jobObject.companys_logo} alt="cLogo" width={40} />
           <Link to="/company">
             <h1 className="company-name">{jobObject.company}</h1>
           </Link>
           <p className="rating">
             <Rating
               className="stars"
-              value={jobObject.rating_score}
+              value={parseFloat(jobObject.rating_score)}
               readOnly
+              precision={0.1}
             ></Rating>
             <i className="rating-count">({jobObject.rating_count} users)</i>
           </p>
@@ -57,7 +58,7 @@ export const Catalog = () => {
             <img src={locationLogo} alt="location" width={20} />
             <h2>{jobObject.compLocation}</h2>
           </div>
-          {majorsElement(jobObject.targetMajors)}
+          {majorsElement(jobObject.majors)}
         </section>
         <section className="outer-card">
           <button type="submit" className="apply">
@@ -66,6 +67,15 @@ export const Catalog = () => {
         </section>
       </article>
     );
+  }
+  const jobCards = () => {
+    return <>
+    {data.map((value, index) => (
+        <div key={index}>
+          {cardElement(value)}
+        </div>
+      ))}
+    </>
   }
   return (
     <>
@@ -164,9 +174,7 @@ export const Catalog = () => {
               </section>
             </article>
             {cardElement(aramcoJob)}
-            {cardElement(aramcoJob)}
-            {cardElement(aramcoJob)}
-            {cardElement(aramcoJob)}
+            {jobCards()}
           </section>
         </section>
       </main>

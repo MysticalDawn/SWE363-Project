@@ -102,11 +102,18 @@ input[type="checkbox"]{
 .job-card:hover{
     background-color: var(--primary-color);
 }
+.job-card img[alt="cLogo"]{
+    padding: 10px;
+    margin-left: 0px;
+}
 .job-card img {
     border-radius: 50%;
     margin-top: 10px;
     margin-left: 5px;
 } 
+.job-card h2 {
+    display: inline;
+}
 .catalog-body .training-location {
     margin-top: 0px;
     margin-bottom: 10px;
