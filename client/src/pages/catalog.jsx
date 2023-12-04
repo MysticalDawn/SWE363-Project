@@ -9,12 +9,13 @@ import {useEffect,useState} from "react";
 import axios from "axios";
 export const Catalog = () => {
   const [data, setData] = useState([]);
+  const [visibleData, setVisibleData] = useState([]);
   useEffect(()=>{
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:3001/jobs/data');
         setData(response.data);
-        console.log(response.data[0].rating_score)
+        setVisibleData(response.data);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -68,14 +69,23 @@ export const Catalog = () => {
       </article>
     );
   }
-  const jobCards = () => {
+  const jobCards = (Jobsdata) => {
     return <>
-    {data.map((value, index) => (
+    {Jobsdata.map((value, index) => (
         <div key={index}>
           {cardElement(value)}
         </div>
       ))}
     </>
+  }
+  const filterMajor = (selectedMajor)=>{
+    console.log(selectedMajor);
+    if (selectedMajor == "default"){
+      setVisibleData(data)
+    }
+    else {
+      setVisibleData(data.filter((value)=>value.majors.includes(selectedMajor)))
+    }
   }
   return (
     <>
@@ -86,7 +96,7 @@ export const Catalog = () => {
           <h2>Filters:</h2>
           <i className="major-section">
             Major: <br />
-            <select name="major" id="major" defaultValue={"default"}>
+            <select name="major" id="major" defaultValue={"default"} onChange={(e) => filterMajor(e.target.value)}>
               <option value="default">All Majors</option>
               <option value="CS">CS</option>
               <option value="SWE">SWE</option>
@@ -174,7 +184,7 @@ export const Catalog = () => {
               </section>
             </article>
             {cardElement(aramcoJob)}
-            {jobCards()}
+            {jobCards(visibleData)}
           </section>
         </section>
       </main>
