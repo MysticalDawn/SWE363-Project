@@ -4,14 +4,14 @@ import "../styles/company_info.css";
 import locationLogo from "../img/location.svg";
 import anonymousPic from "../img/anonymous-pic.png";
 import Rating from "@mui/material/Rating";
-import {useState} from "react";
+import { useState,useRef } from "react";
 export const CompanyInfo = () => {
-  const starlabels={
-    1: 'Useless',
-    2: 'Poor',
-    3: 'Ok',
-    4: 'Good',
-    5: 'Excellent',
+  const starlabels = {
+    1: "Useless",
+    2: "Poor",
+    3: "Ok",
+    4: "Good",
+    5: "Excellent",
   };
   let review1 = {
     review_id: 12345,
@@ -39,10 +39,18 @@ export const CompanyInfo = () => {
     location_url: "https://www.google.com/maps",
     rating: 4,
   };
-  const [starValue,setStarValue] = useState(3);
-  const [labelValue,setLabelValue] = useState("OK");
-  const [hoverValue,setHoverValue] = useState(-1);
-  const CompanyElement = ({ jobObject }) => {  
+  const [starValue, setStarValue] = useState(3);
+  const [labelValue, setLabelValue] = useState("OK");
+  const [hoverValue, setHoverValue] = useState(-1);
+
+  const reviewFormRef = useRef(null);
+
+  const scrollToReviewForm = () => {
+    if (reviewFormRef.current) {
+      reviewFormRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+  const CompanyElement = ({ jobObject }) => {
     return (
       <section className="company-info">
         <header className="title-container">
@@ -98,11 +106,11 @@ export const CompanyInfo = () => {
     <>
       <CustomNav />
       <div className="main-comp">
-      <CompanyElement jobObject={job1}/>
+        <CompanyElement jobObject={job1} />
         <section className="reviews">
           <div className="reviews-header">
             <h2>Reviews </h2>
-            <button className="main-button">Create a Review!</button>
+            <button className="main-button" onClick={scrollToReviewForm}>Create a Review!</button>
           </div>
           <article className="review-container">
             <div className="person-data">
@@ -146,28 +154,40 @@ export const CompanyInfo = () => {
           </article>
           <ReviewsElement reviewObject={review1} />
         </section>
-        <section className="review-form">
-            <form action="">
-                <textarea name="review-text" id="review-text" cols="30" rows="10" placeholder="Write a Review"></textarea>
-                <span className="star-container">
-                  <Rating
-                  className="active-stars"
-                  name="simple-controlled"
-                  size="medium"
-                  value={starValue}
-                  onChange={(event, newValue) => {
-                    setStarValue(newValue);
-                    setLabelValue(starlabels[newValue])
-                    console.log(labelValue)
-                  }}
-                  onChangeActive={(event, newHover) => {
-                    setHoverValue(newHover)
-                  }}
-                ></Rating>
-                <p className="star-label">{hoverValue==-1?labelValue:starlabels[hoverValue]}</p>
-                </span>
-              <input type="submit" className="main-button" style={{display:"block", marginTop:"10px"}}/>
-            </form>
+        <section className="review-form" ref={reviewFormRef}>
+          <form action="">
+            <textarea
+              name="review-text"
+              id="review-text"
+              cols="30"
+              rows="10"
+              placeholder="Write a Review"
+            ></textarea>
+            <span className="star-container">
+              <Rating
+                className="active-stars"
+                name="simple-controlled"
+                size="medium"
+                value={starValue}
+                onChange={(event, newValue) => {
+                  setStarValue(newValue);
+                  setLabelValue(starlabels[newValue]);
+                  console.log(labelValue);
+                }}
+                onChangeActive={(event, newHover) => {
+                  setHoverValue(newHover);
+                }}
+              ></Rating>
+              <p className="star-label">
+                {hoverValue == -1 ? labelValue : starlabels[hoverValue]}
+              </p>
+            </span>
+            <input
+              type="submit"
+              className="main-button"
+              style={{ display: "block", marginTop: "10px" }}
+            />
+          </form>
         </section>
       </div>
     </>

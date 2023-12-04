@@ -5,23 +5,30 @@ import Rating from "@mui/material/Rating";
 import locationLogo from "../img/location.svg";
 import sortByLogo from "../img/sortby.svg";
 import { Link } from "react-router-dom";
-import {useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 export const Catalog = () => {
   const [data, setData] = useState([]);
   const [visibleData, setVisibleData] = useState([]);
-  useEffect(()=>{
+  // const [uniqueMajors, setUniqueMajors] = useState([]);
+  useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/jobs/data');
+        const response = await axios.get("http://localhost:3001/jobs/data");
         setData(response.data);
         setVisibleData(response.data);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
     fetchData();
-  },[])
+  }, []);
+  const allMajors = data.reduce((acc, job) => {
+    return acc.concat(job.majors || []); // Ensure job.majors exists and handle any potential undefined values
+  }, []);
+  // Convert to a set to remove duplicates and then back to an array
+  let uniqueMajors = Array.from(new Set(allMajors));
+  console.log(uniqueMajors);
   let majors = ["CS", "SWE", "COE", "EE"];
   function majorsElement(majorsList) {
     let elementsList = majorsList.map((major) => (
@@ -57,7 +64,7 @@ export const Catalog = () => {
           </p>
           <div className="train-location">
             <img src={locationLogo} alt="location" width={20} />
-            <h2>{jobObject.compLocation}</h2>
+            <h2>{jobObject.location}</h2>
           </div>
           {majorsElement(jobObject.majors)}
         </section>
@@ -70,23 +77,24 @@ export const Catalog = () => {
     );
   }
   const jobCards = (Jobsdata) => {
-    return <>
-    {Jobsdata.map((value, index) => (
-        <div key={index}>
-          {cardElement(value)}
-        </div>
-      ))}
-    </>
-  }
-  const filterMajor = (selectedMajor)=>{
+    return (
+      <>
+        {Jobsdata.map((value, index) => (
+          <div key={index}>{cardElement(value)}</div>
+        ))}
+      </>
+    );
+  };
+  const filterMajor = (selectedMajor) => {
     console.log(selectedMajor);
-    if (selectedMajor == "default"){
-      setVisibleData(data)
+    if (selectedMajor == "default") {
+      setVisibleData(data);
+    } else {
+      setVisibleData(
+        data.filter((value) => value.majors.includes(selectedMajor))
+      );
     }
-    else {
-      setVisibleData(data.filter((value)=>value.majors.includes(selectedMajor)))
-    }
-  }
+  };
   return (
     <>
       <CustomNav />
@@ -96,12 +104,18 @@ export const Catalog = () => {
           <h2>Filters:</h2>
           <i className="major-section">
             Major: <br />
-            <select name="major" id="major" defaultValue={"default"} onChange={(e) => filterMajor(e.target.value)}>
+            <select
+              name="major"
+              id="major"
+              defaultValue={"default"}
+              onChange={(e) => filterMajor(e.target.value)}
+            >
               <option value="default">All Majors</option>
-              <option value="CS">CS</option>
-              <option value="SWE">SWE</option>
-              <option value="EE">EE</option>
-              <option value="COE">COE</option>
+              {uniqueMajors.map((major) => (
+                <option key={major} value={major}>
+                  {major}
+                </option>
+              ))}
             </select>
           </i>
           <hr />
