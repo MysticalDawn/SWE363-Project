@@ -3,6 +3,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import { UserRouter } from "./routes/Users.js";
 import { JobRouter } from "./routes/jobs.js";
+import { GetUserInfo } from "./routes/GetUserInfo.js";
 
 const app = express();
 
@@ -10,6 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/auth", UserRouter);
 app.use("/jobs", JobRouter);
+app.use("/getUserInfo", GetUserInfo)
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
 );

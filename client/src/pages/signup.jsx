@@ -2,21 +2,25 @@ import "../styles/signup.css";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [major, setMajor] = useState("");
   const navigate = useNavigate();
+  const [_, setCookies] = useCookies("token"); // eslint-disable-line no-unused-vars
   const signUserUp = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:3001/auth/register", {
+      const response = await axios.post("http://localhost:3001/auth/register", {
         email,
         password,
         name,
         major,
       });
+      setCookies("token", response.data.token);
+      window.localStorage.setItem("userID", response.data.userId);
       navigate("/confirm");
     } catch (error) {
       console.log(error);

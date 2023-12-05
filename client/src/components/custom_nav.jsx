@@ -19,7 +19,7 @@ export const CustomNav = () => {
             Contact Us
           </Link>
           {cookies.token ? (
-            <Link id="already-login" to="/profile">
+            <Link id="sign-in-up" to="/profile">
               Hi Khalid🤗
             </Link>
           ) : (
