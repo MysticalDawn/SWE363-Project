@@ -1,0 +1,23 @@
+.confirm-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.confirm-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+.confirm-content img {
+    margin-bottom: 4rem;
+}
+
+#confirm-btn {
+    width: 30%;
+}
