@@ -1,12 +1,26 @@
 import "../styles/custom_nav.css";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import { useCookies } from "react-cookie";
 import Logo from "../img/logo.svg";
+import { useState, useEffect } from "react";
 export const CustomNav = () => {
   const [cookies] = useCookies(["token"]);
-  const getUserInfo = () => {
-    console.log(cookies.token);
-  }
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/GetUserInfo/", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    getUserInfo();
+  }, []);
   return (
     <header className="nav_header">
       <nav>

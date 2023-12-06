@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json());
 app.use("/auth", UserRouter);
 app.use("/jobs", JobRouter);
-app.use("/getUserInfo", GetUserInfo)
+app.use("/GetUserInfo", GetUserInfo)
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
 );

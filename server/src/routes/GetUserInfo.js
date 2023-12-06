@@ -7,7 +7,7 @@ router.get("/", async (req,res)=> {
     const token = req.headers['authorization'].split(' ')[1];
     const userId = jwt.decode(token).id;
     const user = await mongoose.model("User").findOne({_id: userId});
-    res.json(user)
+    return res.json(user)
 })
 
 export {router as GetUserInfo}

@@ -131,7 +131,6 @@ export const Profile = () => {
           </Link>
         </div>
       </div>{" "}
-      //the link above should include the log out functionality.
     </>
   );
 };
