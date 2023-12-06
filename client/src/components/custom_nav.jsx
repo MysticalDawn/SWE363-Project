@@ -20,7 +20,7 @@ export const CustomNav = () => {
           </Link>
           {cookies.token ? (
             <Link id="sign-in-up" to="/profile">
-              Hi Khalid🤗
+              Profile
             </Link>
           ) : (
             <Link id="sign-in-up" to="/login">

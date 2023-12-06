@@ -8,6 +8,11 @@
   padding: 20px;
   text-align: center;
   font-size: 12px;
+
+ }
+ .container1 {
+  width: 85%;
+  padding-left: 4rem;
  }
  
  
@@ -46,7 +51,7 @@
  .icon-group1 {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 75%;
   margin-top: 20px;
  }
  

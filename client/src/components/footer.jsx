@@ -1,23 +1,12 @@
 import "../styles/footer.css";
 export const Footer = () => {
   return (
-    <div>
+    <div className="container1">
       <footer className="footer1">
-        <div className="container32">
-          <nav className="nav1">
-            <a href="/">
-              <span className="nav12">About</span>
-            </a>
-            <a href="/contact">
-              <span className="nav12">Contact us</span>
-            </a>
-            <span className="nav12">Support</span>
-            <span className="nav12">Team</span>
-          </nav>
-        </div>
         <div className="separator"></div>
         <div className="container33">
           <span className="text61">© 2023 DALLANI, All Rights Reserved.</span>
+
           <div className="icon-group1">
             <a
               href="https://www.linkedin.com"
