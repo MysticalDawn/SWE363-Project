@@ -18,6 +18,7 @@ export const Login = () => {
         email,
         password,
       });
+      console.log(response)
       setCookies("token", response.data.token);
       window.localStorage.setItem("userID", response.data.userId);
       navigate("/");
