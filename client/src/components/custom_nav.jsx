@@ -4,6 +4,9 @@ import { useCookies } from "react-cookie";
 import Logo from "../img/logo.svg";
 export const CustomNav = () => {
   const [cookies] = useCookies(["token"]);
+  const getUserInfo = () => {
+    console.log(cookies.token);
+  }
   return (
     <header className="nav_header">
       <nav>
