@@ -18,7 +18,6 @@ export const Login = () => {
         email,
         password,
       });
-      console.log(response);
       setCookies("token", response.data.token);
       window.localStorage.setItem("userID", response.data.userId);
       navigate("/");
@@ -68,7 +67,7 @@ export const Login = () => {
             className="login-email-input"
             value={email}
             onChange={(e) => {
-              setEmail(e.target.value);
+              setEmail(e.target.value.toLowerCase());
             }}
           />
           <h3>Password</h3>

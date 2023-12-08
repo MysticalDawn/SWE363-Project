@@ -1,10 +1,11 @@
 import express from "express";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
+import { UserModel } from "../model/UserMdle.js";
 const router = express.Router();
 
 router.get("/", async (req, res) => {
-  const token = req.headers["authorization"]?.split(" ")[1];
+  const token = req.headers.authorization?.split(" ")[1];
   if (!token) {
     return res.status(401).json({ error: "No token provided" });
   }
@@ -16,7 +17,7 @@ router.get("/", async (req, res) => {
   }
 
   const userId = jwt.decode(token).id;
-  const user = await mongoose.model("User").findOne({ _id: userId });
+  const user = await UserModel.findOne({ _id: userId });
 
   if (!user) {
     return res.status(404).json({ error: "User not found" });
@@ -24,8 +25,15 @@ router.get("/", async (req, res) => {
 
   delete user.password;
 
-  return res.json(user);
-}
-);
+  const info = {
+    email: user.email,
+    name: user.name,
+    major: user.major,
+    _id: user._id,
+  };
+
+  return res.json(info);
+
+});
 
 export { router as GetUserInfo };
