@@ -7,8 +7,10 @@ import { ContactUs } from "./pages/contact_us.jsx";
 import { Profile } from "./pages/profile.jsx";
 import { CompanyInfo } from "./pages/company_info.jsx";
 import { Footer } from "./components/footer.jsx";
-import {ConfirmationPage} from "./components/confirmation.jsx";
+import { ConfirmationPage } from "./components/confirmation.jsx";
+import { useCookies } from "react-cookie";
 function App() {
+  const [cookies] = useCookies(["token"]);
   return (
     <div className="App">
       <Router>
@@ -18,10 +20,12 @@ function App() {
           <Route path="/catalog" element={<Catalog />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<ContactUs />} />
-          <Route path="/profile" element={<Profile />} />
           <Route path="/company/:company" element={<CompanyInfo />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
+          {cookies.token ? (
+            <Route path="/profile" element={<Profile />} />
+          ) : null}
         </Routes>
       </Router>
     </div>

@@ -6,14 +6,15 @@ import Logo from "../img/logo.svg";
 import { useState, useEffect } from "react";
 export const CustomNav = () => {
   const [cookies] = useCookies(["token"]);
+  const [userName, setUserName] = useState("");
   const getUserInfo = async () => {
     try {
-      const response = await axios.get("http://localhost:3001/GetUserInfo/", {
+      const response = await axios.get("http://localhost:3001/GetUserInfo", {
         headers: {
-          Authorization: `Bearer ${cookies.token}`,
+          Authorization: `Bearer ${cookies.token}`
         },
       });
-      console.log(response.data);
+      setUserName(response.data.name);
     } catch (error) {
       if (error.response && error.response.status === 401) {
         console.error("Unauthorized access");
@@ -42,7 +43,7 @@ export const CustomNav = () => {
           </Link>
           {cookies.token ? (
             <Link id="sign-in-up" to="/profile">
-              Profile
+              {"Hey " + userName}
             </Link>
           ) : (
             <Link id="sign-in-up" to="/login">
