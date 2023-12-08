@@ -70,6 +70,13 @@ input[type="checkbox"]{
 #search:hover {
     border-color: rgb(134, 198, 255);
 }
+#empty-grid{
+    height:50vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 #jobs-grid{
     display: grid;
     grid-template-columns: repeat(auto-fit,265px);
@@ -79,17 +86,6 @@ input[type="checkbox"]{
     margin-left: 30px;
     justify-content: left;
 }
-
-/* @media screen and (max-width: 1700px){
-    #jobs-grid {
-        grid-template-columns: 1fr 1fr 1fr;
-    }
-}
-@media screen and (max-width: 1400px){
-    #jobs-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-} */
 
 .job-card {
     border: 1px solid rgb(0, 0, 0);
@@ -177,7 +173,11 @@ img[alt="location"]{
     justify-content: space-between;
     margin-bottom: 5px;
     margin-top: 10px;
+    align-items: center;
     
+}
+.outer-card > p {
+    font-size: large;
 }
 .apply {
     margin-right: 10px;

@@ -19,7 +19,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<ContactUs />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/company" element={<CompanyInfo />} />
+          <Route path="/company/:company" element={<CompanyInfo />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
         </Routes>

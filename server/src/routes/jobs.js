@@ -12,4 +12,15 @@ router.get("/data", async (req,res)=> {
     }
 })
 
+router.get("/data/:company", async (req, res) => {
+    try {
+      const { company } = req.params;
+      const data = await JobModel.findOne({ company });
+      res.json(data);
+    } catch (err) {
+      console.log(err);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+
 export { router as JobRouter };

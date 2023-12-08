@@ -1,27 +1,25 @@
 import { mongoose } from "mongoose";
-import PersonSchema from "person_model.js";
 
 const ReviewSchema = new mongoose.Schema({
-  review_id: {
+  id: {
     type: String,
     required: true,
     unique:true
   },
-  reviewer: {
-    type: PersonSchema,
+  user_mail: {
+    type: String,
     required: true,
   },
-  company: {
+  username: {
     type: String,
     require: true,
+  },
+  user_major: {
+    type: String,
   },
   rating: {
     type:Number,
     required:true
-  },
-  is_user_hidden: {
-    type:Boolean,
-    default:false
   },
   review_text: {
     type:String

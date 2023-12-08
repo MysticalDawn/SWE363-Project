@@ -4,8 +4,25 @@ import "../styles/company_info.css";
 import locationLogo from "../img/location.svg";
 import anonymousPic from "../img/anonymous-pic.png";
 import Rating from "@mui/material/Rating";
-import { useState,useRef } from "react";
+import { useState,useRef,useEffect } from "react";
+import { useParams } from 'react-router-dom';
+import axios from "axios";
 export const CompanyInfo = () => {
+  const { company } = useParams();
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:3001/jobs/data/${company}`);
+        setData(response.data);
+        console.log(data)
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [company]);
+
   const starlabels = {
     1: "Useless",
     2: "Poor",
@@ -55,20 +72,24 @@ export const CompanyInfo = () => {
       <section className="company-info">
         <header className="title-container">
           <h1 id="company-name">{jobObject.company}</h1>
-          <img src={aramco} alt="logo" width={130} />
+          <img src={jobObject.companys_logo} alt="logo" width={130} />
         </header>
-        <p className="company-description">{jobObject.summary}</p>
+        <p className="company-description">{jobObject.purpose_statement}</p>
         <span className="company-data">
           <a href={jobObject.location_url} className="train-location">
             <img src={locationLogo} alt="location" width={30} />
-            <p>{jobObject.location_name}</p>
+            <p>{jobObject.location}</p>
           </a>
-          <Rating
-            className="stars"
-            value={jobObject.rating}
-            readOnly
-            size="large"
-          ></Rating>
+          <span style={{display:"flex",gap:"5px",alignItems:"center"}}>
+            <Rating
+              className="stars"
+              value={jobObject.rating_score}
+              readOnly
+              size="large"
+              precision={0.1}
+            ></Rating>
+            <i style={{padding:"5px"}}>{jobObject.rating_score}</i>
+          </span>
         </span>
       </section>
     );
@@ -106,7 +127,7 @@ export const CompanyInfo = () => {
     <>
       <CustomNav />
       <div className="main-comp">
-        <CompanyElement jobObject={job1} />
+        <CompanyElement jobObject={data} />
         <section className="reviews">
           <div className="reviews-header">
             <h2>Reviews </h2>

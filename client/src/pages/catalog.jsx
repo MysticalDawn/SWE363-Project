@@ -48,11 +48,11 @@ export const Catalog = () => {
   function cardElement(jobObject) {
     return (
       <article className="job-card">
+        <Link to={`/company/${jobObject.company}`} style={{textDecoration:"none"}}>
         <section className="card-body">
           <img src={jobObject.companys_logo} alt="cLogo" width={40} />
-          <Link to="/company">
+          
             <h1 className="company-name">{jobObject.company}</h1>
-          </Link>
           <p className="rating">
             <Rating
               className="stars"
@@ -68,11 +68,13 @@ export const Catalog = () => {
           </div>
           {majorsElement(jobObject.majors)}
         </section>
-        <section className="outer-card">
-          <button type="submit" className="apply">
+        <section className="outer-card" onClick={(e) => e.stopPropagation()}>
+          <p style={{color:"white"}}>3500 SAR Avg</p>
+          <button type="submit" className="apply" onClick={(e) => e.stopPropagation()}>
             Apply
           </button>
         </section>
+        </Link>
       </article>
     );
   }
@@ -95,6 +97,7 @@ export const Catalog = () => {
       );
     }
   };
+  console.log(visibleData.length==0)
   return (
     <>
       <CustomNav />
@@ -176,30 +179,12 @@ export const Catalog = () => {
               placeholder="Search for Companies..."
             />
           </p>
-          <section id="jobs-grid">
-            <article className="job-card">
-              <section className="card-body">
-                <img src={aramco} alt="logo" width={40} />
-                <h1 className="company-name">Aramco</h1>
-                <p className="rating">
-                  <Rating className="stars" value={4} readOnly></Rating>
-                  <i className="rating-count">(318 users)</i>
-                </p>
-                <div className="train-location">
-                  <img src={locationLogo} alt="location" width={20} />
-                  <h2>Dhahran</h2>
-                </div>
-                {majorsElement(majors)}
-              </section>
-              <section className="outer-card">
-                <button type="submit" className="apply">
-                  Apply
-                </button>
-              </section>
-            </article>
-            {cardElement(aramcoJob)}
+          {visibleData.length==0?<section id="empty-grid">
+            <p>Nothing here yet...</p>
+          </section>:<section id="jobs-grid">
             {jobCards(visibleData)}
-          </section>
+          </section>}
+          
         </section>
       </main>
     </>
