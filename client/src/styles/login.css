@@ -19,6 +19,10 @@
   margin-left: 10%;
 }
 
+.login-form h3{
+  height: 68px ;
+}
+
 .login-starting-top {
   display: flex;
   flex-direction: column;

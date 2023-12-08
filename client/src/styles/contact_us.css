@@ -142,6 +142,7 @@
   -ms-border-radius: 1rem;
   -o-border-radius: 1rem;
   align-self: center;
+  resize: none;
 }
 
 .contact-btn {
