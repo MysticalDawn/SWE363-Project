@@ -18,7 +18,7 @@ export const Login = () => {
         email,
         password,
       });
-      console.log(response)
+      console.log(response);
       setCookies("token", response.data.token);
       window.localStorage.setItem("userID", response.data.userId);
       navigate("/");
@@ -73,7 +73,7 @@ export const Login = () => {
           />
           <h3>Password</h3>
           <input
-            required 
+            required
             type="password"
             placeholder="type your password"
             className="login-password-input"
@@ -91,7 +91,7 @@ export const Login = () => {
         </p>
       </div>
       <div className="login-right-side">
-        <img src={Login_pic} alt="login" height="800" width="800"/>
+        <img src={Login_pic} alt="login" height="800" width="800" />
       </div>
     </div>
   );
