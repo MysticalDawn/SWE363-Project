@@ -36,7 +36,8 @@ router.post("/login", async (req, res) => {
       .json({ message: "Email or password does not exist!" });
   }
   const token = jwt.sign({ id: user._id }, "secret");
+  res.setHeader('Authorization', `Bearer ${token}`);
   res.json({ token, userID: user._id });
-});
+ });
 
 export { router as UserRouter };
