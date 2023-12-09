@@ -11,7 +11,18 @@ import axios from "axios";
 export const CompanyInfo = () => {
   const { company } = useParams();
   const [data, setData] = useState([]);
+  const [reviewsData, setReviewsData] = useState([]);
   const [reviewText, setReviewText] = useState("");
+  const getCompanyReviews = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:3001/reviews/data/${company}`
+      );
+      setReviewsData(response.data);
+    } catch (error) {
+      console.error("Error fetching company reviews:", error);
+    }
+  };
   const getUserInfo = async () => {
     try {
       const response = await axios.get("http://localhost:3001/GetUserInfo", {
@@ -43,7 +54,9 @@ export const CompanyInfo = () => {
     };
     fetchData();
     getUserInfo();
-  }, [company]);
+    getCompanyReviews();
+    console.log(reviewsData);
+  }, [company, reviewsData]);
   const [userData, setUserData] = useState({});
   const [cookies] = useCookies(["token"]);
 
@@ -84,14 +97,15 @@ export const CompanyInfo = () => {
   const [labelValue, setLabelValue] = useState("OK");
   const [hoverValue, setHoverValue] = useState(-1);
   const [isAnonymous, setIsAnonymous] = useState(false);
+  const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const reviewFormRef = useRef(null);
 
   const postReview = async (e) => {
     e.preventDefault();
     const reviewID = uuidv4();
-    let formData={};
-    console.log(userData.major);
+    let formData = {};
+    console.log(isAnonymous);
     if (isAnonymous) {
       formData = {
         id: reviewID,
@@ -114,8 +128,15 @@ export const CompanyInfo = () => {
       };
     }
     try {
-      const response = await axios.post("http://localhost:3001/postReview", formData);
-
+      const response = await axios.post(
+        "http://localhost:3001/reviews/post",
+        formData
+      );
+      setReviewText("");
+      setSubmissionStatus({
+        success: true,
+        message: "Review submitted successfully!",
+      });
       console.log("Response:", response.data);
       console.log("Review submitted successfully!");
     } catch (error) {
@@ -155,15 +176,13 @@ export const CompanyInfo = () => {
       </section>
     );
   };
-  const ReviewsElement = ({ reviewObject }) => {
+  const ReviewsElement = (reviewObject) => {
     return (
       <article className="review-container">
         <div className="person-data">
           <img src={anonymousPic} alt="profile-pic" height={43} />
-          <p className="user-name">
-            {reviewObject.is_user_hidden ? "Anonymous" : reviewObject.reviewer}
-          </p>
-          <p className="major">(CS Student)</p>
+          <p className="user-name">{reviewObject.username}</p>
+          <p className="major">({reviewObject.user_major} Student)</p>
         </div>
         <div className="review-text">
           <p>{reviewObject.review_text}</p>
@@ -182,6 +201,16 @@ export const CompanyInfo = () => {
       </span> */}
         </div>
       </article>
+    );
+  };
+  const reviewsSection = (reviewsList) => {
+    console.log(reviewsList);
+    return (
+      <>
+        {reviewsList.map((value, index) => (
+          <div key={index}>{ReviewsElement(value)}</div>
+        ))}
+      </>
     );
   };
   return (
@@ -230,13 +259,9 @@ export const CompanyInfo = () => {
                 readOnly
                 size="medium"
               ></Rating>
-              {/* <span className="rating-buttons">
-                <button className="like main-button"><img src={likeLogo} alt="like" height={40}/></button>
-                <button className="dislike main-button"><img src={dislikeLogo} alt="dislike" height={30} width={30}/></button>
-              </span> */}
             </div>
           </article>
-          <ReviewsElement reviewObject={review1} />
+          {reviewsSection(reviewsData)}
         </section>
         <section className="review-form" ref={reviewFormRef}>
           <form action="" onSubmit={postReview}>
@@ -246,6 +271,7 @@ export const CompanyInfo = () => {
               cols="30"
               rows="10"
               placeholder="Write a Review"
+              minLength={50}
               onChange={(e) => {
                 setReviewText(e.target.value);
               }}
@@ -273,11 +299,11 @@ export const CompanyInfo = () => {
               name="anonymousC"
               id="anonymousC"
               style={{ marginLeft: "5px" }}
+              onChange={(e) => setIsAnonymous(e.target.checked)}
             />
             <label
               htmlFor="anonymousC"
               style={{ fontSize: "large", marginLeft: "5px" }}
-              onChange={(e) => setIsAnonymous(e.target.checked)}
             >
               Post Review anonymously
             </label>
@@ -286,6 +312,9 @@ export const CompanyInfo = () => {
               className="main-button"
               style={{ display: "block", marginTop: "10px" }}
             />
+            {submissionStatus && submissionStatus.success && (
+              <p style={{ color: "green" ,marginTop:"10px",fontSize:"larger"}}>{submissionStatus.message}</p>
+            )}
           </form>
         </section>
       </div>

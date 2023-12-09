@@ -13,7 +13,7 @@ app.use(express.json());
 app.use("/auth", UserRouter);
 app.use("/jobs", JobRouter);
 app.use("/GetUserInfo", GetUserInfo)
-app.use("/postReview", ReviewRouter)
+app.use("/reviews", ReviewRouter)
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
 );
