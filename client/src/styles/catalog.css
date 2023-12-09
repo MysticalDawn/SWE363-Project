@@ -92,7 +92,7 @@ input[type="checkbox"]{
     border-radius: 10px;
     padding: 10px;
     transition: background-color 0.5s;
-    width: 240px;
+    width: 250px;
     background-color: var(--secondary-background);
 }
 .job-card:hover{
@@ -120,6 +120,7 @@ input[type="checkbox"]{
     max-width: 220px;
     padding: 10px;
     background-color:white;
+    height: 290px;
 }
 .card-body a {
     text-decoration: none;

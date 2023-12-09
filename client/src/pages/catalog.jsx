@@ -69,7 +69,7 @@ export const Catalog = () => {
           {majorsElement(jobObject.majors)}
         </section>
         <section className="outer-card" onClick={(e) => e.stopPropagation()}>
-          <p style={{color:"white"}}>3500 SAR Avg</p>
+          <p style={{color:"white"}}>{jobObject.salary} SAR Avg</p>
           <button type="submit" className="apply" onClick={(e) => e.stopPropagation()}>
             Apply
           </button>

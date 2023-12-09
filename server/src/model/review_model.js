@@ -6,6 +6,10 @@ const ReviewSchema = new mongoose.Schema({
     required: true,
     unique:true
   },
+  company: {
+    type: String,
+    required:true
+  },
   user_mail: {
     type: String,
     required: true,
@@ -26,4 +30,4 @@ const ReviewSchema = new mongoose.Schema({
   }
 });
 
-export const ReviewModel = mongoose.model("Users", ReviewSchema);
+export const ReviewModel = mongoose.model("Reviews", ReviewSchema);

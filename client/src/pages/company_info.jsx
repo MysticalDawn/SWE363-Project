@@ -1,27 +1,51 @@
 import { CustomNav } from "../components/custom_nav.jsx";
-import aramco from "../img/aramco-logo.png";
+import { v4 as uuidv4 } from "uuid";
 import "../styles/company_info.css";
 import locationLogo from "../img/location.svg";
 import anonymousPic from "../img/anonymous-pic.png";
 import Rating from "@mui/material/Rating";
-import { useState,useRef,useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useCookies } from "react-cookie";
+import { useState, useRef, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 export const CompanyInfo = () => {
   const { company } = useParams();
   const [data, setData] = useState([]);
+  const [reviewText, setReviewText] = useState("");
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/GetUserInfo", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      });
+      setUserData(response.data);
+      console.log(userData);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.error("Unauthorized access");
+      } else {
+        console.error(error);
+      }
+    }
+  };
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/jobs/data/${company}`);
+        const response = await axios.get(
+          `http://localhost:3001/jobs/data/${company}`
+        );
         setData(response.data);
-        console.log(data)
+        console.log(data);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
     };
     fetchData();
+    getUserInfo();
   }, [company]);
+  const [userData, setUserData] = useState({});
+  const [cookies] = useCookies(["token"]);
 
   const starlabels = {
     1: "Useless",
@@ -59,8 +83,45 @@ export const CompanyInfo = () => {
   const [starValue, setStarValue] = useState(3);
   const [labelValue, setLabelValue] = useState("OK");
   const [hoverValue, setHoverValue] = useState(-1);
+  const [isAnonymous, setIsAnonymous] = useState(false);
 
   const reviewFormRef = useRef(null);
+
+  const postReview = async (e) => {
+    e.preventDefault();
+    const reviewID = uuidv4();
+    let formData={};
+    console.log(userData.major);
+    if (isAnonymous) {
+      formData = {
+        id: reviewID,
+        user_mail: userData.email,
+        username: "Anonymous",
+        user_major: userData.major,
+        rating: starValue,
+        review_text: reviewText,
+        company: company,
+      };
+    } else {
+      formData = {
+        id: reviewID,
+        user_mail: userData.email,
+        username: userData.name,
+        user_major: userData.major,
+        rating: starValue,
+        review_text: reviewText,
+        company: company,
+      };
+    }
+    try {
+      const response = await axios.post("http://localhost:3001/postReview", formData);
+
+      console.log("Response:", response.data);
+      console.log("Review submitted successfully!");
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    }
+  };
 
   const scrollToReviewForm = () => {
     if (reviewFormRef.current) {
@@ -80,7 +141,7 @@ export const CompanyInfo = () => {
             <img src={locationLogo} alt="location" width={30} />
             <p>{jobObject.location}</p>
           </a>
-          <span style={{display:"flex",gap:"5px",alignItems:"center"}}>
+          <span style={{ display: "flex", gap: "5px", alignItems: "center" }}>
             <Rating
               className="stars"
               value={jobObject.rating_score}
@@ -88,7 +149,7 @@ export const CompanyInfo = () => {
               size="large"
               precision={0.1}
             ></Rating>
-            <i style={{padding:"5px"}}>{jobObject.rating_score}</i>
+            <i style={{ padding: "5px" }}>{jobObject.rating_score}</i>
           </span>
         </span>
       </section>
@@ -131,7 +192,9 @@ export const CompanyInfo = () => {
         <section className="reviews">
           <div className="reviews-header">
             <h2>Reviews </h2>
-            <button className="main-button" onClick={scrollToReviewForm}>Create a Review!</button>
+            <button className="main-button" onClick={scrollToReviewForm}>
+              Create a Review!
+            </button>
           </div>
           <article className="review-container">
             <div className="person-data">
@@ -176,13 +239,16 @@ export const CompanyInfo = () => {
           <ReviewsElement reviewObject={review1} />
         </section>
         <section className="review-form" ref={reviewFormRef}>
-          <form action="">
+          <form action="" onSubmit={postReview}>
             <textarea
               name="review-text"
               id="review-text"
               cols="30"
               rows="10"
               placeholder="Write a Review"
+              onChange={(e) => {
+                setReviewText(e.target.value);
+              }}
             ></textarea>
             <span className="star-container">
               <Rating
@@ -193,7 +259,6 @@ export const CompanyInfo = () => {
                 onChange={(event, newValue) => {
                   setStarValue(newValue);
                   setLabelValue(starlabels[newValue]);
-                  console.log(labelValue);
                 }}
                 onChangeActive={(event, newHover) => {
                   setHoverValue(newHover);
@@ -203,6 +268,19 @@ export const CompanyInfo = () => {
                 {hoverValue == -1 ? labelValue : starlabels[hoverValue]}
               </p>
             </span>
+            <input
+              type="checkbox"
+              name="anonymousC"
+              id="anonymousC"
+              style={{ marginLeft: "5px" }}
+            />
+            <label
+              htmlFor="anonymousC"
+              style={{ fontSize: "large", marginLeft: "5px" }}
+              onChange={(e) => setIsAnonymous(e.target.checked)}
+            >
+              Post Review anonymously
+            </label>
             <input
               type="submit"
               className="main-button"

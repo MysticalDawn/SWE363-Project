@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { UserRouter } from "./routes/Users.js";
 import { JobRouter } from "./routes/jobs.js";
 import { GetUserInfo } from "./routes/GetUserInfo.js";
+import { ReviewRouter } from "./routes/review.js";
 
 const app = express();
 
@@ -12,6 +13,7 @@ app.use(express.json());
 app.use("/auth", UserRouter);
 app.use("/jobs", JobRouter);
 app.use("/GetUserInfo", GetUserInfo)
+app.use("/postReview", ReviewRouter)
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
 );
