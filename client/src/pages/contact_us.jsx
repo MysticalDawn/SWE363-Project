@@ -4,8 +4,9 @@ import Mail from "../img/Mailbox.svg";
 import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
-
+import { useNavigate } from "react-router-dom";
 export const ContactUs = () => {
+  const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -18,7 +19,10 @@ export const ContactUs = () => {
       form.current,
       "zwa15ns9x4SUp-XXL"
     );
-    console.log(res);
+    console.log(res.status);
+    if(res.status === 200){
+      navigate("/confirm");
+    }
   };
   return (
     <>
