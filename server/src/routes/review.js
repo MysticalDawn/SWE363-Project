@@ -17,7 +17,6 @@ router.post("/post", async (req, res) => {
       });
   
       const savedReview = await newReview.save();
-  
       res.status(201).json(savedReview);
     } catch (error) {
       res.status(500).json({ message: "Failed to post the review" });

@@ -13,6 +13,7 @@ export const CompanyInfo = () => {
   const [data, setData] = useState([]);
   const [reviewsData, setReviewsData] = useState([]);
   const [reviewText, setReviewText] = useState("");
+  const [submissionStatus, setSubmissionStatus] = useState(null);
   const getCompanyReviews = async () => {
     try {
       const response = await axios.get(
@@ -56,7 +57,7 @@ export const CompanyInfo = () => {
     getUserInfo();
     getCompanyReviews();
     console.log(reviewsData);
-  }, [company, reviewsData]);
+  }, [company,submissionStatus]);
   const [userData, setUserData] = useState({});
   const [cookies] = useCookies(["token"]);
 
@@ -67,37 +68,10 @@ export const CompanyInfo = () => {
     4: "Good",
     5: "Excellent",
   };
-  let review1 = {
-    review_id: 12345,
-    reviewer: "Ahmad ali",
-    company: "Aramco",
-    rating: 4,
-    is_user_hidden: true,
-    review_text:
-      "Sed vitae consequat dui. Proin eu quam nibh. Nulla at leo tincidunt, tempus dolor sed, luctus nisi. Mauris auctor ipsum orci, et ornare ligula eleifend sit amet. Fusce hendrerit eleifend lectus, eget euismod magna mollis nec. Morbi consequat libero ut nulla convallis condimentum. Donec quis arcu metus. Phasellus at placerat neque, ac aliquam turpis. Sed dignissim leo at turpis pretium imperdiet. Phasellus et rhoncus orci.",
-  };
-  let job1 = {
-    company: "Aramco",
-    summary: `We are one of the world's largest integrated energy and chemicals
-    companies, creating value across the hydrocarbon chain, and delivering
-    societal and economic benefits to people and communities around the
-    globe who rely on the vital energy we supply. We are committed to
-    playing a leading role in the energy transition. We have a
-    responsibility to help the world achieve a net-zero economy, and our
-    people are working hard to help solve the world's sustainability
-    challenges. For our customers, we are a supplier of choice. For our
-    shareholders, we provide long-term value creation. For communities
-    around the world, our ambition is to provide reliable, affordable, and
-    more sustainable energy.`,
-    location_name: "Dhahran",
-    location_url: "https://www.google.com/maps",
-    rating: 4,
-  };
   const [starValue, setStarValue] = useState(3);
   const [labelValue, setLabelValue] = useState("OK");
   const [hoverValue, setHoverValue] = useState(-1);
   const [isAnonymous, setIsAnonymous] = useState(false);
-  const [submissionStatus, setSubmissionStatus] = useState(null);
 
   const reviewFormRef = useRef(null);
 
@@ -137,6 +111,11 @@ export const CompanyInfo = () => {
         success: true,
         message: "Review submitted successfully!",
       });
+      console.log(starValue,"is astar")
+      const JobResponse = await axios.post(
+        "http://localhost:3001/jobs/modifyReviews",
+        {starRating: starValue,company}
+      );
       console.log("Response:", response.data);
       console.log("Review submitted successfully!");
     } catch (error) {
@@ -204,7 +183,6 @@ export const CompanyInfo = () => {
     );
   };
   const reviewsSection = (reviewsList) => {
-    console.log(reviewsList);
     return (
       <>
         {reviewsList.map((value, index) => (
@@ -275,6 +253,7 @@ export const CompanyInfo = () => {
               onChange={(e) => {
                 setReviewText(e.target.value);
               }}
+              value={reviewText}
             ></textarea>
             <span className="star-container">
               <Rating
