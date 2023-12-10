@@ -27,7 +27,7 @@ router.post("/modifyReviews", async (req, res) => {
     console.log(starRating);
     const data = await JobModel.findOne({company})
     const newRatingCount = data.rating_count+1;
-    const newRatingScore = Math.round((data.rating_score*data.rating_count+starRating)/newRatingCount);
+    const newRatingScore = Math.round(((data.rating_score*data.rating_count+starRating)/newRatingCount)*10)/10;
     const updatedJob = await JobModel.findOneAndUpdate(
         { company },
         { rating_count: newRatingCount, rating_score: newRatingScore },

@@ -149,7 +149,7 @@ export const CompanyInfo = () => {
               size="large"
               precision={0.1}
             ></Rating>
-            <i style={{ padding: "5px" }}>{jobObject.rating_score}</i>
+            <i style={{ padding: "5px" }}>{jobObject.rating_score}/5</i>
           </span>
         </span>
       </section>
