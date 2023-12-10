@@ -5,12 +5,14 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Login_pic from "../img/Secure-login.svg";
+import { useForm } from "react-hook-form";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   // eslint-disable-next-line no-unused-vars
   const [_, setCookies] = useCookies("token");
   const navigate = useNavigate();
+  const {register, formState: {errors}, handleSubmit,} = useForm();
   const loginUser = async (e) => {
     e.preventDefault();
     try {
@@ -58,10 +60,10 @@ export const Login = () => {
         <p className="bellow-login-text">
           Welcome back! Please login to your account
         </p>
-        <form className="login-form">
+        <form className="login-form" onSubmit={handleSubmit(loginUser)}>
           <h3>Email</h3>
           <input
-            required
+            {...register("email", {required: true})}
             type="email"
             placeholder="someone@gmail.com"
             className="login-email-input"
@@ -70,9 +72,12 @@ export const Login = () => {
               setEmail(e.target.value.toLowerCase());
             }}
           />
+          <error>
+            {errors.email?.type === "required" && "Email is required"}
+          </error>
           <h3>Password</h3>
           <input
-            required
+            {...register("password", {required: true})}
             type="password"
             placeholder="type your password"
             className="login-password-input"
@@ -81,10 +86,16 @@ export const Login = () => {
               setPassword(e.target.value);
             }}
           />
-        </form>
-        <button className="login-btn" onClick={loginUser}>
+          <error>
+            {errors.password?.type === "required" && "password is required"}
+          </error>
+          <button type="submit" className="login-btn">
           Login
         </button>
+        </form>
+        {/* <button className="login-btn" onClick={loginUser}>
+          Login
+        </button> */}
         <p className="login-bottom-text">
           {`Don't have an account?`} <Link to="/auth">Sign up</Link>
         </p>

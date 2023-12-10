@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { useForm } from "react-hook-form";
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -10,6 +11,7 @@ export const Signup = () => {
   const [major, setMajor] = useState("");
   const navigate = useNavigate();
   const [_, setCookies] = useCookies("token"); // eslint-disable-line no-unused-vars
+  const {register, formState: {errors}, handleSubmit,} = useForm();
   const signUserUp = async (e) => {
     e.preventDefault();
     try {
@@ -69,10 +71,10 @@ export const Signup = () => {
         <p className="bellow-signup-text">
           Sign up to start your journey with us
         </p>
-        <form className="signup-form">
+        <form className="signup-form" onSubmit={handleSubmit(signUserUp)}>
           <h3>Email</h3>
           <input
-            required
+            {...register("email", {required: true})}
             type="email"
             placeholder="someone@gmail.com"
             className="email-input"
@@ -81,9 +83,12 @@ export const Signup = () => {
               setEmail(e.target.value);
             }}
           />
+          <error>
+            {errors.email?.type === "required" && "Email is required"}
+          </error>
           <h3>Password</h3>
           <input
-            required
+            {...register("password", {required: true})}
             type="password"
             placeholder="Type a strong password"
             className="password-input"
@@ -92,9 +97,12 @@ export const Signup = () => {
               setPassword(e.target.value);
             }}
           />
+          <error>
+            {errors.password?.type === "required" && "Password is required"}
+          </error>
           <h3>Name</h3>
           <input
-            required
+            {...register("name", {required: true})}
             type="text"
             placeholder="Type your name"
             className="email-input name-input"
@@ -103,6 +111,9 @@ export const Signup = () => {
               setName(e.target.value);
             }}
           />
+          <error>
+            {errors.name?.type === "required" && "Name is required"}
+          </error>
           <h3>Select your major</h3>
           <select
             className="email-input major-input"
@@ -122,10 +133,11 @@ export const Signup = () => {
               Mechanical Engineering
             </option>
           </select>
-        </form>
-        <button className="signup-btn" onClick={signUserUp}>
+          <button type="submit" className="signup-btn">
           Sign Up
         </button>
+        </form>
+        
         <p className="signup-bottom-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>

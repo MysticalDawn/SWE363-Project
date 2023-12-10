@@ -5,14 +5,16 @@ import { useState } from "react";
 import emailjs from "@emailjs/browser";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
 export const ContactUs = () => {
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const form = useRef();
+  const {register, formState: {errors}, handleSubmit,} = useForm();
   const send_message = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     const res = await emailjs.sendForm(
       "service_2vqh3ur",
       "template_z0gdlor",
@@ -33,7 +35,7 @@ export const ContactUs = () => {
           <p>{`let's us get in touch!`}</p>
           <img src={Mail} alt="mail" height="300" width="300" />
         </div>
-        <form className="contactUs-form" ref={form}>
+        <form className="contactUs-form" ref={form} onSubmit={handleSubmit(send_message)}>
           <div className="name-email-contact">
             <div className="name-contact">
               <label htmlFor="name">
@@ -41,22 +43,25 @@ export const ContactUs = () => {
               </label>
 
               <input
-                required
+                {...register("name", {required: true})}
                 type="text"
-                name="from_name"
+                name="name"
                 className="contactUs-name-input"
                 value={name}
                 onChange={(e) => {
                   setName(e.target.value);
                 }}
               />
+              <error>
+                  {errors.name?.type === "required" && "Name is required"}
+              </error>
             </div>
             <div className="email-contact">
               <label htmlFor="email">
                 Email <h2>*</h2>
               </label>
               <input
-                required
+                {...register("email", {required: true})}
                 type="email"
                 name="email"
                 className="contactUs-email-input"
@@ -65,6 +70,9 @@ export const ContactUs = () => {
                   setEmail(e.target.value);
                 }}
               />
+              <error>
+                  {errors.email?.type === "required" && "Email is required"}
+              </error>
             </div>
           </div>
           <div className="message-contact">
@@ -72,6 +80,7 @@ export const ContactUs = () => {
               Message
             </label>
             <textarea
+              {...register("message",{required: true})}
               name="message"
               className="contactUs-message-input"
               value={message}
@@ -79,8 +88,12 @@ export const ContactUs = () => {
                 setMessage(e.target.value);
               }}
             ></textarea>
+            <error>
+                  {errors.message?.type === "required" && "Please enter a message"}
+              </error>
+
           </div>
-          <button className="contact-btn" onClick={send_message}>
+          <button className="contact-btn" type="submit">
             Send
           </button>
         </form>
