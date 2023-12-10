@@ -18,6 +18,9 @@ export const PersonSchema = mongoose.Schema({
   },
   profile_pic:{
     type:String,
+  },
+  CV:{
+    type:String,
   }
 });
 

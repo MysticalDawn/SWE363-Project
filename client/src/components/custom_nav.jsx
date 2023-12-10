@@ -11,7 +11,7 @@ export const CustomNav = () => {
     try {
       const response = await axios.get("http://localhost:3001/GetUserInfo", {
         headers: {
-          Authorization: `Bearer ${cookies.token}`
+          Authorization: `Bearer ${cookies.token}`,
         },
       });
       setUserName(response.data.name);

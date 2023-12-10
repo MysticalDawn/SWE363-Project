@@ -18,6 +18,19 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
+  city:{
+    type:String
+  },
+  phone:{
+    type:String,
+    unique: true
+  },
+  profile_pic:{
+    type:String
+  },
+  CV:{
+    type:String
+  }
 });
 
 export const UserModel = mongoose.model("Users", UserSchema);

@@ -1,14 +1,16 @@
 // Profile.js
 import { CustomNav } from "../components/custom_nav.jsx";
 import placeHolder from "../img/anonymous-pic.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "react-router-dom";
 import "../styles/profile.css";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Select from "react-select";
+
 export const Profile = () => {
-  // after we create the database for users, each field will must be initialized accordingly
-  const [_, setCookies] = useCookies(["token"]);
+  const [cookies] = useCookies(["token"]);
   const navigate = useNavigate();
   const logout = () => {
     try {
@@ -21,16 +23,51 @@ export const Profile = () => {
   };
 
   const initialProfileData = {
-    name: "Omar",
+    name: "test",
     email: "real@gmail.com",
-    phone: "000000",
+    phone: "",
     city: "Dammam",
     age: 22,
+    major: "Computer Science",
     picture: placeHolder,
   };
-  // state for editing the data (initial model and could be improved later)
+
   const [profileData, setProfileData] = useState(initialProfileData);
+
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/GetUserInfo", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      });
+      setProfileData({
+        ...profileData,
+        name: response.data.name,
+        email: response.data.email,
+        major: response.data.major,
+      });
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.error("Unauthorized access");
+      } else {
+        console.error(error);
+      }
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
+
   const [isEditing, setIsEditing] = useState(false);
+
+  const majorOptions = [
+    { label: "Computer Science", value: "Computer Science" },
+    { label: "Mathematics", value: "Mathematics" },
+    { label: "Physics", value: "Physics" },
+    // Add more options as needed
+  ];
 
   const handleInputChange = (field, value) => {
     setProfileData({
@@ -41,96 +78,155 @@ export const Profile = () => {
 
   const handleSave = () => {
     setIsEditing(false);
-    // we need to connect the database here in order to save the user updated information
+    // Connect the database here in order to save the user updated information
+  };
+  const handlePictureUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      // Send the file to the server
+      axios
+        .post("/upload-picture", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${cookies.token}`,
+          },
+        })
+        .then((response) => {
+          // Handle the response
+          console.log(response);
+        })
+        .catch((error) => {
+          // Handle the error
+          console.error(error);
+        });
+    }
+  };
+
+  const handleCVUpload = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      const formData = new FormData();
+      formData.append("file", file);
+      // Send the file to the server
+      axios
+        .post("/upload-cv", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${cookies.token}`,
+          },
+        })
+        .then((response) => {
+          // Handle the response
+          console.log(response);
+        })
+        .catch((error) => {
+          // Handle the error
+          console.error(error);
+        });
+    }
   };
 
   return (
     <>
       <CustomNav />
-      <div className="profile-container">
-        <div className="profile-picture">
-          <img src={profileData.picture} alt="Profile" />
-        </div>
-        <div className="profile-details">
-          <h2>{profileData.name}</h2>
-          <p>
-            <strong>Email:</strong>{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={profileData.email}
-                //event immeter
-                onChange={(e) => handleInputChange("email", e.target.value)}
-              />
-            ) : (
-              profileData.email
-            )}
-          </p>
-          <p>
-            <strong>Phone:</strong>{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={profileData.phone}
-                onChange={(e) => handleInputChange("phone", e.target.value)}
-              />
-            ) : (
-              profileData.phone
-            )}
-          </p>
-          <p>
-            <strong>City:</strong>{" "}
-            {isEditing ? (
-              <input
-                type="text"
-                value={profileData.city}
-                onChange={(e) => handleInputChange("city", e.target.value)}
-              />
-            ) : (
-              profileData.city
-            )}
-          </p>
-          <p>
-            <strong>Age:</strong>{" "}
-            {isEditing ? (
-              <input
-                type="number"
-                value={profileData.age}
-                onChange={(e) => handleInputChange("age", e.target.value)}
-              />
-            ) : (
-              profileData.age
-            )}
-          </p>
-          {isEditing ? (
-            <button onClick={handleSave}>Save</button>
-          ) : (
-            <button onClick={() => setIsEditing(true)}>Edit</button>
-          )}
-          <input
-            className="load-picture"
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                  setProfileData({
-                    ...profileData,
-                    picture: reader.result,
-                  });
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-          />
+      <div className="parent-container">
+        <div className="profile-container">
+          <div className="profile-left">
+            <div className="profile-picture">
+              <img src={profileData.picture} alt="Profile" />
+            </div>
+            <input
+              className="load-picture"
+              type="file"
+              id="load-picture"
+              accept="image/*"
+              onChange={handlePictureUpload}
+            />
+            <input
+              type="file"
+              id="cv"
+              name="cv"
+              onChange={handleCVUpload}
+              style={{ display: "none" }}
+            />
+            <div className="button-container">
+              <button htmlFor="load-picture" className="button">
+                Change picture
+              </button>
+              <button htmlFor="cv" className="button">
+                Upload CV
+              </button>
+            </div>
+          </div>
+          <div className="profile-details">
+            <form>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  value={profileData.name}
+                  onChange={(e) => handleInputChange("name", e.target.value)}
+                  disabled={!isEditing}
+                />
+              </label>
+              <label>
+                Email:
+                <input
+                  type="text"
+                  value={profileData.email}
+                  onChange={(e) => handleInputChange("email", e.target.value)}
+                  disabled={!isEditing}
+                />
+              </label>
+              <label>
+                Phone:
+                <input
+                  type="text"
+                  value={profileData.phone}
+                  onChange={(e) => handleInputChange("phone", e.target.value)}
+                  disabled={!isEditing}
+                />
+              </label>
+              <label>
+                City:
+                <input
+                  type="text"
+                  value={profileData.city}
+                  onChange={(e) => handleInputChange("city", e.target.value)}
+                  disabled={!isEditing}
+                />
+              </label>
+              <label>
+                Major:
+                <Select
+                  className="basic-single"
+                  classNamePrefix="select"
+                  defaultValue={profileData.major}
+                  options={majorOptions}
+                  value={majorOptions.find(
+                    (option) => option.value === profileData.major
+                  )}
+                  onChange={(option) =>
+                    handleInputChange("major", option.value)
+                  }
+                  isDisabled={!isEditing}
+                />
+              </label>
+            </form>
 
-          <Link to="/login">
-            <button onClick={logout}>Log Out</button>
-          </Link>
-        </div>
-      </div>{" "}
+            <div className="button-container">
+              {isEditing ? (
+                <button onClick={handleSave}>Save</button>
+              ) : (
+                <button onClick={() => setIsEditing(true)}>Edit</button>
+              )}
+              <button onClick={logout}>Log Out</button>
+            </div>
+          </div>
+        </div>{" "}
+      </div>
     </>
   );
 };
