@@ -1,7 +1,7 @@
 // Profile.js
 import { CustomNav } from "../components/custom_nav.jsx";
 import placeHolder from "../img/anonymous-pic.png";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import "../styles/profile.css";
@@ -10,11 +10,11 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 
 export const Profile = () => {
-  const [cookies] = useCookies(["token"]);
+  const [cookies, setCookies] = useCookies(["token"]);
   const navigate = useNavigate();
   const logout = () => {
     try {
-      setCookies("token", "", "");
+      setCookies("token", "", { path: "/" });
       window.localStorage.removeItem("userID");
       navigate("/login");
     } catch (error) {
@@ -26,7 +26,7 @@ export const Profile = () => {
     name: "test",
     email: "real@gmail.com",
     phone: "",
-    city: "Dammam",
+    city: "",
     age: 22,
     major: "Computer Science",
     picture: placeHolder,
@@ -85,20 +85,18 @@ export const Profile = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      // Send the file to the server
+
       axios
-        .post("/upload-picture", formData, {
+        .post("http://localhost:3001/upload/upload-picture", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,
           },
         })
         .then((response) => {
-          // Handle the response
           console.log(response);
         })
         .catch((error) => {
-          // Handle the error
           console.error(error);
         });
     }
@@ -109,24 +107,24 @@ export const Profile = () => {
     if (file) {
       const formData = new FormData();
       formData.append("file", file);
-      // Send the file to the server
+
       axios
-        .post("/upload-cv", formData, {
+        .post("http://localhost:3001/upload/upload-cv", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,
           },
         })
         .then((response) => {
-          // Handle the response
           console.log(response);
         })
         .catch((error) => {
-          // Handle the error
           console.error(error);
         });
     }
   };
+  const pictureInputRef = useRef(null);
+  const cvInputRef = useRef(null);
 
   return (
     <>
@@ -142,20 +140,31 @@ export const Profile = () => {
               type="file"
               id="load-picture"
               accept="image/*"
+              ref={pictureInputRef}
               onChange={handlePictureUpload}
             />
             <input
               type="file"
               id="cv"
               name="cv"
+              ref={cvInputRef}
               onChange={handleCVUpload}
               style={{ display: "none" }}
             />
+
             <div className="button-container">
-              <button htmlFor="load-picture" className="button">
+              <button
+                htmlFor="load-picture"
+                className="button"
+                onClick={() => pictureInputRef.current.click()}
+              >
                 Change picture
               </button>
-              <button htmlFor="cv" className="button">
+              <button
+                htmlFor="cv"
+                className="button"
+                onClick={() => cvInputRef.current.click()}
+              >
                 Upload CV
               </button>
             </div>
@@ -184,6 +193,7 @@ export const Profile = () => {
                 Phone:
                 <input
                   type="text"
+                  placeholder="05********"
                   value={profileData.phone}
                   onChange={(e) => handleInputChange("phone", e.target.value)}
                   disabled={!isEditing}

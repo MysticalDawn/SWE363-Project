@@ -12,9 +12,13 @@ export const Login = () => {
   // eslint-disable-next-line no-unused-vars
   const [_, setCookies] = useCookies("token");
   const navigate = useNavigate();
-  const {register, formState: {errors}, handleSubmit,} = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const loginUser = async (e) => {
-    e.preventDefault();
+    //e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/login", {
         email,
@@ -63,7 +67,7 @@ export const Login = () => {
         <form className="login-form" onSubmit={handleSubmit(loginUser)}>
           <h3>Email</h3>
           <input
-            {...register("email", {required: true})}
+            {...register("email", { required: true })}
             type="email"
             placeholder="someone@gmail.com"
             className="login-email-input"
@@ -77,7 +81,7 @@ export const Login = () => {
           </error>
           <h3>Password</h3>
           <input
-            {...register("password", {required: true})}
+            {...register("password", { required: true })}
             type="password"
             placeholder="type your password"
             className="login-password-input"
@@ -90,8 +94,8 @@ export const Login = () => {
             {errors.password?.type === "required" && "password is required"}
           </error>
           <button type="submit" className="login-btn">
-          Login
-        </button>
+            Login
+          </button>
         </form>
         {/* <button className="login-btn" onClick={loginUser}>
           Login
