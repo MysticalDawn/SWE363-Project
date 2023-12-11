@@ -103,6 +103,7 @@ export const Login = () => {
         <p className="login-bottom-text">
           {`Don't have an account?`} <Link to="/auth">Sign up</Link>
         </p>
+        <Link className="forgot-password" to="/forgot">Forgot password?</Link>
       </div>
       <div className="login-right-side">
         <img src={Login_pic} alt="login" height="800" width="800" />

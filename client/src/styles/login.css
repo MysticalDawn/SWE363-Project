@@ -126,6 +126,12 @@
   margin-left: 15%;
 }
 
+.forgot-password {
+  color: rgb(30, 24, 30);
+  font-size: 15px;
+  margin-left: 19%;
+}
+
 .login-right-side {
   display: flex;
   justify-content: start;
