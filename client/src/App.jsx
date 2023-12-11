@@ -9,6 +9,7 @@ import { CompanyInfo } from "./pages/company_info.jsx";
 import { Footer } from "./components/footer.jsx";
 import { ConfirmationPage } from "./components/confirmation.jsx";
 import { useCookies } from "react-cookie";
+import { ForgotPassword } from "./components/forgot.jsx";
 function App() {
   const [cookies] = useCookies(["token"]);
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/company/:company" element={<CompanyInfo />} />
           <Route path="/footer" element={<Footer />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
+          <Route path="/forgot" element={<ForgotPassword />} />
           {cookies.token ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}

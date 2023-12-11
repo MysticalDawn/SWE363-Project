@@ -1,0 +1,27 @@
+.forget-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.forget-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 50%;
+}
+
+.forget-content img {
+    margin-bottom: 4rem;
+}
+
+.forget-header {
+    padding: 5px;
+}
+
+#forgot-btn {
+    width: 30%;
+}
