@@ -10,6 +10,7 @@ import { Footer } from "./components/footer.jsx";
 import { ConfirmationPage } from "./components/confirmation.jsx";
 import { useCookies } from "react-cookie";
 import { ForgotPassword } from "./components/forgot.jsx";
+import { PasswordReset } from "./components/reset_password.jsx";
 function App() {
   const [cookies] = useCookies(["token"]);
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="/footer" element={<Footer />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
           <Route path="/forgot" element={<ForgotPassword />} />
+          <Route path="/password-reset" element={<PasswordReset />} />
           {cookies.token ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}
