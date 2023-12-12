@@ -1,53 +1,56 @@
 import express from 'express';
 import multer from 'multer';
 import { GridFsStorage } from 'multer-gridfs-storage';
-import Grid from 'gridfs-stream';
 import mongoose from 'mongoose';
-
-let gfs;
-let upload;
-
-mongoose.connection.once('open', () => {
-  // Create GridFS stream
-  Grid.mongo = mongoose.mongo;
-  gfs = Grid(mongoose.connection.db);
-  
-  // Create storage engine
-  const storage = new GridFsStorage({
-   url: mongoose.connection.client.s.url,
-   file: (req, file) => {
-     return new Promise((resolve, reject) => {
-       const filename = file.originalname;
-       const fileInfo = {
-         filename: filename,
-         bucketName: 'uploads'
-       };
-       resolve(fileInfo);
-     });
-   }
-  });
-
-  upload = multer({ storage });
-
+import crypto from 'crypto';
+import path from 'path';
 
 const router = express.Router();
+const mongoURI = "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"; // Use the same URI as in your main server file
+
+// Create storage engine
+const storage = new GridFsStorage({
+  url: mongoURI,
+  file: (req, file) => {
+    return new Promise((resolve, reject) => {
+      crypto.randomBytes(16, (err, buf) => {
+        if (err) {
+          return reject(err);
+        }
+        const filename = (req.body.fileName || 'file') + path.extname(file.originalname);
+        const fileInfo = {
+          filename: filename,
+          bucketName: 'uploads' // The collection name to use in MongoDB
+          
+        };
+        resolve(fileInfo);
+      });
+    });
+  }
+});
+storage.on('connection', (db) => {
+  console.log('GridFsStorage connected successfully!');
+});
+
+storage.on('connectionFailed', (err) => {
+  console.error('GridFsStorage connection failed:', err);
+});
+const upload = multer({ storage });
 
 router.post('/upload-picture', upload.single('file'), (req, res) => {
-  var writeStream = gfs.createWriteStream({
-    filename: req.user.id + '_profile_pic' //This name is used to retrieve data
-  });
-  // Pipe the request file stream directly to GridFS
-  req.file.stream.pipe(writeStream);
-  res.send("Success!");
+  console.log("we here")
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+
+  }
+  res.send("Picture uploaded successfully!");
 });
 
 router.post('/upload-cv', upload.single('file'), (req, res) => {
-  var writeStream = gfs.createWriteStream({
-    filename: req.user.id + '_CV' //This name is used to retrieve data 
-  });
-  // Pipe the request file stream directly to GridFS
-  req.file.stream.pipe(writeStream);
-  res.send("Success!");
+  if (!req.file) {
+    return res.status(400).send('No file uploaded.');
+  }
+  res.send("CV uploaded successfully!");
 });
-});
-//export { router as UploadRouter };
+
+export { router as UploadRouter };
