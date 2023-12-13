@@ -1,6 +1,16 @@
+.catalog-separator {
+    height: 2px;
+  background-color: #fff;
+  margin: 40px 100px;
+}
+
+
+ 
 #title {
-    margin-left: 30px;
+    margin-left: 35px;
     margin-top: 30px;
+    font-size: 6rem;
+    margin-bottom: 6rem;
 }
 #catalog-body{
     margin-top: 30px;
@@ -10,31 +20,38 @@
 #filter{
     display: inline-flex;
     flex-direction: column;
-    border: 1px solid rgb(122, 120, 120);
     border-radius: 10px;
-    margin-top: 65px;
+    border: 2px solid rgb(0, 0, 0);
+    margin-top: 10px;
     margin-left: 20px;
     font-size: larger;
-    background-color: rgb(255, 255, 255);
     font-size: x-large;
     min-width: 220px;
+    height: fit-content;
+    padding: 1rem;
 }
 #filter > *{
-    padding: 10px 10px 10px 5px;
-    border-bottom: 1px solid rgb(110, 110, 110);
+    padding: 20px 10px 20px 5px;
     float: left;
 
 }
 #filter select {
-    background-color: lightgray;
     font-size: xx-large;
     border-radius: 5px;
+    padding: 0.2rem;
     outline: none;
     font-size: medium;
     cursor: pointer;
     margin-top: 10px;
     transition: background-color 0.5s;
 }
+
+.small-separator {
+    height: 0rem;
+  background-color: #fff;
+   width: 1rem;
+}
+
 input[type="checkbox"]{
     cursor: pointer;
 }
@@ -93,10 +110,10 @@ input[type="checkbox"]{
     padding: 10px;
     transition: background-color 0.5s;
     width: 250px;
-    background-color: var(--secondary-background);
+    background-color: rgb(151, 163, 189);
 }
 .job-card:hover{
-    background-color: var(--primary-color);
+    background-color: var(--secondary-background-hover);
 }
 .job-card img[alt="cLogo"]{
     padding: 10px;

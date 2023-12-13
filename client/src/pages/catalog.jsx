@@ -53,48 +53,59 @@ export const Catalog = () => {
   function cardElement(jobObject) {
     return (
       <article className="job-card">
-        <Link to={`/company/${jobObject.company}`} style={{textDecoration:"none"}}>
-        <section className="card-body">
-          <img src={jobObject.companys_logo} alt="cLogo" width={40} />
-          
+        <Link
+          to={`/company/${jobObject.company}`}
+          style={{ textDecoration: "none" }}
+        >
+          <section className="card-body">
+            <img src={jobObject.companys_logo} alt="cLogo" width={40} />
+
             <h1 className="company-name">{jobObject.company}</h1>
-          <p className="rating">
-            <Rating
-              className="stars"
-              value={parseFloat(jobObject.rating_score)}
-              readOnly
-              precision={0.1}
-            ></Rating>
-            <i className="rating-count">({jobObject.rating_count} users)</i>
-          </p>
-          <div className="train-location">
-            <img src={locationLogo} alt="location" width={20} />
-            <h2>{jobObject.location}</h2>
-          </div>
-          {majorsElement(jobObject.majors)}
-        </section>
-        <section className="outer-card" onClick={(e) => e.stopPropagation()}>
-          <p style={{color:"white"}}>{jobObject.salary} SAR Avg</p>
-          <button type="submit" className="apply" onClick={(e) => e.stopPropagation()}>
-            Apply
-          </button>
-        </section>
+            <p className="rating">
+              <Rating
+                className="stars"
+                value={parseFloat(jobObject.rating_score)}
+                readOnly
+                precision={0.1}
+              ></Rating>
+              <i className="rating-count">({jobObject.rating_count} users)</i>
+            </p>
+            <div className="train-location">
+              <img src={locationLogo} alt="location" width={20} />
+              <h2>{jobObject.location}</h2>
+            </div>
+            {majorsElement(jobObject.majors)}
+          </section>
+          <section className="outer-card" onClick={(e) => e.stopPropagation()}>
+            <p style={{ color: "white" }}>{jobObject.salary} SAR Avg</p>
+            <button
+              type="submit"
+              className="apply"
+              onClick={(e) => e.stopPropagation()}
+            >
+              Apply
+            </button>
+          </section>
         </Link>
       </article>
     );
   }
-  function sortByPopularity(){
-    const sortedData = [...visibleData].sort((a, b) => b.rating_count - a.rating_count);
+  function sortByPopularity() {
+    const sortedData = [...visibleData].sort(
+      (a, b) => b.rating_count - a.rating_count
+    );
     setVisibleData(sortedData);
-    }
-  function sortByRating(){
-    const sortedData = [...visibleData].sort((a, b) => b.rating_score - a.rating_score);
+  }
+  function sortByRating() {
+    const sortedData = [...visibleData].sort(
+      (a, b) => b.rating_score - a.rating_score
+    );
     setVisibleData(sortedData);
-    }
-  function sortByRecent(){
+  }
+  function sortByRecent() {
     const sortedData = data;
     setVisibleData(sortedData);
-    }
+  }
   const jobCards = (Jobsdata) => {
     return (
       <>
@@ -125,6 +136,7 @@ export const Catalog = () => {
   return (
     <>
       <CustomNav />
+      <div className="catalog-separator"></div>
       <h1 id="title">Catalog:</h1>
       <main id="catalog-body">
         <aside id="filter">
@@ -145,16 +157,28 @@ export const Catalog = () => {
               ))}
             </select>
           </i>
-          <hr />
+          <div className="small-separator"></div>
           <i className="sortby">
             <i className="sort_label">
               <img src={sortByLogo} alt="sortby" width={25} />
               <p>Sort By:</p>
             </i>
-            <input type="radio" id="recent" name="sortby" value="recent" onClick={sortByRecent }/>{" "}
+            <input
+              type="radio"
+              id="recent"
+              name="sortby"
+              value="recent"
+              onClick={sortByRecent}
+            />{" "}
             <label htmlFor="recent">Most Recent</label>
             <br />
-            <input type="radio" id="rating" name="sortby" value="raing" onClick={sortByRating}/>{" "}
+            <input
+              type="radio"
+              id="rating"
+              name="sortby"
+              value="raing"
+              onClick={sortByRating}
+            />{" "}
             <label htmlFor="rating">Highest Rating</label>
             <br />{" "}
             <input
@@ -166,13 +190,18 @@ export const Catalog = () => {
             />{" "}
             <label htmlFor="popular">Most Popular</label>
           </i>
-          <hr />
+          <div className="small-separator"></div>
           <i className="location-filter">
             <i className="sort_label">
               <img src={locationLogo} alt="logos" width={20} />
               <p>Train Location:</p>
             </i>
-            <select name="location" id="location" defaultValue={"default"} onChange={(e) => filterLocation(e.target.value)}>
+            <select
+              name="location"
+              id="location"
+              defaultValue={"default"}
+              onChange={(e) => filterLocation(e.target.value)}
+            >
               <option value="default">All Locations</option>
               {uniqueLocations.map((location) => (
                 <option key={location} value={location}>
@@ -191,12 +220,13 @@ export const Catalog = () => {
               placeholder="Search for Companies..."
             />
           </p>
-          {visibleData.length==0?<section id="empty-grid">
-            <p>Nothing here yet...</p>
-          </section>:<section id="jobs-grid">
-            {jobCards(visibleData)}
-          </section>}
-          
+          {visibleData.length == 0 ? (
+            <section id="empty-grid">
+              <p>Nothing here yet...</p>
+            </section>
+          ) : (
+            <section id="jobs-grid">{jobCards(visibleData)}</section>
+          )}
         </section>
       </main>
     </>
