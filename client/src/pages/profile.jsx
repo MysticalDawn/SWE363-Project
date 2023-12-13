@@ -96,15 +96,11 @@ export const Profile = () => {
       formData.append("file", file);
 
       axios
-        .post(
-          `http://localhost:3001/upload/upload-picture?email=${profileData.email}`,
-          formData,
-          {
-            headers: {
-              Authorization: `Bearer ${cookies.token}`,
-            },
-          }
-        )
+        .post("http://localhost:3001/upload/upload-picture", formData, {
+          headers: {
+            Authorization: `Bearer ${cookies.token}`,
+          },
+        })
         .then((response) => {
           updateProfilePic(response.data.filePath);
         })

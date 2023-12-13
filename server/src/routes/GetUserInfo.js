@@ -24,14 +24,15 @@ router.get("/", async (req, res) => {
   }
 
   delete user.password;
-
+  const profilePicUrl = user.profile_pic ? `http://localhost:3001${user.profile_pic}` : null;
+  const cvUrl = user.CV ? `http://localhost:3001${user.CV}` : null;
   const info = {
     email: user.email,
     name: user.name,
     major: user.major,
     _id: user._id,
-    profile_pic: user.profile_pic,
-    cv: user.CV
+    profile_pic: profilePicUrl,
+    cv: cvUrl
   };
 
   return res.json(info);

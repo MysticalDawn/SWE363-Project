@@ -1,6 +1,8 @@
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
+import { fileURLToPath } from 'url';
+import path from 'path';
 import { UserRouter } from "./routes/Users.js";
 import { JobRouter } from "./routes/jobs.js";
 import { GetUserInfo } from "./routes/GetUserInfo.js";
@@ -16,6 +18,9 @@ app.use("/GetUserInfo", GetUserInfo)
 app.use("/reviews", ReviewRouter)
 app.use("/upload", UploadRouter);
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/assets', express.static(path.join(__dirname, 'routes/assets')));
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
 );
