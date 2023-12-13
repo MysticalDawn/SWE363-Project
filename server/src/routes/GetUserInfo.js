@@ -30,9 +30,11 @@ router.get("/", async (req, res) => {
     email: user.email,
     name: user.name,
     major: user.major,
+    phone:user.phone,
+    city:user.city,
     _id: user._id,
     profile_pic: profilePicUrl,
-    cv: cvUrl
+    cv: user.CV
   };
 
   return res.json(info);

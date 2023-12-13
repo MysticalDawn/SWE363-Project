@@ -46,6 +46,9 @@ export const Profile = () => {
         name: response.data.name,
         email: response.data.email,
         major: response.data.major,
+        phone: response.data.phone,
+        city: response.data.city,
+        cv: response.data.CV,
         picture: response.data.profile_pic,
       });
     } catch (error) {
@@ -62,14 +65,6 @@ export const Profile = () => {
   }, []);
 
   const [isEditing, setIsEditing] = useState(false);
-
-  const majorOptions = [
-    { label: "Computer Science", value: "Computer Science" },
-    { label: "Mathematics", value: "Mathematics" },
-    { label: "Physics", value: "Physics" },
-    // Add more options as needed
-  ];
-
   const handleInputChange = (field, value) => {
     setProfileData({
       ...profileData,
@@ -77,9 +72,20 @@ export const Profile = () => {
     });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     setIsEditing(false);
-    // Connect the database here in order to save the user updated information
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/update",
+        profileData,
+        { headers: { Authorization: `Bearer ${cookies.token}` } }
+      );
+
+      console.log(response.data.message);
+      setIsEditing(false);
+    } catch (error) {
+      console.error("Error updating profile:", error);
+    }
   };
 
   const updateProfilePic = (newPicPath) => {
@@ -124,7 +130,6 @@ export const Profile = () => {
         })
         .then((response) => {
           console.log(response);
-          // Save the file path to the profileData state
           setProfileData({
             ...profileData,
             cv: response.data.filePath,

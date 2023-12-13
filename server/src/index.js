@@ -8,6 +8,8 @@ import { JobRouter } from "./routes/jobs.js";
 import { GetUserInfo } from "./routes/GetUserInfo.js";
 import { ReviewRouter } from "./routes/review.js";
 import { UploadRouter } from "./routes/upload.js";
+import { UpdateUserRouter } from "./routes/updateUser.js";
+
 const app = express();
 
 app.use(cors());
@@ -17,10 +19,12 @@ app.use("/jobs", JobRouter);
 app.use("/GetUserInfo", GetUserInfo)
 app.use("/reviews", ReviewRouter)
 app.use("/upload", UploadRouter);
+app.use("/update",UpdateUserRouter);
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-app.use('/assets', express.static(path.join(__dirname, 'routes/assets')));
+console.log(path.join(__dirname, ))
+app.use('/assets', express.static(path.join(__dirname, 'routes','assets')));
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
 );
