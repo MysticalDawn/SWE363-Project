@@ -26,7 +26,7 @@ export const CustomNav = () => {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [userName]);
   return (
     <header className="nav_header">
       <nav>
