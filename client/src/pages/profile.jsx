@@ -1,4 +1,4 @@
-// Profile.js
+import "../styles/signup.css";
 import { CustomNav } from "../components/custom_nav.jsx";
 import placeHolder from "../img/anonymous-pic.png";
 import { useState, useEffect, useRef } from "react";
@@ -46,6 +46,7 @@ export const Profile = () => {
         name: response.data.name,
         email: response.data.email,
         major: response.data.major,
+        picture: response.data.profile_pic,
       });
     } catch (error) {
       if (error.response && error.response.status === 401) {
@@ -80,6 +81,14 @@ export const Profile = () => {
     setIsEditing(false);
     // Connect the database here in order to save the user updated information
   };
+
+  const updateProfilePic = (newPicPath) => {
+    setProfileData({
+      ...profileData,
+      picture: newPicPath,
+    });
+  };
+
   const handlePictureUpload = (e) => {
     const file = e.target.files[0];
     if (file) {
@@ -87,13 +96,17 @@ export const Profile = () => {
       formData.append("file", file);
 
       axios
-        .post("http://localhost:3001/upload/upload-picture", formData, {
-          headers: {
-            Authorization: `Bearer ${cookies.token}`,
-          },
-        })
+        .post(
+          `http://localhost:3001/upload/upload-picture?email=${profileData.email}`,
+          formData,
+          {
+            headers: {
+              Authorization: `Bearer ${cookies.token}`,
+            },
+          }
+        )
         .then((response) => {
-          console.log(response);
+          updateProfilePic(response.data.filePath);
         })
         .catch((error) => {
           console.error(error);
@@ -115,6 +128,11 @@ export const Profile = () => {
         })
         .then((response) => {
           console.log(response);
+          // Save the file path to the profileData state
+          setProfileData({
+            ...profileData,
+            cv: response.data.filePath,
+          });
         })
         .catch((error) => {
           console.error(error);
@@ -207,22 +225,27 @@ export const Profile = () => {
                   disabled={!isEditing}
                 />
               </label>
-              <label>
-                Major:
-                <Select
-                  className="basic-single"
-                  classNamePrefix="select"
-                  defaultValue={profileData.major}
-                  options={majorOptions}
-                  value={majorOptions.find(
-                    (option) => option.value === profileData.major
-                  )}
-                  onChange={(option) =>
-                    handleInputChange("major", option.value)
-                  }
-                  isDisabled={!isEditing}
-                />
-              </label>
+              <select
+                className="email-input major-input"
+                id="major_choice"
+                value={profileData.major}
+                onChange={(e) => handleInputChange("major", e.target.value)}
+                disabled={!isEditing}
+              >
+                <option value="Computer Science">Computer Science</option>
+                <option value="Computer Engineering">
+                  Computer Engineering
+                </option>
+                <option value="Software Engineering">
+                  Software Engineering
+                </option>
+                <option value="Electrical Engineering">
+                  Electrical Engineering
+                </option>
+                <option value="Mechanical Engineering">
+                  Mechanical Engineering
+                </option>
+              </select>
             </form>
 
             <div className="button-container">

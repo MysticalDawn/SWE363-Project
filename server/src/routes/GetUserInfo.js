@@ -30,6 +30,8 @@ router.get("/", async (req, res) => {
     name: user.name,
     major: user.major,
     _id: user._id,
+    profile_pic: user.profile_pic,
+    cv: user.CV
   };
 
   return res.json(info);

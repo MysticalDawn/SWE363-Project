@@ -14,6 +14,7 @@ app.use("/auth", UserRouter);
 app.use("/jobs", JobRouter);
 app.use("/GetUserInfo", GetUserInfo)
 app.use("/reviews", ReviewRouter)
+app.use("/upload", UploadRouter);
 
 mongoose.connect(
   "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"
@@ -24,7 +25,6 @@ db.on("error", (error) => {
   console.error("MongoDB connection error:", error);
 });
 db.once("open", () => {
-  app.use("/upload", UploadRouter);
   console.log("Connected to MongoDB");
 });
 
