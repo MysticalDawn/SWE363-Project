@@ -21,7 +21,6 @@ import jwt from "jsonwebtoken";
 // window.localStorage.setItem("userID", response.data.userId);
 const router = express.Router();
 
-
 // send password link
 router.post("/", async (req, res) => {
   try {
@@ -31,13 +30,7 @@ router.post("/", async (req, res) => {
         .status(409)
         .send({ message: "User with given email does not exist!" });
 
-    let token = await jwt.findOne({ userId: user._id });
-    if (!token) {
-      token = await new jwt({
-        userId: user._id,
-        token: crypto.randomBytes(32).toString("hex"),
-      }).save();
-    }
+    let token = await UserModel.findOne({ userId: user._id });
 
     const url = `${process.env.BASE_URL}password-reset/${user._id}/${token.token}/`;
     await sendEmail(user.email, "Password Reset", url);
@@ -71,13 +64,6 @@ router.get("/:id/:token", async (req, res) => {
 //  set new password
 router.post("/:id/:token", async (req, res) => {
   try {
-    // const passwordSchema = Joi.object({
-    //   password: passwordComplexity().required().label("Password"),
-    // });
-    // const { error } = passwordSchema.validate(req.body);
-    // if (error)
-    //   return res.status(400).send({ message: error.details[0].message });
-
     const user = await UserModel.findOne({ _id: req.params.id });
     if (!user) return res.status(400).send({ message: "Invalid link" });
 

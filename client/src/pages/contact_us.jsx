@@ -13,7 +13,7 @@ export const ContactUs = () => {
   const [message, setMessage] = useState("");
   const form = useRef();
   const {register, formState: {errors}, handleSubmit,} = useForm();
-  const send_message = async (e) => {
+  const send_message = async () => {
     // e.preventDefault();
     const res = await emailjs.sendForm(
       "service_2vqh3ur",

@@ -89,7 +89,6 @@ export const Profile = () => {
       axios
         .post("http://localhost:3001/upload/upload-picture", formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,
           },
         })
@@ -111,7 +110,6 @@ export const Profile = () => {
       axios
         .post("http://localhost:3001/upload/upload-cv", formData, {
           headers: {
-            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${cookies.token}`,
           },
         })
@@ -123,6 +121,7 @@ export const Profile = () => {
         });
     }
   };
+
   const pictureInputRef = useRef(null);
   const cvInputRef = useRef(null);
 
