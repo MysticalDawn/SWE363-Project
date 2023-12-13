@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dallani README</title>
 </head>
 <body>
     <div class="container">
@@ -28,16 +27,15 @@
             <li>CSS</li>
         </ul>
         <h2>Getting Started</h2>
-        <h3>Coming soon....</h3>
-        <p>Contributions are welcome! Please follow the standard git workflow for contributing.</p>
+        <p>Coming soon....</p>
         <h2>Contributors</h2>
         <div class="contributors">
             <ul>
-                <li><a href="https://github.com/johndoe">Abdulwahab</a> - lead developer</li>
-                <li><a href="https://github.com/janesmith"> Ahmad</a> - Backend Development & Frontend Development</li>
-                <li><a href="https://github.com/ahmedali">Omar</a> - Database Management & server</li>
-                <li><a href="https://github.com/sarakhalid">Hamad</a> - Backend Development</li>
-                <li><a href="https://github.com/sarakhalid">Abdulrahman</a> - Frontend Development & Documentation</li>
+                <li><a href="https://github.com/MysticalDawn">Abdulwahab</a> - lead developer</li>
+                <li><a href="https://github.com/aalqarnimr"> Ahmad</a> - Backend Development & Frontend Development</li>
+                <li><a href="https://github.com/OmarAlfawaz">Omar</a> - Database Management & server</li>
+                <li><a href="https://github.com/HamadSadran">Hamad</a> - Backend Development</li>
+                <li><a href="https://github.com/AbduLRaHMaNDS">Abdulrahman</a> - Frontend Development & Documentation</li>
             </ul>
         </div>
         <h2>License</h2>
