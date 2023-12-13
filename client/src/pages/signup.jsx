@@ -13,7 +13,7 @@ export const Signup = () => {
   const [_, setCookies] = useCookies("token"); // eslint-disable-line no-unused-vars
   const {register, formState: {errors}, handleSubmit,} = useForm();
   const signUserUp = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/register", {
         email,
