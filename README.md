@@ -5,41 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dallani README</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-        }
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-        h1, h2, h3 {
-            color: #333;
-        }
-        p {
-            margin: 10px 0;
-        }
-        a {
-            color: #0066cc;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        .contributors ul {
-            list-style: none;
-            padding: 0;
-        }
-        .contributors li {
-            margin-bottom: 5px;
-        }
-        .contributors a {
-            text-decoration: none;
-            color: #333;
-        }
-    </style>
 </head>
 <body>
     <div class="container">
