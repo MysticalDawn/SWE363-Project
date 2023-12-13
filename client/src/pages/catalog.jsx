@@ -10,6 +10,7 @@ import axios from "axios";
 export const Catalog = () => {
   const [data, setData] = useState([]);
   const [visibleData, setVisibleData] = useState([]);
+  let tempVisibleData = [];
   // const [uniqueMajors, setUniqueMajors] = useState([]);
   useEffect(() => {
     const fetchData = async () => {
@@ -28,7 +29,11 @@ export const Catalog = () => {
   }, []);
   // Convert to a set to remove duplicates and then back to an array
   let uniqueMajors = Array.from(new Set(allMajors));
-  console.log(uniqueMajors);
+  const allLocations = data.reduce((acc, job) => {
+    return acc.concat(job.location || []); // Ensure job.majors exists and handle any potential undefined values
+  }, []);
+  // Convert to a set to remove duplicates and then back to an array
+  let uniqueLocations = Array.from(new Set(allLocations));
   let majors = ["CS", "SWE", "COE", "EE"];
   function majorsElement(majorsList) {
     let elementsList = majorsList.map((major) => (
@@ -78,6 +83,18 @@ export const Catalog = () => {
       </article>
     );
   }
+  function sortByPopularity(){
+    const sortedData = [...visibleData].sort((a, b) => b.rating_count - a.rating_count);
+    setVisibleData(sortedData);
+    }
+  function sortByRating(){
+    const sortedData = [...visibleData].sort((a, b) => b.rating_score - a.rating_score);
+    setVisibleData(sortedData);
+    }
+  function sortByRecent(){
+    const sortedData = data;
+    setVisibleData(sortedData);
+    }
   const jobCards = (Jobsdata) => {
     return (
       <>
@@ -88,7 +105,6 @@ export const Catalog = () => {
     );
   };
   const filterMajor = (selectedMajor) => {
-    console.log(selectedMajor);
     if (selectedMajor == "default") {
       setVisibleData(data);
     } else {
@@ -97,7 +113,15 @@ export const Catalog = () => {
       );
     }
   };
-  console.log(visibleData.length==0)
+  const filterLocation = (selectedLocation) => {
+    if (selectedLocation == "default") {
+      setVisibleData(data);
+    } else {
+      setVisibleData(
+        data.filter((value) => value.location.includes(selectedLocation))
+      );
+    }
+  };
   return (
     <>
       <CustomNav />
@@ -122,29 +146,15 @@ export const Catalog = () => {
             </select>
           </i>
           <hr />
-          <i className="major-section">
-            Duration:
-            <br />
-            <input type="checkbox" name="summer" id="summer" />
-            <label htmlFor="summber"> Summer Training</label>
-            <br />
-            <input type="checkbox" name="summer" id="summer" />
-            <label htmlFor="summber"> COOP</label>
-            <br />
-            <input type="checkbox" name="summer" id="summer" />
-            <label htmlFor="summber"> Internship</label>
-          </i>
-          <hr />
-
           <i className="sortby">
             <i className="sort_label">
               <img src={sortByLogo} alt="sortby" width={25} />
               <p>Sort By:</p>
             </i>
-            <input type="radio" id="recent" name="sortby" value="recent" />{" "}
+            <input type="radio" id="recent" name="sortby" value="recent" onClick={sortByRecent }/>{" "}
             <label htmlFor="recent">Most Recent</label>
             <br />
-            <input type="radio" id="rating" name="sortby" value="raing" />{" "}
+            <input type="radio" id="rating" name="sortby" value="raing" onClick={sortByRating}/>{" "}
             <label htmlFor="rating">Highest Rating</label>
             <br />{" "}
             <input
@@ -152,6 +162,7 @@ export const Catalog = () => {
               id="popular"
               name="sortby"
               value="popular"
+              onClick={sortByPopularity}
             />{" "}
             <label htmlFor="popular">Most Popular</label>
           </i>
@@ -161,12 +172,13 @@ export const Catalog = () => {
               <img src={locationLogo} alt="logos" width={20} />
               <p>Train Location:</p>
             </i>
-            <select name="location" id="location" defaultValue={"default"}>
+            <select name="location" id="location" defaultValue={"default"} onChange={(e) => filterLocation(e.target.value)}>
               <option value="default">All Locations</option>
-              <option value="Dhahran">Dhahran</option>
-              <option value="Riyadh">Riyadh</option>
-              <option value="Jeddah">Jeddah</option>
-              <option value="Neom">Neom</option>
+              {uniqueLocations.map((location) => (
+                <option key={location} value={location}>
+                  {location}
+                </option>
+              ))}
             </select>
           </i>
         </aside>
