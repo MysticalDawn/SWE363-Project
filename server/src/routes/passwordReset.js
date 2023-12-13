@@ -30,9 +30,20 @@ router.post("/", async (req, res) => {
         .status(409)
         .send({ message: "User with given email does not exist!" });
 
-    let token = await UserModel.findOne({ userId: user._id });
+    function generate_token(length){
+    //edit the token allowed characters
+    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
+    var b = [];  
+    for (var i=0; i<length; i++) {
+        var j = (Math.random() * (a.length-1)).toFixed(0);
+        b[i] = a[j];
+    }
+    return b.join("");
+    }
+    var token = generate_token(32);
+    // let token = await UserModel.findOne({ userId: user._id });
 
-    const url = `${process.env.BASE_URL}password-reset/${user._id}/${token.token}/`;
+    const url = `${process.env.BASE_URL}password-reset/${user._id}/${token}/`;
     await sendEmail(user.email, "Password Reset", url);
 
     res
