@@ -21,6 +21,17 @@ router.post("/register", async (req, res) => {
   res.json({ message: "User registered successfully" });
 });
 
+router.post("/checkEmail", async (req, res) => {
+  const {email} = req.body;
+  const user = await UserModel.findOne({ email });
+  if (user) {
+    res.status(205).send("there exists email");
+  }
+  else{
+    res.status(200).send("new email");
+  }
+});
+
 router.post("/login", async (req, res) => {
   const { email, password } = req.body;
   const user = await UserModel.findOne({ email });

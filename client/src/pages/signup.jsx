@@ -14,13 +14,14 @@ export const Signup = () => {
   const [visibility, setVisibility] = useState("none");
   const [buttonText, setButtonText] = useState("Verify Your Email");
   const [alertText, setAlertText] = useState(
-    "Verification code has been sent to your Email"
+    ""
   );
-  const [alertColor, setAlertColor] = useState("#039f03");
+  const [alertColor, setAlertColor] = useState("#990000");
   const [major, setMajor] = useState("");
   const verificationCodeRef = useRef(null);
   const navigate = useNavigate();
   const [_, setCookies] = useCookies("token"); // eslint-disable-line no-unused-vars
+  let dropSubmission = false;
   const {
     register,
     formState: { errors },
@@ -39,6 +40,24 @@ export const Signup = () => {
       console.log(error);
     }
   };
+
+  const checkEmail = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/auth/checkEmail", {
+        email: email.toLowerCase(),
+      });
+      console.log(response.status);
+      if (response.status == 200){
+        sendVerification()
+      }
+      else {
+        setAlertText("Email already Exists");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   const sendVerification = async (e) => {
     e.preventDefault()
     try {
@@ -190,14 +209,14 @@ export const Signup = () => {
           <button
             type="submit"
             className="signup-btn"
-            onClick={buttonText == "Sign Up" ? verifyCode : sendVerification}
+            onClick={buttonText == "Sign Up" ? verifyCode : checkEmail}
           >
             {buttonText}
           </button>
         </form>
         <p
           className="alert-text"
-          style={{ display: visibility, color: alertColor }}
+          style={{color: alertColor }}
         >
           {alertText}
         </p>

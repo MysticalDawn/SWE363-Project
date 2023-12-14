@@ -40,7 +40,7 @@ router.get("/", async (req, res) => {
     city:user.city,
     _id: user._id,
     profile_pic: profilePicUrl,
-    cv: user.CV
+    cv: cvUrl
   };
 
   return res.json(info);
