@@ -178,7 +178,7 @@ export const Catalog = () => {
               ))}
             </select>
           </i>
-          <div className="small-separator"></div>
+          <div id="small-separator"></div>
           <i className="sortby">
             <i className="sort_label">
               <img src={sortByLogo} alt="sortby" width={25} />
@@ -211,7 +211,7 @@ export const Catalog = () => {
             />{" "}
             <label htmlFor="popular">Most Popular</label>
           </i>
-          <div className="small-separator"></div>
+          <div id="small-separator2"></div>
           <i className="location-filter">
             <i className="sort_label">
               <img src={locationLogo} alt="logos" width={20} />

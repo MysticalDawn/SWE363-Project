@@ -43,7 +43,7 @@ export const CustomNav = () => {
           </Link>
           {cookies.token ? (
             <Link id="sign-in-up" to="/profile">
-              {"Hey " + userName}
+              {"Hey " + userName + "👋"}
             </Link>
           ) : (
             <Link id="sign-in-up" to="/login">

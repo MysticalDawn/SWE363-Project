@@ -21,7 +21,7 @@ export const Login = () => {
     //e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/login", {
-        email,
+        email: email.toLowerCase(),
         password,
       });
       setCookies("token", response.data.token);
@@ -73,7 +73,7 @@ export const Login = () => {
             className="login-email-input"
             value={email}
             onChange={(e) => {
-              setEmail(e.target.value.toLowerCase());
+              setEmail(e.target.value);
             }}
           />
           <error>

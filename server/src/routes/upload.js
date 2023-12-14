@@ -36,7 +36,6 @@ const storage = multer.diskStorage({
       const userId = decoded.id;
       const prefix = req.route.path.includes('picture') ? 'picture' : 'cv';
       const extension = path.extname(file.originalname);
-      console.log("HERE")
       const newFilename = `${prefix}-${userId}${extension}`;
       cb(null, newFilename);
     } catch (error) {
@@ -76,7 +75,7 @@ const handleFileUpload = async (req, res, fileField) => {
 };
 
 router.post('/upload-picture', upload.single('file'), (req, res) => {
-  console.log("1325")
+
   handleFileUpload(req, res, 'profile_pic');
 });
 

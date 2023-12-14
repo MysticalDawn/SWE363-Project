@@ -1,3 +1,4 @@
+
 import express from "express";
 import jwt from "jsonwebtoken";
 import mongoose from "mongoose";
@@ -11,8 +12,10 @@ router.get("/", async (req, res) => {
   }
 
   try {
+   
     jwt.verify(token, "secret"); // Use the same secret key that was used in the jwt.sign function
   } catch (error) {
+    console.log("final")
     return res.status(401).json({ error: "Invalid token" });
   }
 
