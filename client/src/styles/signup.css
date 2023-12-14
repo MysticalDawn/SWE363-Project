@@ -139,6 +139,9 @@
   color: #990000;
   margin-top: 10px;
   margin-left: 9%;
+  display: inline;
+  width: 20rem;
+  text-align: center;
 }
 
 .signup-bottom-text {
