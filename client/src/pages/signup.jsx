@@ -5,6 +5,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 import { green } from "@mui/material/colors";
+import signup_logo from "../img/signup-logo.svg";
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -38,7 +39,8 @@ export const Signup = () => {
       console.log(error);
     }
   };
-  const sendVerification = async () => {
+  const sendVerification = async (e) => {
+    e.preventDefault()
     try {
       const response = await axios.post(
         "http://localhost:3001/verification/sendVerification",
@@ -78,16 +80,7 @@ export const Signup = () => {
   return (
     <div className="auth-wrapper">
       <div className="left-side">
-        <svg
-          fill="#FFFFFF"
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 50 50"
-          width="50px"
-          height="50px"
-          className="actual-logo"
-        >
-          <path d="M 11.984375 4 A 1.0001 1.0001 0 0 0 11.292969 4.2929688 L 3.2929688 12.292969 A 1.0001 1.0001 0 0 0 3 13 L 3 36 A 1.0001 1.0001 0 0 0 3.2929688 36.707031 L 13.292969 46.707031 A 1.0001 1.0001 0 0 0 15 46 L 15 25.414062 L 24.292969 34.707031 A 1.0001 1.0001 0 0 0 25.707031 34.707031 L 35 25.414062 L 35 46 A 1.0001 1.0001 0 0 0 36.707031 46.707031 L 46.707031 36.707031 A 1.0001 1.0001 0 0 0 47 36 L 47 13 A 1.0001 1.0001 0 0 0 46.707031 12.292969 L 38.707031 4.2929688 A 1.0001 1.0001 0 0 0 37.292969 4.2929688 L 25 16.585938 L 12.707031 4.2929688 A 1.0001 1.0001 0 0 0 11.984375 4 z M 12 6.4140625 L 24 18.414062 L 24 31.585938 L 5.4140625 13 L 12 6.4140625 z M 38 6.4140625 L 44.585938 13 L 26 31.585938 L 26 18.414062 L 38 6.4140625 z M 5 15.414062 L 13 23.414062 L 13 43.585938 L 5 35.585938 L 5 15.414062 z M 45 15.414062 L 45 35.585938 L 37 43.585938 L 37 23.414062 L 45 15.414062 z" />
-        </svg>
+        <img src={signup_logo} alt="signup-logo" className="actual-logo" width={600} height={600} />
       </div>
       <div className="right-side">
         <Link className="go-back-arrow" to="/">
@@ -124,7 +117,7 @@ export const Signup = () => {
             {...register("email", { required: true })}
             type="email"
             placeholder="someone@gmail.com"
-            className="email-input"
+            id="email-input"
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
@@ -140,7 +133,7 @@ export const Signup = () => {
             {...register("password", { required: true })}
             type="password"
             placeholder="Type a strong password"
-            className="password-input"
+            id="password-input"
             value={password}
             onChange={(e) => {
               setPassword(e.target.value);
@@ -154,7 +147,7 @@ export const Signup = () => {
             {...register("name", { required: true })}
             type="text"
             placeholder="Type your name"
-            className="email-input name-input"
+            id="name-input"
             value={name}
             onChange={(e) => {
               setName(e.target.value);
@@ -166,7 +159,7 @@ export const Signup = () => {
           <h3>Select your major</h3>
           <select
             className="email-input major-input"
-            id="major_choice"
+            id="major-choice"
             value={major}
             onChange={(e) => {
               setMajor(e.target.value);
@@ -195,7 +188,7 @@ export const Signup = () => {
             }}
           />
           <button
-            type="button"
+            type="submit"
             className="signup-btn"
             onClick={buttonText == "Sign Up" ? verifyCode : sendVerification}
           >
