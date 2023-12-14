@@ -114,9 +114,11 @@ export const Profile = () => {
   };
 
   const updateProfilePic = (newPicPath) => {
-    setProfileData({
-      ...profileData,
-      picture: newPicPath,
+    setTimeout(() => {
+      setProfileData({
+        ...profileData,
+        picture: newPicPath,
+      });
     });
   };
 
