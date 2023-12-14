@@ -7,8 +7,10 @@ import Rating from "@mui/material/Rating";
 import { useCookies } from "react-cookie";
 import { useState, useRef, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 export const CompanyInfo = () => {
+  const navigate = useNavigate();
   const { company } = useParams();
   const [data, setData] = useState([]);
   const [reviewsData, setReviewsData] = useState([]);
@@ -128,6 +130,28 @@ export const CompanyInfo = () => {
       reviewFormRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
+  const submitApplication = async ()=>{
+    const sentData = {
+      companys_name: company,
+      companys_email: data.comapanys_email,
+      student_name: userData.name,
+      student_major: userData.major,
+      student_city:userData.city,
+      student_email:userData.email,
+      student_phone:userData.phone,
+      student_cv:userData.CV
+    }
+    try {
+      const response = await axios.post(
+        `http://localhost:3001/application/sendApplication`,sentData
+      );
+      console.log(response.status);
+      if(response.status === 200){
+        navigate("/confirm");}
+    } catch (error) {
+      console.error("Error submitting Application:", error);
+    }
+  }
   const CompanyElement = ({ jobObject }) => {
     return (
       <section className="company-info">
@@ -142,6 +166,7 @@ export const CompanyInfo = () => {
             <p>{jobObject.location}</p>
           </a>
           <span style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+            
             <Rating
               className="stars"
               value={jobObject.rating_score}
@@ -151,6 +176,7 @@ export const CompanyInfo = () => {
             ></Rating>
             <i style={{ padding: "5px" }}>{jobObject.rating_score}/5</i>
           </span>
+          <button className="main-button" onClick={submitApplication}>Apply</button>
         </span>
       </section>
     );
