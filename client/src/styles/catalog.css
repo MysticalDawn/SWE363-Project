@@ -96,7 +96,7 @@ input[type="checkbox"]{
 }
 #jobs-grid{
     display: grid;
-    grid-template-columns: repeat(auto-fit,265px);
+    grid-template-columns: repeat(auto-fit,275px);
     justify-content: center;
     margin-right: 50px;
     gap: 4rem;

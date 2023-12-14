@@ -7,12 +7,33 @@ import sortByLogo from "../img/sortby.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 export const Catalog = () => {
+  const [userInfo, setUserInfo] = useState({});
+  const [cookies] = useCookies(["token"]);
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/GetUserInfo", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      });
+      setUserInfo(response.data);
+      console.log(userInfo);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.error("Unauthorized access");
+      } else {
+        console.error(error);
+      }
+    }
+  };
   const [data, setData] = useState([]);
   const [visibleData, setVisibleData] = useState([]);
   let tempVisibleData = [];
   // const [uniqueMajors, setUniqueMajors] = useState([]);
   useEffect(() => {
+    getUserInfo();
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/jobs/data");
