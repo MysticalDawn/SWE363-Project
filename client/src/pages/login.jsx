@@ -97,9 +97,6 @@ export const Login = () => {
             Login
           </button>
         </form>
-        {/* <button className="login-btn" onClick={loginUser}>
-          Login
-        </button> */}
         <p className="login-bottom-text">
           {`Don't have an account?`} <Link to="/auth">Sign up</Link>
         </p>
