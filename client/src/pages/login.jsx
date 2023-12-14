@@ -17,7 +17,7 @@ export const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const loginUser = async (e) => {
+  const loginUser = async () => {
     //e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/login", {
@@ -97,9 +97,6 @@ export const Login = () => {
             Login
           </button>
         </form>
-        {/* <button className="login-btn" onClick={loginUser}>
-          Login
-        </button> */}
         <p className="login-bottom-text">
           {`Don't have an account?`} <Link to="/auth">Sign up</Link>
         </p>

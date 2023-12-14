@@ -30,20 +30,26 @@ router.post("/", async (req, res) => {
         .status(409)
         .send({ message: "User with given email does not exist!" });
 
-    function generate_token(length){
-    //edit the token allowed characters
-    var a = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split("");
-    var b = [];  
-    for (var i=0; i<length; i++) {
-        var j = (Math.random() * (a.length-1)).toFixed(0);
+    function generate_token(length) {
+      //edit the token allowed characters
+      var a =
+        "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890".split(
+          ""
+        );
+      var b = [];
+      for (var i = 0; i < length; i++) {
+        var j = (Math.random() * (a.length - 1)).toFixed(0);
         b[i] = a[j];
-    }
-    return b.join("");
+      }
+      return b.join("");
     }
     var token = generate_token(32);
+    user = await UserModel.findOneAndUpdate(user._id, {
+      tempToken: token,
+    });
     // let token = await UserModel.findOne({ userId: user._id });
 
-    const url = `${process.env.BASE_URL}password-reset/${user._id}/${token}/`;
+    const url = `http://localhost:5173/password-reset/${user._id}/${token}/`;
     await sendEmail(user.email, "Password Reset", url);
 
     res
@@ -57,14 +63,22 @@ router.post("/", async (req, res) => {
 // verify password reset link
 router.get("/:id/:token", async (req, res) => {
   try {
+    console.log("here");
     const user = await UserModel.findOne({ _id: req.params.id });
-    if (!user) return res.status(400).send({ message: "Invalid link" });
+    console.log(req.params.id);
+    console.log(req.params.token);
+    if (!user) {
+      console.log("here22222");
+      return res.status(400).send({ message: "Invalid link" });
+    }
 
-    const token = await jwt.findOne({
-      userId: user._id,
-      token: req.params.token,
-    });
-    if (!token) return res.status(400).send({ message: "Invalid link" });
+    const token = req.params.token;
+    console.log("HERE IS THE TOKEN");
+    console.log(token);
+    if (!token) {
+      console.log("here3333");
+      return res.status(400).send({ message: "Invalid link" });
+    }
 
     res.status(200).send("Valid Url");
   } catch (error) {
@@ -75,22 +89,21 @@ router.get("/:id/:token", async (req, res) => {
 //  set new password
 router.post("/:id/:token", async (req, res) => {
   try {
+    console.log(req.params);
     const user = await UserModel.findOne({ _id: req.params.id });
     if (!user) return res.status(400).send({ message: "Invalid link" });
 
-    const token = await jwt.findOne({
-      userId: user._id,
-      token: req.params.token,
-    });
+    const token = req.params.token;
     if (!token) return res.status(400).send({ message: "Invalid link" });
 
-    if (!user.verified) user.verified = true;
+    // if (!user.verified) user.verified = true;
 
     const hashPassword = await bcrypt.hash(req.body.password, 10);
 
     user.password = hashPassword;
     await user.save();
-    await token.remove();
+
+    console.log("Here!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     res.status(200).send({ message: "Password reset successfully" });
   } catch (error) {

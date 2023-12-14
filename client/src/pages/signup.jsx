@@ -125,7 +125,7 @@ export const Signup = () => {
               setVisibility("none");
             }}
           />
-          <error>
+          <error className = "signup-error">
             {errors.email?.type === "required" && "Email is required"}
           </error>
           <h3>Password</h3>
@@ -139,7 +139,7 @@ export const Signup = () => {
               setPassword(e.target.value);
             }}
           />
-          <error>
+          <error className = "signup-error">
             {errors.password?.type === "required" && "Password is required"}
           </error>
           <h3>Name</h3>
@@ -153,7 +153,7 @@ export const Signup = () => {
               setName(e.target.value);
             }}
           />
-          <error>
+          <error className = "signup-error">
             {errors.name?.type === "required" && "Name is required"}
           </error>
           <h3>Select your major</h3>

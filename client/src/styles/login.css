@@ -50,7 +50,8 @@
   color: rgb(30, 24, 30);
   margin-top: 2.2rem;  
   font-size: 25px;
-  height: 40px ;
+  height: 50px ;
+  overflow: hidden;
 }
 
 
@@ -112,7 +113,7 @@
   width: 20rem;
   height: 70px;
   transition: background-color 0.7s;
-  
+  overflow: hidden;
 }
 
 .login-btn:hover {
@@ -143,6 +144,7 @@
 error{
   font-size: 17px;
   color: #ff6774;
-  height: 26px;
+  height: 45px;
+  overflow: hidden;
   
 }
