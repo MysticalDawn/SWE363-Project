@@ -37,7 +37,7 @@ export const ForgotPassword = () => {
 					onChange={(e) => setEmail(e.target.value)}
 					value={email}
 					required
-					className="email-input"
+					className="email-input-2"
           />
           {error && <div className="error_msg">{error}</div>}
           {msg && <div className="success_msg">{msg}</div>}

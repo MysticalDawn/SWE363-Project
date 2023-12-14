@@ -41,7 +41,25 @@
 .success_msg {
     background-color: #5cdd5c;
 }
-
-.email-input {
-    width: 15rem;
-}
+.email-input-2 {
+    margin-top: 1rem;
+    width: 150%;
+    height: 3rem;
+    border-radius: 0.1rem;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid white;
+    outline: none;
+    padding-left: 1rem;
+    font-size: 15px;
+    font-family: "JetBrains Mono", monospace;
+    background-color: transparent;
+    color: black;
+    transition: box-shadow 0.3s;
+  }
+  
+  .email-input-2:focus {
+    box-shadow: 0 3px 0 0 white;
+  }
+  

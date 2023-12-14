@@ -80,7 +80,7 @@
   transition: box-shadow 0.3s;
 }
 
-.email-input:focus {
+#email-input:focus {
   box-shadow: 0 3px 0 0 white;
 }
 
