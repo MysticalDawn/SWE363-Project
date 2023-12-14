@@ -7,12 +7,33 @@ import sortByLogo from "../img/sortby.svg";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 export const Catalog = () => {
+  const [userInfo, setUserInfo] = useState({});
+  const [cookies] = useCookies(["token"]);
+  const getUserInfo = async () => {
+    try {
+      const response = await axios.get("http://localhost:3001/GetUserInfo", {
+        headers: {
+          Authorization: `Bearer ${cookies.token}`,
+        },
+      });
+      setUserInfo(response.data);
+      console.log(userInfo);
+    } catch (error) {
+      if (error.response && error.response.status === 401) {
+        console.error("Unauthorized access");
+      } else {
+        console.error(error);
+      }
+    }
+  };
   const [data, setData] = useState([]);
   const [visibleData, setVisibleData] = useState([]);
   let tempVisibleData = [];
   // const [uniqueMajors, setUniqueMajors] = useState([]);
   useEffect(() => {
+    getUserInfo();
     const fetchData = async () => {
       try {
         const response = await axios.get("http://localhost:3001/jobs/data");
@@ -75,8 +96,9 @@ export const Catalog = () => {
         </section>
         <section className="outer-card" onClick={(e) => e.stopPropagation()}>
           <p style={{color:"white"}}>{jobObject.salary} SAR Avg</p>
-          <button type="submit" className="apply" onClick={(e) => e.stopPropagation()}>
-            Apply
+          <button type="submit" className="apply" >
+            <a href={`mailto:${jobObject.comapanys_email}?subject=Application to training&body=Hello, my name is ${userInfo.name}`}>Apply</a>
+            
           </button>
         </section>
         </Link>
