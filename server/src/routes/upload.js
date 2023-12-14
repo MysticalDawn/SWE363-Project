@@ -1,56 +1,87 @@
 import express from 'express';
 import multer from 'multer';
-import { GridFsStorage } from 'multer-gridfs-storage';
-import mongoose from 'mongoose';
-import crypto from 'crypto';
 import path from 'path';
-
+import jwt from 'jsonwebtoken';
+import { UserModel } from "../model/UserMdle.js";
+import { fileURLToPath } from 'url';
+import fs from 'fs';
 const router = express.Router();
-const mongoURI = "mongodb+srv://mystical:123@swe363.lzyffx0.mongodb.net/swe363?retryWrites=true&w=majority"; // Use the same URI as in your main server file
-
-// Create storage engine
-const storage = new GridFsStorage({
-  url: mongoURI,
-  file: (req, file) => {
-    return new Promise((resolve, reject) => {
-      crypto.randomBytes(16, (err, buf) => {
-        if (err) {
-          return reject(err);
-        }
-        const filename = (req.body.fileName || 'file') + path.extname(file.originalname);
-        const fileInfo = {
-          filename: filename,
-          bucketName: 'uploads' // The collection name to use in MongoDB
-          
-        };
-        resolve(fileInfo);
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+// Function to delete a file
+const deleteFile = (filePath) => {
+  return new Promise((resolve, reject) => {
+    if (fs.existsSync(filePath)) {
+      fs.unlink(filePath, (err) => {
+        if (err) reject(err);
+        resolve();
       });
-    });
-  }
-});
-storage.on('connection', (db) => {
-  console.log('GridFsStorage connected successfully!');
+    } else {
+      resolve();
+    }
+  });
+};
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, path.join(__dirname, 'assets'));
+  },
+  filename: (req, file, cb) => {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) {
+      return cb(new Error('No token provided'));
+    }
+
+    try {
+      const decoded = jwt.verify(token, "secret"); // Replace with your JWT secret
+      const userId = decoded.id;
+      const prefix = req.route.path.includes('picture') ? 'picture' : 'cv';
+      const extension = path.extname(file.originalname);
+      console.log("HERE")
+      const newFilename = `${prefix}-${userId}${extension}`;
+      cb(null, newFilename);
+    } catch (error) {
+      cb(error);
+    }
+  },
 });
 
-storage.on('connectionFailed', (err) => {
-  console.error('GridFsStorage connection failed:', err);
-});
-const upload = multer({ storage });
+const upload = multer({ storage: storage });
 
-router.post('/upload-picture', upload.single('file'), (req, res) => {
-  console.log("we here")
+
+
+const handleFileUpload = async (req, res, fileField) => {
   if (!req.file) {
     return res.status(400).send('No file uploaded.');
-
   }
-  res.send("Picture uploaded successfully!");
+  const filePath = `/assets/${req.file.filename}`;
+  const decoded = jwt.verify(req.headers.authorization.split(" ")[1], "secret");
+  const userId = decoded.id;
+
+  try {
+    const user = await UserModel.findById(userId);
+    /*
+    if (user && user[fileField]) {
+      await deleteFile(path.join(__dirname, 'assets', user[fileField].split('/assets/')[1]));
+    }
+*/
+    const update = {};
+    update[fileField] = filePath;
+    await UserModel.findByIdAndUpdate(userId, update);
+
+    res.json({ filePath });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal server error');
+  }
+};
+
+router.post('/upload-picture', upload.single('file'), (req, res) => {
+  console.log("1325")
+  handleFileUpload(req, res, 'profile_pic');
 });
 
 router.post('/upload-cv', upload.single('file'), (req, res) => {
-  if (!req.file) {
-    return res.status(400).send('No file uploaded.');
-  }
-  res.send("CV uploaded successfully!");
+  handleFileUpload(req, res, 'CV');
 });
 
 export { router as UploadRouter };
