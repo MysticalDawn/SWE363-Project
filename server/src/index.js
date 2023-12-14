@@ -11,6 +11,7 @@ import { ReviewRouter } from "./routes/review.js";
 import { UploadRouter } from "./routes/upload.js";
 import { UpdateUserRouter } from "./routes/updateUser.js";
 import {sendApplicationRounter} from "./utils/sendApplication.js";
+import { PasswordReset } from "./routes/passwordReset.js";
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use("/reviews", ReviewRouter)
 app.use("/upload", UploadRouter);
 app.use("/update",UpdateUserRouter);
 app.use("/application",sendApplicationRounter);
+app.use("/password-reset", PasswordReset)
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 console.log(path.join(__dirname, ))

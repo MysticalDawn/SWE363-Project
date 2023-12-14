@@ -26,7 +26,7 @@ function App() {
           <Route path="/footer" element={<Footer />} />
           <Route path="/confirm" element={<ConfirmationPage />} />
           <Route path="/forgot" element={<ForgotPassword />} />
-          <Route path="/password-reset" element={<PasswordReset />} />
+          <Route path="/password-reset/:id/:token" element={<PasswordReset />} />
           {cookies.token ? (
             <Route path="/profile" element={<Profile />} />
           ) : null}

@@ -41,9 +41,12 @@ router.post("/", async (req, res) => {
     return b.join("");
     }
     var token = generate_token(32);
+    user = await UserModel.findOneAndUpdate(
+      {}
+    );
     // let token = await UserModel.findOne({ userId: user._id });
 
-    const url = `${process.env.BASE_URL}password-reset/${user._id}/${token}/`;
+    const url = `http://localhost:5173/password-reset/${user._id}/${token}/`;
     await sendEmail(user.email, "Password Reset", url);
 
     res

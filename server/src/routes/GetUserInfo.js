@@ -27,6 +27,9 @@ router.get("/", async (req, res) => {
   }
 
   delete user.password;
+  if(user.tempToken != null){
+    delete user.tempToken;
+  }
   const profilePicUrl = user.profile_pic ? `http://localhost:3001${user.profile_pic}` : null;
   const cvUrl = user.CV ? `http://localhost:3001${user.CV}` : null;
   const info = {
