@@ -41,7 +41,8 @@ export const Signup = () => {
     }
   };
 
-  const checkEmail = async () => {
+  const checkEmail = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/checkEmail", {
         email: email.toLowerCase(),
@@ -58,8 +59,7 @@ export const Signup = () => {
     }
   }
 
-  const sendVerification = async (e) => {
-    e.preventDefault()
+  const sendVerification = async () => {
     try {
       const response = await axios.post(
         "http://localhost:3001/verification/sendVerification",
@@ -199,6 +199,7 @@ export const Signup = () => {
             type="text"
             style={{ display: visibility }}
             className="email-input verCode"
+            id="email-input"
             ref={verificationCodeRef}
             value={verCode}
             placeholder="XXXXXX"
