@@ -2,6 +2,7 @@ import { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/styles.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const PasswordReset = () => {
 	const [validUrl, setValidUrl] = useState(false);
@@ -9,10 +10,12 @@ export const PasswordReset = () => {
 	const [msg, setMsg] = useState("");
 	const [error, setError] = useState("");
 	const param = useParams();
-	const url = `http://localhost:5173/password-reset/${param.id}/${param.token}`;
+	const navigate = useNavigate();
+	const url = `http://localhost:3001/password-reset/${param.id}/${param.token}`;
 
 	useEffect(() => {
 		const verifyUrl = async () => {
+			console.log(url);
 			try {
 				await axios.get(url);
 				setValidUrl(true);
@@ -29,7 +32,7 @@ export const PasswordReset = () => {
 			const { data } = await axios.post(url, { password });
 			setMsg(data.message);
 			setError("");
-			window.location = "/login";
+			navigate("/login")
 		} catch (error) {
 			if (
 				error.response &&

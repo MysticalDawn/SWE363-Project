@@ -30,9 +30,7 @@ const UserSchema = new mongoose.Schema({
   CV: {
     type: String,
   },
-  tempToken: { type: String
-  },
-  createdAt: { type: Date, default: Date.now, expires: 3600 }
+  tempToken: { type: String },
 });
 
 export const UserModel = mongoose.model("Users", UserSchema);

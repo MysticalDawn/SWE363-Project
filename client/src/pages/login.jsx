@@ -17,7 +17,7 @@ export const Login = () => {
     formState: { errors },
     handleSubmit,
   } = useForm();
-  const loginUser = async (e) => {
+  const loginUser = async () => {
     //e.preventDefault();
     try {
       const response = await axios.post("http://localhost:3001/auth/login", {
