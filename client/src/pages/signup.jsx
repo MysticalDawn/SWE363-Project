@@ -208,7 +208,7 @@ export const Signup = () => {
             }}
           />
           <button
-            type="submit"
+            type="button"
             className="signup-btn"
             onClick={buttonText == "Sign Up" ? verifyCode : checkEmail}
           >
