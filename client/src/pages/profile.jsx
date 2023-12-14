@@ -63,7 +63,9 @@ export const Profile = () => {
         phone: response.data.phone,
         city: response.data.city,
         cv: response.data.CV,
-        picture: response.data.profile_pic,
+        picture: response.data.profile_pic
+          ? response.data.profile_pic
+          : placeHolder,
       });
     } catch (error) {
       if (error.response && error.response.status === 401) {

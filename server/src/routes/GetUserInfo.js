@@ -12,7 +12,7 @@ router.get("/", async (req, res) => {
   }
 
   try {
-    console.log("pop")
+   
     jwt.verify(token, "secret"); // Use the same secret key that was used in the jwt.sign function
   } catch (error) {
     console.log("final")
