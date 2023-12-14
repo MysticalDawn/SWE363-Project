@@ -154,6 +154,18 @@ export const Catalog = () => {
       );
     }
   };
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredCompanies, setFilteredCompanies] = useState([]);
+
+  const handleSearch = (searchTerm) => {
+    console.log(data);
+    setSearchTerm(searchTerm);
+
+    const filtered = data.filter((company) =>
+      company.company.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+    setVisibleData(filtered);
+  };
   return (
     <>
       <CustomNav />
@@ -239,6 +251,7 @@ export const Catalog = () => {
               name="search"
               id="search"
               placeholder="Search for Companies..."
+              onChange={(e)=>handleSearch(e.target.value)}
             />
           </p>
           {visibleData.length == 0 ? (
