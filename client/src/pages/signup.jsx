@@ -1,14 +1,21 @@
 import "../styles/signup.css";
-import { useState } from "react";
+import { useState,useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
+import { green } from "@mui/material/colors";
 export const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [verCode, setVerCode] = useState("");
+  const [visibility, setVisibility] = useState("none");
+  const [buttonText, setButtonText] = useState("Verify Your Email");
+  const [alertText, setAlertText] = useState("Verification code has been sent to your Email");
+  const [alertColor, setAlertColor] = useState("#039f03");
   const [major, setMajor] = useState("");
+  const verificationCodeRef = useRef(null);
   const navigate = useNavigate();
   const [_, setCookies] = useCookies("token"); // eslint-disable-line no-unused-vars
   const {
@@ -29,6 +36,38 @@ export const Signup = () => {
       console.log(error);
     }
   };
+  const sendVerification = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/verification/sendVerification", {
+        student_email: email.toLowerCase(),
+      });
+      setButtonText("Sign Up");
+      setVisibility("initial");
+      setAlertColor("#039f03");
+      setAlertText("Verification code has been sent to your Email");
+      verificationCodeRef.current.focus();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  const verifyCode = async () => {
+    try {
+      const response = await axios.post("http://localhost:3001/verification/verifyCode", {
+        userVerificationCode: verCode,
+      });
+      console.log(response.status);
+      if (response.status == 200){
+        signUserUp();
+      }
+      else if (response.status == 201){
+        console.log("Wrong VerCode");
+        setAlertColor("#990000");
+        setAlertText("Wrong Verification Code");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
   return (
     <div className="auth-wrapper">
       <div className="left-side">
@@ -72,7 +111,7 @@ export const Signup = () => {
         <p className="bellow-signup-text">
           Sign up to start your journey with us
         </p>
-        <form className="signup-form" onSubmit={handleSubmit(signUserUp)}>
+        <form className="signup-form">
           <h3>Email</h3>
           <input
             {...register("email", { required: true })}
@@ -82,6 +121,8 @@ export const Signup = () => {
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);
+              setButtonText("Verify Your Email");
+              setVisibility("none");
             }}
           />
           <error className = "signup-error">
@@ -134,11 +175,23 @@ export const Signup = () => {
               Mechanical Engineering
             </option>
           </select>
-          <button type="submit" className="signup-btn">
-            Sign Up
+          <h3 style={{ display: visibility }}>Verification Code</h3>
+          <input
+            type="text"
+            style={{ display: visibility }}
+            className="email-input verCode"
+            ref={verificationCodeRef}
+            value={verCode}
+            placeholder="XXXXXX"
+            onChange={(e) => {
+              setVerCode(e.target.value);
+            }}
+          />
+          <button type="button" className="signup-btn" onClick={buttonText=="Sign Up"?verifyCode:sendVerification}>
+            {buttonText}
           </button>
         </form>
-
+        <p className="alert-text" style={{display:visibility,color:alertColor}}>{alertText}</p>
         <p className="signup-bottom-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>

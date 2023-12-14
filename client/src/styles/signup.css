@@ -135,6 +135,11 @@
   background-color: rgb(30, 24, 30);
   color: white;
 }
+.alert-text{
+  color: #990000;
+  margin-top: 10px;
+  margin-left: 9%;
+}
 
 .signup-bottom-text {
   color: rgb(30, 24, 30);
