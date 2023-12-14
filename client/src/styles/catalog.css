@@ -114,11 +114,15 @@ input[type="checkbox"] {
   padding: 10px;
   transition: background-color 0.5s;
   width: 250px;
-  background-color: rgb(151, 163, 189);
+  background-color: #434858;
 }
 .job-card:hover {
-  background-color: rgb(134, 198, 255);
+  background-color: #2E323D;
 }
+
+#e5ccc0 #caacac #a98f9b #827589 #585e73  #7e906e #a6a283
+#c4fcf0
+
 .job-card img[alt="cLogo"] {
   padding: 10px;
   margin-left: 0px;
@@ -203,16 +207,17 @@ img[alt="location"] {
   margin-right: 10px;
   font-size: larger;
   padding: 8px;
-  background-color: white;
+  background-color: #585E73;
   border-radius: 6px;
   border: 1px solid rgb(30, 24, 30);
-  color: black;
+  color: white;
   transition: background-color 0.5s;
   cursor: pointer;
   font-weight: 800;
 }
 .apply:hover {
-  background-color: rgb(30, 24, 30);
+    color: black;
+  background-color: white;
 }
 .users-rating {
   padding: 5px;

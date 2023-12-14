@@ -15,7 +15,7 @@ export const ConfirmationPage = () => {
         <h1 className="confirm-header">Success!</h1>
         <p className="confirm-text">You process has been completed!</p>
         <Link to="/login" className="conf browse-btn" id="confirm-btn">
-          Login
+          Return
         </Link>
       </div>
     </div>
