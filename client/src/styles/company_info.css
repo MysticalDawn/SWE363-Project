@@ -131,3 +131,20 @@ textarea {
 .active-stars * {
     color: #faaf00;
 }
+
+.main-buttons {
+    font-size: larger;
+    padding: 5px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid white;
+    color: black;
+    transition: background-color 0.5s;
+    cursor: pointer;
+    font-weight: 800;
+    padding: 1rem;
+}
+
+.main-buttons:hover {
+    background-color: #043a53;
+}

@@ -108,7 +108,7 @@
   border-radius: 3rem;
   padding: 1rem;
   margin-top: 4.8rem;
-  margin-left: 8%;
+  margin-left: 10%;
   cursor: pointer;
   width: 20rem;
   height: 70px;
@@ -130,7 +130,7 @@
 .forgot-password {
   color: rgb(30, 24, 30);
   font-size: 15px;
-  margin-left: 19%;
+  margin-left: 18%;
 }
 
 .login-right-side {

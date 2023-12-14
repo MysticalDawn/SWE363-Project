@@ -180,7 +180,7 @@ export const CompanyInfo = () => {
             ></Rating>
             <i style={{ padding: "5px" }}>{jobObject.rating_score}/5</i>
           </span>
-          <button className="main-button" onClick={submitApplication}>
+          <button className="main-buttons" onClick={submitApplication}>
             Apply
           </button>
         </span>
@@ -231,7 +231,7 @@ export const CompanyInfo = () => {
         <section className="reviews">
           <div className="reviews-header">
             <h2>Reviews </h2>
-            <button className="main-button" onClick={scrollToReviewForm}>
+            <button className="main-buttons" onClick={scrollToReviewForm}>
               Create a Review!
             </button>
           </div>
