@@ -23,7 +23,7 @@
 }
 
 #forgot-btn {
-    width: 30%;
+    width: 100%;
 }
 
 .error_msg,
@@ -40,4 +40,8 @@
 
 .success_msg {
     background-color: #5cdd5c;
+}
+
+.email-input {
+    width: 15rem;
 }

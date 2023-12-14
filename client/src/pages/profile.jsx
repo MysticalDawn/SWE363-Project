@@ -62,7 +62,7 @@ export const Profile = () => {
         major: response.data.major,
         phone: response.data.phone,
         city: response.data.city,
-        cv: response.data.CV,
+        cv: response.data.cv,
         picture: response.data.profile_pic
           ? response.data.profile_pic
           : placeHolder,
@@ -114,9 +114,11 @@ export const Profile = () => {
   };
 
   const updateProfilePic = (newPicPath) => {
-    setProfileData({
-      ...profileData,
-      picture: newPicPath,
+    setTimeout(() => {
+      setProfileData({
+        ...profileData,
+        picture: newPicPath,
+      });
     });
   };
 
@@ -154,7 +156,7 @@ export const Profile = () => {
           },
         })
         .then((response) => {
-          console.log(response);
+          //console.log(response);
           setProfileData({
             ...profileData,
             cv: response.data.filePath,
@@ -204,13 +206,24 @@ export const Profile = () => {
               >
                 Change picture
               </button>
-              <button
-                htmlFor="cv"
-                className="button"
-                onClick={() => cvInputRef.current.click()}
-              >
-                Upload CV
-              </button>
+
+              {profileData.cv == null ? (
+                <button
+                  htmlFor="cv"
+                  className="button"
+                  onClick={() => cvInputRef.current.click()}
+                >
+                  Upload CV
+                </button>
+              ) : (
+                <button
+                  htmlFor="cv"
+                  className="button"
+                  onClick={() => cvInputRef.current.click()}
+                >
+                  Change uploaded CV
+                </button>
+              )}
             </div>
           </div>
           <div className="profile-details">
