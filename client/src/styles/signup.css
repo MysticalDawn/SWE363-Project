@@ -129,8 +129,21 @@
 }
 
 #major-choice {
-  padding: 0.2rem;
-  width: 55%
+  margin-top: 1rem;
+  width: 55%;
+  height: 3rem;
+  border-radius: 0.1rem;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-bottom: solid white;
+  outline: none;
+  padding-left: 1rem;
+  font-size: 15px;
+  font-family: "JetBrains Mono", monospace;
+  background-color: transparent;
+  color: black;
+  transition: box-shadow 0.3s;
 
 }
 
