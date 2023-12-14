@@ -59,7 +59,7 @@ export const CompanyInfo = () => {
     getUserInfo();
     getCompanyReviews();
     console.log(reviewsData);
-  }, [company,submissionStatus]);
+  }, [company, submissionStatus]);
   const [userData, setUserData] = useState({});
   const [cookies] = useCookies(["token"]);
 
@@ -113,10 +113,10 @@ export const CompanyInfo = () => {
         success: true,
         message: "Review submitted successfully!",
       });
-      console.log(starValue,"is astar")
+      console.log(starValue, "is astar");
       const JobResponse = await axios.post(
         "http://localhost:3001/jobs/modifyReviews",
-        {starRating: starValue,company}
+        { starRating: starValue, company }
       );
       console.log("Response:", response.data);
       console.log("Review submitted successfully!");
@@ -130,28 +130,33 @@ export const CompanyInfo = () => {
       reviewFormRef.current.scrollIntoView({ behavior: "smooth" });
     }
   };
-  const submitApplication = async ()=>{
+  const submitApplication = async () => {
     const sentData = {
       companys_name: company,
       companys_email: data.comapanys_email,
       student_name: userData.name,
       student_major: userData.major,
-      student_city:userData.city,
-      student_email:userData.email,
-      student_phone:userData.phone,
-      student_cv:userData.CV
-    }
+      student_city: userData.city,
+      student_email: userData.email,
+      student_phone: userData.phone,
+      student_cv: userData.CV,
+    };
     try {
       const response = await axios.post(
-        `http://localhost:3001/application/sendApplication`,sentData
+        `http://localhost:3001/application/sendApplication`,
+        sentData
       );
       console.log(response.status);
-      if(response.status === 200){
-        navigate("/confirm");}
+      if (response.status === 200) {
+        navigate("/confirm");
+      } else {
+        navigate("/login");
+      }
     } catch (error) {
       console.error("Error submitting Application:", error);
+      navigate("/login");
     }
-  }
+  };
   const CompanyElement = ({ jobObject }) => {
     return (
       <section className="company-info">
@@ -166,7 +171,6 @@ export const CompanyInfo = () => {
             <p>{jobObject.location}</p>
           </a>
           <span style={{ display: "flex", gap: "5px", alignItems: "center" }}>
-            
             <Rating
               className="stars"
               value={jobObject.rating_score}
@@ -176,7 +180,9 @@ export const CompanyInfo = () => {
             ></Rating>
             <i style={{ padding: "5px" }}>{jobObject.rating_score}/5</i>
           </span>
-          <button className="main-button" onClick={submitApplication}>Apply</button>
+          <button className="main-button" onClick={submitApplication}>
+            Apply
+          </button>
         </span>
       </section>
     );
@@ -318,7 +324,15 @@ export const CompanyInfo = () => {
               style={{ display: "block", marginTop: "10px" }}
             />
             {submissionStatus && submissionStatus.success && (
-              <p style={{ color: "green" ,marginTop:"10px",fontSize:"larger"}}>{submissionStatus.message}</p>
+              <p
+                style={{
+                  color: "green",
+                  marginTop: "10px",
+                  fontSize: "larger",
+                }}
+              >
+                {submissionStatus.message}
+              </p>
             )}
           </form>
         </section>

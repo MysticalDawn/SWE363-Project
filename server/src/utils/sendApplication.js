@@ -15,6 +15,12 @@ router.post("/sendApplication", (req, res) => {
     student_phone,
     student_cv
   } = req.body;
+
+  console.log(student_email)
+  if(student_email === undefined) {
+    res.sendStatus(400);
+    return;
+  }
     console.log(companys_email);
 
   const mailOptions = {
