@@ -87,13 +87,14 @@ export const Profile = () => {
   };
 
   const handleSave = async () => {
-    if (!validatePhone(profileData.phone)) {
-      setErrorMessage(
-        "Phone number must start with '05' and be exactly 10 digits long."
-      );
-      return;
+    if (profileData.phone.length != 0) {
+      if (!validatePhone(profileData.phone)) {
+        setErrorMessage(
+          "Phone number must start with '05' and be exactly 10 digits long."
+        );
+        return;
+      }
     }
-
     setErrorMessage("");
     setIsEditing(false);
     try {

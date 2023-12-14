@@ -11,9 +11,12 @@ export const Signup = () => {
   const [major, setMajor] = useState("");
   const navigate = useNavigate();
   const [_, setCookies] = useCookies("token"); // eslint-disable-line no-unused-vars
-  const {register, formState: {errors}, handleSubmit,} = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm();
   const signUserUp = async () => {
-   
     try {
       const response = await axios.post("http://localhost:3001/auth/register", {
         email,
@@ -21,8 +24,6 @@ export const Signup = () => {
         name,
         major,
       });
-      setCookies("token", response.data.token);
-      window.localStorage.setItem("userID", response.data.userId);
       navigate("/confirm");
     } catch (error) {
       console.log(error);
@@ -74,7 +75,7 @@ export const Signup = () => {
         <form className="signup-form" onSubmit={handleSubmit(signUserUp)}>
           <h3>Email</h3>
           <input
-            {...register("email", {required: true})}
+            {...register("email", { required: true })}
             type="email"
             placeholder="someone@gmail.com"
             className="email-input"
@@ -88,7 +89,7 @@ export const Signup = () => {
           </error>
           <h3>Password</h3>
           <input
-            {...register("password", {required: true})}
+            {...register("password", { required: true })}
             type="password"
             placeholder="Type a strong password"
             className="password-input"
@@ -102,7 +103,7 @@ export const Signup = () => {
           </error>
           <h3>Name</h3>
           <input
-            {...register("name", {required: true})}
+            {...register("name", { required: true })}
             type="text"
             placeholder="Type your name"
             className="email-input name-input"
@@ -134,10 +135,10 @@ export const Signup = () => {
             </option>
           </select>
           <button type="submit" className="signup-btn">
-          Sign Up
-        </button>
+            Sign Up
+          </button>
         </form>
-        
+
         <p className="signup-bottom-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>
