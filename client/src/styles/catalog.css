@@ -46,10 +46,17 @@
     transition: background-color 0.5s;
 }
 
-.small-separator {
+#small-separator {
     height: 0rem;
   background-color: #fff;
-   width: 1rem;
+   width: 100%;
+   padding: 1px;
+}
+#small-separator2 {
+    height: 0rem;
+  background-color: #fff;
+   width: 100%;
+   padding: 1px;
 }
 
 input[type="checkbox"]{
