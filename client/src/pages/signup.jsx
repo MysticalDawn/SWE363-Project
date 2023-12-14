@@ -1,5 +1,5 @@
 import "../styles/signup.css";
-import { useState,useRef } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useCookies } from "react-cookie";
@@ -12,7 +12,9 @@ export const Signup = () => {
   const [verCode, setVerCode] = useState("");
   const [visibility, setVisibility] = useState("none");
   const [buttonText, setButtonText] = useState("Verify Your Email");
-  const [alertText, setAlertText] = useState("Verification code has been sent to your Email");
+  const [alertText, setAlertText] = useState(
+    "Verification code has been sent to your Email"
+  );
   const [alertColor, setAlertColor] = useState("#039f03");
   const [major, setMajor] = useState("");
   const verificationCodeRef = useRef(null);
@@ -31,16 +33,19 @@ export const Signup = () => {
         name,
         major,
       });
-      navigate("/confirm");
+      navigate("/confirm-2");
     } catch (error) {
       console.log(error);
     }
   };
   const sendVerification = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/verification/sendVerification", {
-        student_email: email.toLowerCase(),
-      });
+      const response = await axios.post(
+        "http://localhost:3001/verification/sendVerification",
+        {
+          student_email: email.toLowerCase(),
+        }
+      );
       setButtonText("Sign Up");
       setVisibility("initial");
       setAlertColor("#039f03");
@@ -49,17 +54,19 @@ export const Signup = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   const verifyCode = async () => {
     try {
-      const response = await axios.post("http://localhost:3001/verification/verifyCode", {
-        userVerificationCode: verCode,
-      });
+      const response = await axios.post(
+        "http://localhost:3001/verification/verifyCode",
+        {
+          userVerificationCode: verCode,
+        }
+      );
       console.log(response.status);
-      if (response.status == 200){
+      if (response.status == 200) {
         signUserUp();
-      }
-      else if (response.status == 201){
+      } else if (response.status == 201) {
         console.log("Wrong VerCode");
         setAlertColor("#990000");
         setAlertText("Wrong Verification Code");
@@ -67,7 +74,7 @@ export const Signup = () => {
     } catch (error) {
       console.log(error);
     }
-  }
+  };
   return (
     <div className="auth-wrapper">
       <div className="left-side">
@@ -125,7 +132,7 @@ export const Signup = () => {
               setVisibility("none");
             }}
           />
-          <error className = "signup-error">
+          <error className="signup-error">
             {errors.email?.type === "required" && "Email is required"}
           </error>
           <h3>Password</h3>
@@ -139,7 +146,7 @@ export const Signup = () => {
               setPassword(e.target.value);
             }}
           />
-          <error className = "signup-error">
+          <error className="signup-error">
             {errors.password?.type === "required" && "Password is required"}
           </error>
           <h3>Name</h3>
@@ -153,7 +160,7 @@ export const Signup = () => {
               setName(e.target.value);
             }}
           />
-          <error className = "signup-error">
+          <error className="signup-error">
             {errors.name?.type === "required" && "Name is required"}
           </error>
           <h3>Select your major</h3>
@@ -187,11 +194,20 @@ export const Signup = () => {
               setVerCode(e.target.value);
             }}
           />
-          <button type="button" className="signup-btn" onClick={buttonText=="Sign Up"?verifyCode:sendVerification}>
+          <button
+            type="button"
+            className="signup-btn"
+            onClick={buttonText == "Sign Up" ? verifyCode : sendVerification}
+          >
             {buttonText}
           </button>
         </form>
-        <p className="alert-text" style={{display:visibility,color:alertColor}}>{alertText}</p>
+        <p
+          className="alert-text"
+          style={{ display: visibility, color: alertColor }}
+        >
+          {alertText}
+        </p>
         <p className="signup-bottom-text">
           Already have an account? <Link to="/login">Log In</Link>
         </p>
