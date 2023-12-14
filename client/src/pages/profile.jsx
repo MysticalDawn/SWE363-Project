@@ -21,6 +21,10 @@ export const Profile = () => {
       console.error("Failed to log out:", error);
     }
   };
+  const validatePhone = (phone) => {
+    const phoneRegex = /^05\d{8}$/;
+    return phoneRegex.test(phone);
+  };
 
   const initialProfileData = {
     name: "test",
@@ -33,6 +37,16 @@ export const Profile = () => {
   };
 
   const [profileData, setProfileData] = useState(initialProfileData);
+  const [errorMessage, setErrorMessage] = useState("");
+  useEffect(() => {
+    if (errorMessage) {
+      const timer = setTimeout(() => {
+        setErrorMessage("");
+      }, 5000); // 5000 milliseconds = 5 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [errorMessage]);
 
   const getUserInfo = async () => {
     try {
@@ -73,6 +87,14 @@ export const Profile = () => {
   };
 
   const handleSave = async () => {
+    if (!validatePhone(profileData.phone)) {
+      setErrorMessage(
+        "Phone number must start with '05' and be exactly 10 digits long."
+      );
+      return;
+    }
+
+    setErrorMessage("");
     setIsEditing(false);
     try {
       const response = await axios.post(
@@ -160,6 +182,7 @@ export const Profile = () => {
               accept="image/*"
               ref={pictureInputRef}
               onChange={handlePictureUpload}
+              style={{ display: "none" }}
             />
             <input
               type="file"
@@ -200,12 +223,7 @@ export const Profile = () => {
               </label>
               <label>
                 Email:
-                <input
-                  type="text"
-                  value={profileData.email}
-                  onChange={(e) => handleInputChange("email", e.target.value)}
-                  disabled={!isEditing}
-                />
+                <input type="text" value={profileData.email} disabled={true} />
               </label>
               <label>
                 Phone:
@@ -257,6 +275,11 @@ export const Profile = () => {
               )}
               <button onClick={logout}>Log Out</button>
             </div>
+            {errorMessage && (
+              <div style={{ color: "red", textAlign: "center" }}>
+                {errorMessage}
+              </div>
+            )}
           </div>
         </div>{" "}
       </div>
