@@ -34,7 +34,11 @@
             <li>CSS</li>
         </ul>
         <h2>Getting Started</h2>
-        <p>Coming soon....</p>
+        <p>PLEASE GO TO CLIENT AND npm i
+THEN, GO TO SERVER AND npm i
+
+To run the program, please navigate first to the server/src then run nodemon index.js
+To run the program, please navigate first to the client then run npm run dev</p>
         <h2>Contributors</h2>
         <div class="contributors">
             <ul>
