@@ -49,7 +49,6 @@ router.post("/", async (req, res) => {
     });
     // let token = await UserModel.findOne({ userId: user._id });
 
-
     const url = `http://localhost:5173/password-reset/${user._id}/${token}/`;
     await sendEmail(user.email, "Password Reset", url);
 

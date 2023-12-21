@@ -11,6 +11,13 @@
         <p>A platform for KFUPM students to search and review summer training and co-op opportunities.</p>
         <h2>Introduction</h2>
         <p>Dallani is a web application tailored for KFUPM students, aimed at simplifying the process of finding suitable summer and co-op training programs. The app provides tools to search, filter, and review companies based on student experiences.</p>
+        <h2>Running the Program</h2>
+        <ul>
+            <li>Install npm modules in client</li>
+            <li>Install npm modules in server</li>
+            <li>run the client by typing npm run dev</li>
+            <li>run the server/src by typing nodemon index.js</li>
+        </ul>
         <h2>Features</h2>
         <ul>
             <li>Training Opportunities Search</li>
